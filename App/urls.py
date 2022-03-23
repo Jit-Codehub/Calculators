@@ -36,4 +36,5 @@ path('estimated-time-of-arrival-calculator/', views.estimatedtimeofarrivalcalcul
 path('english-learning-time-calculator/', views.englishlearningtimecalculator),
 path('meeting-cost-calculator/', views.meetingcostcalculator),
 path('lead-time-calculator/', views.leadtimecalculator),
+path('hair-growth-calculator/', views.hairgrowthcalculator),
 ]

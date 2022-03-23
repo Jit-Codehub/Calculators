@@ -10852,3 +10852,77 @@ def leadtimecalculator(request):
     return render(request, "leadtimecalculator.html",{'given_data':given_data})
   else:
     return render(request, "leadtimecalculator.html",{'given_data':"form1"}) 
+
+
+
+
+
+
+def hairgrowthcalculator(request):
+  if request.method == "POST":
+    
+    #storing value of Growth time in variable
+    if request.POST.get('GT')!=None and request.POST.get('GT')!='' :  
+      #Storing POST-Production time value in minutes
+      inp=str(request.POST.get('GT'))
+      GTinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        GT=int(request.POST.get('GT'))
+      else:
+        GT=float(request.POST.get('GT'))
+    else:
+      GT=None
+
+    #storing value of Growth time operation
+    GT_op = request.POST.get('GT_op')
+
+    #storing value of calculate button
+    f1 = request.POST.get('f1')
+
+    if (GT or GT == 0) and GT_op == "Day" and f1:
+      result = GT * 0.41725
+      #dictionary to pass all the required values to the template
+      context = {
+      "GT":GTinp,
+      "GT_op":GT_op,
+      "result":result,
+      "f1":f1,
+      }
+      return render(request, "hairgrowthcalculator.html", context)
+
+    elif (GT or GT == 0) and GT_op == "Week" and f1:
+      result = GT * 2.921
+      #dictionary to pass all the required values to the template
+      context = {
+      "GT":GTinp,
+      "GT_op":GT_op,
+      "result":result,
+      "f1":f1,
+      }
+      return render(request, "hairgrowthcalculator.html", context)
+
+    elif (GT or GT == 0) and GT_op == "Month" and f1:
+      result = GT * 12.7
+      #dictionary to pass all the required values to the template
+      context = {
+      "GT":GTinp,
+      "GT_op":GT_op,
+      "result":result,
+      "f1":f1,
+      }
+      return render(request, "hairgrowthcalculator.html", context)
+
+    elif (GT or GT == 0) and GT_op == "Year" and f1:
+      result = GT * 152.4
+      #dictionary to pass all the required values to the template
+      context = {
+      "GT":GTinp,
+      "GT_op":GT_op,
+      "result":result,
+      "f1":f1,
+      }
+      return render(request, "hairgrowthcalculator.html", context)
+
+    return render(request, "hairgrowthcalculator.html")
+  else:
+    return render(request, "hairgrowthcalculator.html")
