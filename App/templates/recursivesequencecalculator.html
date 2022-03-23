@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Half Life Calculator | Free Calculator to Half Life</title>
+<meta name="description"
+    content="Half Life Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta property="og:description" content="Half Life Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle> Half Life Calculator</tittle>
+<meta property='og:title' content="Half Life Calculatorr | Half Life" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Half Life Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Recursive Sequence Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Choose a Sequence</strong></div>
+                        </div>
+                        <select name="given_data" id="inlineFormInputGroup" class="form-control"
+                            onchange="this.form.submit();" autofocus="">
+
+                            {% if given_data == 'form1' %}
+                            <option value="form1" selected="selected"> Fibonacci Sequence </option>
+                            {% else %}
+                            <option value="form1"> Fibonacci Sequence  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form2' %}
+                            <option value="form2" selected="selected"> Arithmetic Progression Sequence
+                            </option>
+                            {% else %}
+                            <option value="form2">Arithmetic Progression Sequence</option>
+                            {% endif %}
+
+
+                            {% if given_data == 'form3' %}
+                            <option value="form3" selected="selected"> Geometric Progression Sequence
+                            </option>
+                            {% else %}
+                            <option value="form3"> Geometric Progression Sequence  </option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+
+                    
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Sequence Length </strong></div>
+                        </div>
+                        <input type="number" min="1" step="1" oninput="validateNumber(this);" id="F" required=""
+                           placeholder="Enter positive number greater than 0"  class="form-control mt-1" name="F" {% if F1 %} value="{{F1}}" {%else%}   value="7" {% endif %}>
+                    </div>
+
+                    {% if given_data != "form1" %}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Enter First Number</strong> </div>
+                        </div>
+                        <input type="number" step="0.00001" id="First" required=""
+                           placeholder="Enter number"  class="form-control mt-1" name="First" {% if First1 %} value="{{First1}}" {% else %} value="0" {% endif %}>
+
+                    </div>
+                    {% endif %} 
+
+                    
+
+
+                  {% if given_data == "form2" %}  
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Common difference</strong></div>
+                        </div>
+
+                          <input type="number" step="0.00001" id="CD" required=""
+                           placeholder="Enter number"  class="form-control mt-1" name="CD" {% if CD1 %} value="{{CD1}}" {% else %} value="0" {% endif %}>
+                        </div>
+                  {%endif%}  
+
+                  {% if given_data == "form3" %}  
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Common Ratio</strong></div>
+                        </div>
+
+                          <input type="number" step="0.00001" id="CR" required=""
+                           placeholder="Enter number"  class="form-control mt-1" name="CR" {% if CR1 %} value="{{CR1}}" {% else %} value="0" {% endif %}>
+                        </div>
+                  {%endif%} 
+                
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if given_data == "form1" and F1 %}
+    <div class="card" id="Fibonacci Sequence">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Fibonacci Sequence</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Formula</strong>
+            <br>
+            <p class="btn btn-outline-secondary active"> fn = f(n-1)+f(n-2)</p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                          <li>fn refers to the nth term in the sequence</li>
+                          
+                    </ul>
+
+            <strong>Input values are:-</strong>
+            
+            <p>Sequence Length = {{F1}} </p>
+            
+
+            <strong>Fibonacci Sequence : {% for i in l %}
+                {{i}}
+                {% if l|length != forloop.counter %},{% endif %}
+            {% endfor %}</strong>
+            </div>
+
+    </div>
+    {% endif %}
+
+    
+
+    {% if given_data == "form2" and J and F1 %}
+    <div class="card" id="Arithmetic Progression">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Arithmetic Progression Sequence</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Formula</strong>
+            <br>
+            <p class="btn btn-outline-secondary active">a<sub>n</sub> =f(n-1)+a<sub>1</sub></p>
+            <br>
+            <strong>where:</strong>
+                    <ul>  <li>a<sub>n</sub> refers to the nth
+                        term in the sequence</li>
+                          <li>a<sub>1</sub> is the first term</li>
+                          <li>f is the common difference</li>
+                    </ul>
+
+            <strong>Input values are:-</strong>
+            <p>First Number = {{First1}} </p>
+            <p>Common Difference = {{CD1}} </p>
+            <p>Lenght of Sequence = {{F1}} </p>
+
+            <strong>AP Sequence : {% for i in J %}
+                {{i|floatformat:"-3"}}
+                {% if J|length != forloop.counter %},{% endif %}
+            {% endfor %}</strong>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if given_data == "form3" and J and F1 %}
+    <div class="card" id="Geometric Progression">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Geometric Progression Sequence</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Formula</strong>
+            <br>
+            <p class="btn btn-outline-secondary active">a<sub>n</sub> = ar<sub>n-1</sub></p>
+            <br>
+            <strong>where:</strong>
+                    <ul> 
+                     <li>a<sub>n</sub> refers to the nth term in the sequence</li>
+                      <li>a is the scale factor</li>
+                      <li>r is the common ratio</li>
+                    </ul>
+
+                    <strong>Input values are:-</strong> 
+                    <p>First Number = {{First1}} </p>
+                    <p>Common Ratio = {{CR1}} </p>
+                    <p>Lenght of Sequence = {{F1}} </p>
+
+                    <strong>GP Sequence : {% for i in J %}
+                        {{i|floatformat:"-3"}} 
+                        
+                        
+                        {% if J|length != forloop.counter %},{% endif %}
+                    {% endfor %}</strong>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            {% if given_data == "form1" %}
+    
+                document.getElementsByName("F")[0].value = "";
+               
+                document.getElementById("clear").innerHTML = "";
+    
+            {% endif %}
+    
+            {% if given_data == "form2" %}
+    
+                document.getElementsByName("F")[0].value = "";
+                document.getElementsByName("First")[0].value = "";
+                document.getElementsByName("CD")[0].value = "";
+    
+                
+                document.getElementById("clear").innerHTML = "";
+    
+            {% endif %}
+    
+            {% if given_data == "form3" %}
+    
+                document.getElementsByName("F")[0].value = "";
+                document.getElementsByName("First")[0].value = "";
+                document.getElementsByName("CR")[0].value = "";
+    
+                
+    
+                document.getElementById("clear").innerHTML = "";
+    
+            {% endif %}
+    
+            
+    
+    
+    
+        }
+    </script>
+    <br>
+    
+    
+    {% endblock %}

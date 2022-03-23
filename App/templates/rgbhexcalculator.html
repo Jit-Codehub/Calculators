@@ -1,0 +1,301 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>RGB To HEX</title>
+<meta name="description"
+    content="Half Life Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta property="og:description" content="Half Life Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle>RGB TO HEX CALCULATOR</tittle>
+<meta property='og:title' content="Half Life Calculatorr | Half Life" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Half Life Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">RGB / Hex Conversion Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Choose a Conversion</strong></div>
+                        </div>
+                        <select name="given_data" id="inlineFormInputGroup" class="form-control"
+                            onchange="this.form.submit();" autofocus="">
+
+                            {% if given_data == 'form1' %}
+                            <option value="form1" selected="selected"> RGB to Hex Conversion </option>
+                            {% else %}
+                            <option value="form1"> RGB to Hex Conversion  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form2' %}
+                            <option value="form2" selected="selected"> Hex to RGB Conversion
+                            </option>
+                            {% else %}
+                            <option value="form2">Hex to RGB Conversion</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+
+                    
+                    {% if given_data == "form1" %}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Red</strong></div>
+                        </div>
+                        <input type="number" min="0" max="255" step="1" oninput="validateNumber(this);" id="R" required=""
+                           placeholder="Enter value between 0 and 255"  class="form-control mt-1" name="R" {% if R or R == 0 %} value="{{R}}" {%else%}   value="" {% endif %}>
+                    </div>
+
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Green</strong> </div>
+                        </div>
+                        <input type="number" step="1" min="0" max="255" id="G" required="" oninput="validateNumber(this);"
+                           placeholder="Enter value between 0 and 255"  class="form-control mt-1" name="G" {% if G or G == 0 %} value="{{G}}" {% else %} value="" {% endif %}>
+
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Blue</strong></div>
+                        </div>
+
+                          <input type="number" step="1" min="0" max="255" id="B" required="" oninput="validateNumber(this);"
+                           placeholder="Enter value between 0 and 255"  class="form-control mt-1" name="B" {% if B or B == 0 %} value="{{B}}" {% else %} value="" {% endif %}>
+                        </div>
+                        {% endif %}
+                   
+
+                    {% if given_data != "form1" %}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Hexadecimal</strong></div>
+                        </div>
+
+                          <input type="text" id="H" required=""
+                           placeholder="Enter Hexadecimal value" minlength="6" maxlength="6" class="form-control mt-1" name="H" {% if H or H == 0 %} value="{{H}}" {% else %} value="" {% endif %}>
+                        </div>
+                    {%endif%} 
+                
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if result %}
+    {% if given_data == "form2" and Red or Red == 0 %}
+    <div class="card" id="Conversion Results">
+        <div class="card-header">
+            <h2 class="h2">Conversion Results</h2>
+        </div>
+        
+        {% if Red or Red == 0 %}
+        <div class="card-body">
+            <h2>Red = {{Red}},&nbsp;&nbsp;Green = {{Green}},&nbsp;&nbsp;Blue = {{Blue}}</h2>
+            <h3>Color Preview:</h3>
+        <div class="table-responsive">
+        <table border="0" width="75" height="75">
+            <tbody>
+                <tr>
+                    <td style="background-color: rgb({{Red}}, {{Green}}, {{Blue}});">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Converting Hex to RGB</h3>
+        <p>For conversion of the 6-digit hex code into an RGB code, firstly we divide the hexadecimal code into 32 character sections. Each base-16 number is then converted to the base-10 equivalent.</p>
+        <p>An example would be the color brown, for which the hexadecimal code is color:#A52A2A or color:#a52a2a. Converted into base 10, A5 = 165 and 2A = 42, so the translated RGB code becomes color:rgb(165, 42, 42).</p>
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% if given_data == "form1" %}
+    <div class="card" id="Conversion Results">
+        <div class="card-header">
+            <h2 class="h2">Conversion Results</h2>
+        </div>
+    {% if R or R == 0 %}
+        <div class="card-body">
+            <h2>Hexadecimal color code is {{result}}.</h2>
+            <h3>Color Preview:</h3>
+        <div class="table-responsive">
+        <table border="0" width="75" height="75">
+            <tbody>
+                <tr>
+                    <td style="background-color: rgb({{R}}, {{G}}, {{B}});">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Converting RGB to Hex</h3>
+    <p>For conversion of a triple RGB value to a single hex value, all the base-10 numbers must be converted into base-16 numbers and the derived values joined together to produce a hex value.</p>
+    <p>An example would be the RGB color yellow green, for which the CSS code is color:rgb(154, 205, 50). In hex values, 154 is 9A, 205 is CD, and 50 is 32, making our CSS hex code color:#9ACD32 or color:#9acd32.</p>
+        </div>
+    </div>
+    
+    {% endif %}
+    {% endif %}
+
+    </div>
+    {% endif %}
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            {% if given_data == "form1" %}
+    
+                document.getElementsByName("R")[0].value = "";
+                document.getElementsByName("G")[0].value = "";
+                document.getElementsByName("B")[0].value = "";
+               
+                document.getElementById("clear").innerHTML = "";
+    
+            {% endif %}
+    
+            {% if given_data == "form2" %}
+    
+                document.getElementsByName("H")[0].value = "";
+                
+    
+                
+                document.getElementById("clear").innerHTML = "";
+    
+            {% endif %}
+    
+            
+            
+    
+    
+    
+        }
+    </script>
+    <br>
+    
+    
+    {% endblock %}

@@ -1,0 +1,1591 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Rainwater Collection Calculator</title>
+<meta name="description"
+    content="Half Life Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta property="og:description" content="Half Life Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle> Rainwater Collection Calculator</tittle>
+<meta property='og:title' content="Half Life Calculatorr | Half Life" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Half Life Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Rainwater Collection Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Choose a State:</strong></div>
+                        </div>
+                        <select name="given_data" id="inlineFormInputGroup" class="form-control"
+                            onchange="this.form.submit();" autofocus="">
+
+                            {% if given_data == 'form1' %}
+                            <option value="form1" selected="selected"> Alabama </option>
+                            {% else %}
+                            <option value="form1"> Alabama  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form2' %}
+                            <option value="form2" selected="selected"> Alaska
+                            </option>
+                            {% else %}
+                            <option value="form2">Alaska</option>
+                            {% endif %}
+
+
+                            {% if given_data == 'form3' %}
+                            <option value="form3" selected="selected"> Arizona
+                            </option>
+                            {% else %}
+                            <option value="form3"> Arizona</option>
+                            {% endif %}
+
+                            {% if given_data == 'form4' %}
+                            <option value="form4" selected="selected"> Arkansas </option>
+                            {% else %}
+                            <option value="form4"> Arkansas </option>
+                            {% endif %}
+
+                            {% if given_data == 'form5' %}
+                            <option value="form5" selected="selected"> California </option>
+                            {% else %}
+                            <option value="form5"> California  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form6' %}
+                            <option value="form6" selected="selected"> Colorado </option>
+                            {% else %}
+                            <option value="form6"> Colorado </option>
+                            {% endif %}
+
+                            {% if given_data == 'form7' %}
+                            <option value="form7" selected="selected"> Connecticut </option>
+                            {% else %}
+                            <option value="form7"> Connecticut </option>
+                            {% endif %}
+
+                            {% if given_data == 'form8' %}
+                            <option value="form8" selected="selected"> Delaware </option>
+                            {% else %}
+                            <option value="form8"> Delaware  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form9' %}
+                            <option value="form9" selected="selected"> Florida </option>
+                            {% else %}
+                            <option value="form9"> Florida  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form10' %}
+                            <option value="form10" selected="selected">Georgia</option>
+                            {% else %}
+                            <option value="form10"> Georgia </option>
+                            {% endif %}
+
+                            {% if given_data == 'form11' %}
+                            <option value="form11" selected="selected">Hawaii</option>
+                            {% else %}
+                            <option value="form11"> Hawaii </option>
+                            {% endif %}
+
+                            {% if given_data == 'form12' %}
+                            <option value="form12" selected="selected">Idaho</option>
+                            {% else %}
+                            <option value="form12">Idaho </option>
+                            {% endif %}
+
+                            {% if given_data == 'form13' %}
+                            <option value="form13" selected="selected"> Illinois</option>
+                            {% else %}
+                            <option value="form13">Illinois </option>
+                            {% endif %}
+
+                            {% if given_data == 'form14' %}
+                            <option value="form14" selected="selected"> Indiana </option>
+                            {% else %}
+                            <option value="form14">Indiana </option>
+                            {% endif %}
+
+                            {% if given_data == 'form15' %}
+                            <option value="form15" selected="selected">Iowa </option>
+                            {% else %}
+                            <option value="form15"> Iowa </option>
+                            {% endif %}
+
+                            {% if given_data == 'form16' %}
+                            <option value="form16" selected="selected">Kansas </option>
+                            {% else %}
+                            <option value="form16">Kansas</option>
+                            {% endif %}
+
+                            {% if given_data == 'form17' %}
+                            <option value="form17" selected="selected">Kentucky</option>
+                            {% else %}
+                            <option value="form17"> Kentucky </option>
+                            {% endif %}
+
+                            {% if given_data == 'form18' %}
+                            <option value="form18" selected="selected">Louisiana </option>
+                            {% else %}
+                            <option value="form18"> Louisiana </option>
+                            {% endif %}
+
+                            {% if given_data == 'form19' %}
+                            <option value="form19" selected="selected">Maine </option>
+                            {% else %}
+                            <option value="form19"> Maine  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form20' %}
+                            <option value="form20" selected="selected">Maryland </option>
+                            {% else %}
+                            <option value="form20"> Maryland </option>
+                            {% endif %}
+
+                            {% if given_data == 'form21' %}
+                            <option value="form21" selected="selected">Massachusetts </option>
+                            {% else %}
+                            <option value="form21"> Massachusetts </option>
+                            {% endif %}
+
+                            {% if given_data == 'form22' %}
+                            <option value="form22" selected="selected">Michigan </option>
+                            {% else %}
+                            <option value="form22"> Michigan </option>
+                            {% endif %}
+
+                            {% if given_data == 'form23' %}
+                            <option value="form23" selected="selected">Minnesota </option>
+                            {% else %}
+                            <option value="form23"> Minnesota </option>
+                            {% endif %}
+
+                            {% if given_data == 'form24' %}
+                            <option value="form24" selected="selected">Mississippi</option>
+                            {% else %}
+                            <option value="form24">Mississippi </option>
+                            {% endif %}
+
+                            {% if given_data == 'form25' %}
+                            <option value="form25" selected="selected">Missouri</option>
+                            {% else %}
+                            <option value="form25">Missouri </option>
+                            {% endif %}
+
+                            {% if given_data == 'form26' %}
+                            <option value="form26" selected="selected">Montana</option>
+                            {% else %}
+                            <option value="form26">Montana</option>
+                            {% endif %}
+
+                            {% if given_data == 'form27' %}
+                            <option value="form27" selected="selected">Nebraska</option>
+                            {% else %}
+                            <option value="form27">Nebraska </option>
+                            {% endif %}
+
+                            {% if given_data == 'form28' %}
+                            <option value="form28" selected="selected">Nevada</option>
+                            {% else %}
+                            <option value="form28"> Nevada </option>
+                            {% endif %}
+
+                            {% if given_data == 'form29' %}
+                            <option value="form29" selected="selected"> New Hampshire </option>
+                            {% else %}
+                            <option value="form29"> New Hampshire  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form30' %}
+                            <option value="form30" selected="selected"> New Jersey </option>
+                            {% else %}
+                            <option value="form30"> New Jersey  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form31' %}
+                            <option value="form31" selected="selected"> New Mexico </option>
+                            {% else %}
+                            <option value="form31"> New Mexico  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form32' %}
+                            <option value="form32" selected="selected"> New York </option>
+                            {% else %}
+                            <option value="form32"> New York  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form33' %}
+                            <option value="form33" selected="selected"> North Carolina </option>
+                            {% else %}
+                            <option value="form33"> North Carolina  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form34' %}
+                            <option value="form34" selected="selected"> North Dakota </option>
+                            {% else %}
+                            <option value="form34"> North Dakota  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form35' %}
+                            <option value="form35" selected="selected">Ohio</option>
+                            {% else %}
+                            <option value="form35"> Ohio  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form36' %}
+                            <option value="form36" selected="selected"> Oklahoma </option>
+                            {% else %}
+                            <option value="form36"> Oklahoma  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form37' %}
+                            <option value="form37" selected="selected"> Oregon </option>
+                            {% else %}
+                            <option value="form37"> Oregon </option>
+                            {% endif %}
+
+                            {% if given_data == 'form38' %}
+                            <option value="form38" selected="selected"> Pennsylvania </option>
+                            {% else %}
+                            <option value="form38"> Pennsylvania  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form39' %}
+                            <option value="form39" selected="selected">Rhode Island </option>
+                            {% else %}
+                            <option value="form39"> Rhode Island  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form40' %}
+                            <option value="form40" selected="selected"> South Carolina </option>
+                            {% else %}
+                            <option value="form40"> South Carolina  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form41' %}
+                            <option value="form41" selected="selected"> South Dakota</option>
+                            {% else %}
+                            <option value="form41"> South Dakota </option>
+                            {% endif %}
+
+                            {% if given_data == 'form42' %}
+                            <option value="form42" selected="selected"> Tennessee </option>
+                            {% else %}
+                            <option value="form42"> Tennessee  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form43' %}
+                            <option value="form43" selected="selected"> Texas </option>
+                            {% else %}
+                            <option value="form43">Texas  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form44' %}
+                            <option value="form44" selected="selected"> Utah </option>
+                            {% else %}
+                            <option value="form44"> Utah  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form45' %}
+                            <option value="form45" selected="selected">Vermont </option>
+                            {% else %}
+                            <option value="form45"> Vermont  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form46' %}
+                            <option value="form46" selected="selected"> Virginia </option>
+                            {% else %}
+                            <option value="form46"> Virginia  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form47' %}
+                            <option value="form47" selected="selected">Washington </option>
+                            {% else %}
+                            <option value="form47"> Washington  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form48' %}
+                            <option value="form48" selected="selected">West Virginia</option>
+                            {% else %}
+                            <option value="form48"> West Virginia </option>
+                            {% endif %}
+
+                            {% if given_data == 'form49' %}
+                            <option value="form49" selected="selected">Wisconsin </option>
+                            {% else %}
+                            <option value="form49"> Wisconsin </option>
+                            {% endif %}
+
+                            {% if given_data == 'form50' %}
+                            <option value="form50" selected="selected"> Wyoming </option>
+                            {% else %}
+                            <option value="form50"> Wyoming </option>
+                            {% endif %}
+
+                            
+
+
+
+
+
+
+                        </select>
+                    </div>
+
+                    
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong> Rainwater Catchment Area(sq.ft.): </strong></div>
+                        </div>
+                        <input type="number" min="0" step=".01" oninput="validateNumber(this);" id="A" required=""
+                           placeholder="Enter Area"  class="form-control mt-1" name="A" {% if A1 or A1 == 0 %} value="{{A1}}" {%else%}   value="3000" {% endif %}>
+                    </div>
+
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Runoff Coefficient:</strong> </div>
+                        </div>
+                        <select name="RC" id="inlineFormInputGroup" class="form-control" autofocus="">
+
+                            {% if RC1 or RC1 == 0 %}
+                            <option>{{RC1}}</option>
+                            {% endif %}
+
+                            <option value="0.10">0.10</option>
+                            <option value="0.15">0.15</option>
+                            <option value="0.20">0.20</option>
+                            <option value="0.25">0.25</option>
+                            <option value="0.30">0.30</option>
+                            <option value="0.35">0.35</option>
+                            <option value="0.40">0.40</option>
+                            <option value="0.45">0.45</option>
+                            <option value="0.50">0.50</option>
+                            <option value="0.55">0.55</option>
+                            <option value="0.60">0.60</option>
+                            <option value="0.65">0.65</option>
+                            <option value="0.70">0.70</option>
+                            <option value="0.75">0.75</option>
+                            <option value="0.80">0.80</option>
+                            <option value="0.85">0.85</option>
+                            <option value="0.90">0.90</option>
+                            <option value="0.95">0.95</option>
+                            <option value="1.00">1.00</option>
+                        </select>
+                    </div>
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Tank Size(gal.): </strong></div>
+                        </div>
+                        <input type="number" min="0" step=".01" oninput="validateNumber(this);" id="S" required=""
+                           placeholder="Enter Tank Size"  class="form-control mt-1" name="S" {% if S1 or S1 == 0 %} value="{{S1}}" {%else%}   value="5000" {% endif %}>
+                    </div>
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Tank Starting Volume(gal.): </strong></div>
+                        </div>
+                        <input type="number" min="0" step=".01" oninput="validateNumber(this);" id="V" required=""
+                           placeholder="Enter Tank Starting Volume"  class="form-control mt-1" name="V" {% if V1 or V1 == 0 %} value="{{V1}}" {%else%}   value="0" {% endif %}>
+                    </div>
+                    <br><br>
+
+
+
+
+
+
+
+                    <div class="table-responsive">
+                        <table>
+                            <tbody>
+                                <tr style="text-align: center;">
+                                    <th style="background-color: #007bff;"></th>
+                                    <th style="background-color: #007bff;">Jan</th>
+                                    <th style="background-color: #007bff;">Feb</th>
+                                    <th style="background-color: #007bff;">Mar</th>
+                                    <th style="background-color: #007bff;">Apr</th>
+                                    <th style="background-color: #007bff;">May</th>
+                                    <th style="background-color: #007bff;">Jun</th>
+                                    <th style="background-color: #007bff;">Jul</th>
+                                    <th style="background-color: #007bff;">Aug</th>
+                                    <th style="background-color: #007bff;">Sep</th>
+                                    <th style="background-color: #007bff;">Oct</th>
+                                    <th style="background-color: #007bff;">Nov</th>
+                                    <th style="background-color: #007bff;">Dec</th>
+                                </tr>
+                                <tr>
+                                    <td>Average Rainfall <small>(inches)</small></td>
+
+                                    {% if given_data == 'form1' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="5.91" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="5.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="6.65" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.69" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.59" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="5.39" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.90" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.26" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.16" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="4.79" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="5.01" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+
+                                    {% if given_data == 'form41' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.53" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.11" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.1" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.24" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="2.75" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="2.13" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.66" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="0.82" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.44" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+
+                                    {% if given_data == 'form42' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="4.65" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="4.31" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="5.6" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="5.33" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.48" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.67" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.52" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.88" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.32" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="4.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="5.18" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form43' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="1.59" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="1.67" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.85" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.14" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.52" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.35" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="2.22" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="2.54" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.19" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.95" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="2.02" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="1.84" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form44' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="1.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.99" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.21" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="1.07" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="1.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="0.64" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="0.88" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="1.01" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.07" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="0.99" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.82" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form45' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.11" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.33" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.07" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.28" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.84" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.93" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.21" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.49" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.67" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.73" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.19" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form46' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.64" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.13" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.04" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.42" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.26" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.79" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.34" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.84" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.5" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.29" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.15" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form47' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="5.38" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="4.37" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.76" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.71" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="2.23" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="1.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="1.02" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="1.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.65" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="5.85" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="5.93" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form48' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.46" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.11" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.57" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.23" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.75" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.13" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.46" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.43" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form49' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="1.22" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="1" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.96" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.86" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.37" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.02" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.07" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.27" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.74" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.5" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="2.29" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="1.35" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form50' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.57" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="0.86" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="1.36" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="2.06" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="1.58" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="1.33" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="1.02" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.14" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.04" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="0.76" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.62" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form2' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="2.98" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.43" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="2.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="2.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="2.17" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="2.67" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.69" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.57" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="4.57" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.55" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form3' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="1.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="1.25" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.35" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="0.54" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="0.42" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="0.31" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="1.74" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="2.09" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="0.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="1.13" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form4' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.65" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.61" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.93" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.82" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="5.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.31" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.52" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="2.87" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.72" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="4.08" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="5.34" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="4.72" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form5' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="4.14" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.95" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.55" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="1.4" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="0.83" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="0.32" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="0.19" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="0.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="0.58" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="2.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.11" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+                                    {% if given_data == 'form6' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.79" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.75" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.29" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="1.47" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="1.92" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="1.44" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="2.01" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="1.95" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.35" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="1.03" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.77" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form7' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="4.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.23" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.42" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.33" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.19" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.39" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.36" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="4.31" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="4.42" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="4.08" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+
+                                    {% if given_data == 'form8' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.92" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.1" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.34" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.52" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.19" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.38" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.31" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.55" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form9' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.61" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.17" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.13" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.84" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.92" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="6.94" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="7.19" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="7.26" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="6.39" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.46" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="2.88" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="2.76" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form10' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="5.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="4.49" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="5.28" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.58" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.44" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="5.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.66" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.89" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.01" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.55" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.94" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form11' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="6.04" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="4.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="5.6" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="5.21" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="2.83" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.49" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.01" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.98" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="5.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="5.44" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form12' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="2.12" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="1.72" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.73" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="1.56" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="1.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="1.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="0.92" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="0.84" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.08" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="2.07" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="2.14" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+
+                                    {% if given_data == 'form13' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="1.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="1.99" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.22" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.83" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.31" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.12" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.94" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.69" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.24" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.87" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.41" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="2.74" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+
+                                    {% if given_data == 'form14' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="2.44" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.31" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.4" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.96" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.47" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.25" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.88" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.92" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.09" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form15' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.95" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.98" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="2.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.33" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.23" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.27" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.4" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="2.13" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="1.24" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form16' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.91" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="2.25" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.59" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.88" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.61" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.16" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="2.68" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="1.73" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.98" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form17' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.6" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.19" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="5.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.34" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.47" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.71" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.49" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.13" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="4.09" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="4.38" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form18' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="5.91" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="4.66" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="5.32" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.89" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="5.46" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="5.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="5.15" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.47" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.55" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="4.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="5.06" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="5.38" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form19' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.46" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.52" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.37" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.46" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.64" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.74" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.61" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.68" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.7" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.82" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.51" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form20' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.66" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.03" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.09" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.43" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.27" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.8" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.11" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.01" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.04" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.38" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.41" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.41" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form21' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="4.17" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.34" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.16" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.11" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.91" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.84" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.83" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.02" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.94" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="4.16" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="4.35" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="4.05" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form22' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="2.02" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="1.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="2.22" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.69" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="2.94" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.23" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.15" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.58" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.65" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.85" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="2.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="2.28" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form23' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.86" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.64" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.06" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.06" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.17" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.95" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.69" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="2.91" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.29" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="1.58" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.77" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+                                    {% if given_data == 'form24' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="5.92" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="4.96" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="6.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="5.61" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="5.39" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.47" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.8" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.67" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.81" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="5.19" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="5.64" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form25' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="1.95" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.15" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.04" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.82" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.26" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.96" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.58" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.36" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.82" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="2.81" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form26' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.8" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.6" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="0.9" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="1.3" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="2.34" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="2.4" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="1.65" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="1.35" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.33" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="0.86" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.8" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form27' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.6" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.66" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.38" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.75" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.27" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="2.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="2.1" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.56" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="1.16" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.57" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form28' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.96" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.92" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="1.09" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="0.76" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="1.01" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="0.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="0.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="0.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="0.71" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="0.75" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="0.81" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.76" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form29' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.42" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.37" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.5" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.76" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.85" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.94" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.66" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.95" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.93" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.44" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form30' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.94" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.96" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.93" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.28" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.46" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.57" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.14" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.7" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.71" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form31' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.67" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.6" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="0.71" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="0.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="1.11" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="1.23" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="2.27" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="2.64" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.82" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.34" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="0.83" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.78" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form32' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="2.99" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.41" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.12" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.42" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.68" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.81" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.86" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.14" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.48" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.74" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.24" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form33' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="4.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.71" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.67" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.47" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.28" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.4" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="5.04" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="4.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.78" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.61" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.57" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form34' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="0.5" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="0.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="0.8" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="1.4" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="2.31" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.19" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="2.75" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="2.1" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.74" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.41" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="0.73" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="0.44" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form35' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="2.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.27" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.06" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.47" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.06" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.1" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.09" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.77" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.1" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="2.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.16" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="2.93" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form36' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="1.48" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="1.78" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.07" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.32" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="5.13" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.24" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="2.73" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="2.75" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.8" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.39" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="2.79" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="2.05" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form37' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.79" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.16" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="2.93" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="2.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="1.88" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="1.27" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="0.62" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="0.73" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="1.07" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="1.9" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.97" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="4.06" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form38' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="3.04" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="2.58" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="3.41" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.55" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="4.07" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="4.15" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.78" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.08" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.18" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.58" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.16" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form39' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="4.45" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.63" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.65" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="4.32" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.72" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="3.52" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="3.2" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="3.99" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="3.8" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.79" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="4.55" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="4.36" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+
+
+                                    {% if given_data == 'form40' %}
+                                    <td><input type="number" min="0" step=".01" name="jan" required="" {% if jan or jan == 0 %} value="{{jan}}" {% else %} value="4.7" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb" required="" {% if feb or feb == 0 %} value="{{feb}}" {% else %} value="3.79" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar" required="" {% if mar or mar == 0 %} value="{{mar}}" {% else %} value="4.64" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr" required="" {% if apr or apr == 0 %} value="{{apr}}" {% else %} value="3.16" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may" required="" {% if may or may == 0 %} value="{{may}}" {% else %} value="3.69" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun" required="" {% if jun or jun == 0 %} value="{{jun}}" {% else %} value="4.72" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul" required="" {% if jul or jul == 0 %} value="{{jul}}" {% else %} value="5.05" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug" required="" {% if aug or aug == 0 %} value="{{aug}}" {% else %} value="5.29" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep" required="" {% if sep or sep == 0 %} value="{{sep}}" {% else %} value="4.51" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct" required="" {% if oct or oct == 0 %} value="{{oct}}" {% else %} value="3.42" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov" required="" {% if nov or nov == 0 %} value="{{nov}}" {% else %} value="3.21" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec" required="" {% if dec or dec == 0 %} value="{{dec}}" {% else %} value="3.67" {% endif %} style="width: 60px;"></td>
+                                    {% endif %}
+                                </tr>
+
+
+
+                                <tr>
+                                    <td>Rainwater Usage <small>(gallons)</small></td>
+                                    <td><input type="number" min="0" step=".01" name="jan1" required="" {% if jan1 or jan1 == 0 %} value="{{jan1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="feb1" required="" {% if feb1 or feb1 == 0 %} value="{{feb1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="mar1" required="" {% if mar1 or mar1 == 0 %} value="{{mar1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="apr1" required="" {% if apr1 or apr1 == 0 %} value="{{apr1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="may1" required="" {% if may1 or may1 == 0 %} value="{{may1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jun1" required="" {% if jun1 or jun1 == 0 %} value="{{jun1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="jul1" required="" {% if jul1 or jul1 == 0 %} value="{{jul1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="aug1" required="" {% if aug1 or aug1 == 0 %} value="{{aug1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="sep1" required="" {% if sep1 or sep1 == 0 %} value="{{sep1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="oct1" required="" {% if oct1 or oct1 == 0 %} value="{{oct1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="nov1" required="" {% if nov1 or nov1 == 0 %} value="{{nov1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                    <td><input type="number" min="0" step=".01" name="dec1" required="" {% if dec1 or dec1 == 0 %} value="{{dec1}}" {% else %} value="2500" {% endif %} style="width: 60px;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="data">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="clear">
+
+    {% if f1 %}
+    <div class="card" id="Rainwater Collection Calculator">
+        <div class="card-header">
+            <h2 class="h2">Results</h2>
+        </div>
+        <br><br>
+
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Jan</th>
+                            <th>Feb</th>
+                            <th>Mar</th>
+                            <th>Apr</th>
+                            <th>May</th>
+                            <th>Jun</th>
+                            <th>Jul</th>
+                            <th>Aug</th>
+                            <th>Sep</th>
+                            <th>Oct</th>
+                            <th>Nov</th>
+                            <th>Dec</th>
+                            <th>Ttl</th>
+                        </tr>
+                        <tr>
+                            <td>Rainfall</td>
+                            <td>{{jan}}</td>
+                            <td>{{feb}}</td>
+                            <td>{{mar}}</td>
+                            <td>{{apr}}</td>
+                            <td>{{may}}</td>
+                            <td>{{jun}}</td>
+                            <td>{{jul}}</td>
+                            <td>{{aug}}</td>
+                            <td>{{sep}}</td>
+                            <td>{{oct}}</td>
+                            <td>{{nov}}</td>
+                            <td>{{dec}}</td>
+                            <td>{{RFsum|floatformat:"-2"}}</td>
+                        </tr>
+                        <tr>
+                            <td>Rainwater Harvested</td>
+                            <td>{{RHjan|floatformat:"0"}}</td>
+                            <td>{{RHfeb|floatformat:"0"}}</td>
+                            <td>{{RHmar|floatformat:"0"}}</td>
+                            <td>{{RHapr|floatformat:"0"}}</td>
+                            <td>{{RHmay|floatformat:"0"}}</td>
+                            <td>{{RHjun|floatformat:"0"}}</td>
+                            <td>{{RHjul|floatformat:"0"}}</td>
+                            <td>{{RHaug|floatformat:"0"}}</td>
+                            <td>{{RHsep|floatformat:"0"}}</td>
+                            <td>{{RHoct|floatformat:"0"}}</td>
+                            <td>{{RHnov|floatformat:"0"}}</td>
+                            <td>{{RHdec|floatformat:"0"}}</td>
+                            <td>{{RHsum|floatformat:"0"}}</td>
+                        </tr><tr><td>Rainwater Used</td>
+                            <td>{{jan1}}</td>
+                            <td>{{feb1}}</td>
+                            <td>{{mar1}}</td>
+                            <td>{{apr1}}</td>
+                            <td>{{may1}}</td>
+                            <td>{{jun1}}</td>
+                            <td>{{jul1}}</td>
+                            <td>{{aug1}}</td>
+                            <td>{{sep1}}</td>
+                            <td>{{oct1}}</td>
+                            <td>{{nov1}}</td>
+                            <td>{{dec1}}</td>
+                            <td>{{RWUsum|floatformat:"0"}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tank Inflow/Outflow</td>
+                            <td>{{TIOjan|floatformat:"0"}}</td>
+                            <td>{{TIOfeb|floatformat:"0"}}</td>
+                            <td>{{TIOmar|floatformat:"0"}}</td>
+                            <td>{{TIOapr|floatformat:"0"}}</td>
+                            <td>{{TIOmay|floatformat:"0"}}</td>
+                            <td>{{TIOjun|floatformat:"0"}}</td>
+                            <td>{{TIOjul|floatformat:"0"}}</td>
+                            <td>{{TIOaug|floatformat:"0"}}</td>
+                            <td>{{TIOsep|floatformat:"0"}}</td>
+                            <td>{{TIOoct|floatformat:"0"}}</td>
+                            <td>{{TIOnov|floatformat:"0"}}</td>
+                            <td>{{TIOdec|floatformat:"0"}}</td>
+                            <td>{{TIOsum|floatformat:"0"}}</td>
+                        </tr>
+                            <tr>
+                                <td>Tank Level</td>
+                                <td>{{TLjan|floatformat:"0"}}</td>
+                                <td>{{TLfeb|floatformat:"0"}}</td>
+                                <td>{{TLmar|floatformat:"0"}}</td>
+                                <td>{{TLapr|floatformat:"0"}}</td>
+                                <td>{{TLmay|floatformat:"0"}}</td>
+                                <td>{{TLjun|floatformat:"0"}}</td>
+                                <td>{{TLjul|floatformat:"0"}}</td>
+                                <td>{{TLaug|floatformat:"0"}}</td>
+                                <td>{{TLsep|floatformat:"0"}}</td>
+                                <td>{{TLoct|floatformat:"0"}}</td>
+                                <td>{{TLnov|floatformat:"0"}}</td>
+                                <td>{{TLdec|floatformat:"0"}}</td>
+                                <td>{{TLsum|floatformat:"0"}}</td>
+                            </tr>
+                            <tr><td>Rainwater Overflow</td>
+                                <td>{{ROjan|floatformat:"0"}}</td>
+                                <td>{{ROfeb|floatformat:"0"}}</td>
+                                <td>{{ROmar|floatformat:"0"}}</td>
+                                <td>{{ROapr|floatformat:"0"}}</td>
+                                <td>{{ROmay|floatformat:"0"}}</td>
+                                <td>{{ROjun|floatformat:"0"}}</td>
+                                <td>{{ROjul|floatformat:"0"}}</td>
+                                <td>{{ROaug|floatformat:"0"}}</td>
+                                <td>{{ROsep|floatformat:"0"}}</td>
+                                <td>{{ROoct|floatformat:"0"}}</td>
+                                <td>{{ROnov|floatformat:"0"}}</td>
+                                <td>{{ROdec|floatformat:"0"}}</td>
+                                <td>{{ROsum|floatformat:"0"}}</td>
+                            </tr>
+                            <tr>
+                                <td>Water Deficit</td>
+                                <td>{{WDjan|floatformat:"0"}}</td>
+                                <td>{{WDfeb|floatformat:"0"}}</td>
+                                <td>{{WDmar|floatformat:"0"}}</td>
+                                <td>{{WDapr|floatformat:"0"}}</td>
+                                <td>{{WDmay|floatformat:"0"}}</td>
+                                <td>{{WDjun|floatformat:"0"}}</td>
+                                <td>{{WDjul|floatformat:"0"}}</td>
+                                <td>{{WDaug|floatformat:"0"}}</td>
+                                <td>{{WDsep|floatformat:"0"}}</td>
+                                <td>{{WDoct|floatformat:"0"}}</td>
+                                <td>{{WDnov|floatformat:"0"}}</td>
+                                <td>{{WDdec|floatformat:"0"}}</td>
+                                <td>{{WDsum|floatformat:"0"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+            </div>
+            <br><br>
+            <p><strong>Note:</strong> The average monthly precipitation values applied within the calculations represent a historical overview of the latest 30-year period of data that is available. There is no guarantee that this level of precipitation will be observed in a given location during a specific month.</p>
+            <h3>Rainfall Collection Equation</h3>
+            <p>Computing the amount of rainfall in gallons involves inputting variables related to where you live and the size of the given rainwater harvesting system.</p>
+            <p>You can calculate the amount of rainwater harvested by using the following equation:</p>
+            <p><strong>V (gal.) = CA (sq.ft.) × P (in.) × RC × 0.623</strong></p>
+            <p>Where:</p>
+            <p><strong> V</strong> is the volume of rainfall harvested (gallons),</p>
+            <p><strong>CA</strong> is the catchment area (the area from which the rain is collected) in square feet,</p>
+            <p><strong>P </strong>is the depth of the rainfall in inches (average monthly, annual, etc.),</p>
+            <p><strong>0.623 </strong>is the conversion factor,</p>
+            <p><strong>RC</strong> is the runoff coefficient (expressed as a decimal).</p>
+            <p>The runoff coefficient variable relates to the amount of water that drains free of the surface as a ratio of the total amount that falls on the surface. For instance, if you have a runoff coefficient of 0.9, of the total volume of rain that fell on the catchment surface, 10% remained on the surface, while 90% drained off.</p>
+            
+        </div>
+
+    </div>
+    {% endif %}
+
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            
+    
+            
+    
+
+    
+                document.getElementsByName("A")[0].value = "";
+                
+                document.getElementsByName("S")[0].value = "";
+                document.getElementsByName("V")[0].value = "";
+    
+                
+    
+                document.getElementById("clear").innerHTML = "";
+    
+            
+    
+            
+    
+    
+    
+        }
+    </script>
+    <br>
+    
+    
+    {% endblock %}

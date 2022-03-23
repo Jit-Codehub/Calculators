@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Alternative Fuels Conversion Calculator| Free Calculator to find Alternative Fuels Conversion</title>
+<meta name="description"
+    content="Ohm's law Calculator makes it easy for you to find Ohm's law." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Ohm's law Calculator | Free Calculator to find Ohm's law" />
+<meta property="og:description" content="Ohm's law Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/ohms-law-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Ohm's law Calculator | Free Calculator to find Ohm's law" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/ohms-law-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle> Alternative Fuels Conversion Calculator</tittle>
+<meta property='og:title' content="Freight Class Calculator| Ohm's law" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/ohms-law-calculator.jpeg" />
+<meta property='og:description' content="Ohm's law Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Alternative Fuel to Gasoline Gallon Equivalent (GGE) Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Number of Units:</strong></div>
+                        </div>
+                        <input type="number" step="0.001" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number"  class="form-control" name="NU" id="NU" {% if NU1 or NU1 == 0 %} value="{{NU1}}" {% else %} value="6" {% endif %}>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Alternative Fuel Type:</strong></div>
+                        </div>
+                        <select class="select form-control" id="inlineFormInputGroup" name="NU_op" id="NU_op">
+
+                            {% if NU_op == 'Gasoline' %}
+                              <option value="Gasoline" selected="selected"> Gasoline</option>
+                              {% else %}
+                              <option value="Gasoline">Gasoline</option>
+                              {% endif %}
+  
+                              {% if NU_op == 'Biodiesel' %}
+                              <option value="Biodiesel" selected="selected">Biodiesel B100</option>
+                              {% else %}
+                              <option value="Biodiesel">Biodiesel B100</option>
+                              {% endif %}
+  
+  
+                              {% if NU_op == 'CNG2400' %}
+                              <option value="CNG2400" selected="selected">Compressed Natural Gas (CNG) @ 2400 psi</option>
+                              {% else %}
+                              <option value="CNG2400">Compressed Natural Gas (CNG) @ 2400 psi</option>
+                              {% endif %}
+  
+                              
+                              
+                              {% if NU_op == 'CNG3000' %}
+                              <option value="CNG3000" selected="selected">Compressed Natural Gas (CNG) @ 3000 psi</option>
+                              {% else %}
+                              <option value="CNG3000">Compressed Natural Gas (CNG) @ 3000 psi</option>
+                              {% endif %}
+
+                              {% if NU_op == 'CNG3600' %}
+                              <option value="CNG3600" selected="selected">Compressed Natural Gas (CNG) @ 3600 psi</option>
+                              {% else %}
+                              <option value="CNG3600">Compressed Natural Gas (CNG) @ 3600 psi</option>
+                              {% endif %}
+
+                              {% if NU_op == 'Diesel' %}
+                              <option value="Diesel" selected="selected">Diesel</option>
+                              {% else %}
+                              <option value="Diesel">Diesel</option>
+                              {% endif %}
+
+                              {% if NU_op == 'Ethanol' %}
+                              <option value=" Ethanol" selected="selected"> Ethanol (E85)</option>
+                              {% else %}
+                              <option value="Ethanol">Ethanol (E85)</option>
+                              {% endif %}
+
+                              {% if NU_op == 'Electricity' %}
+                              <option value="Electricity" selected="selected">Electricity</option>
+                              {% else %}
+                              <option value="Electricity">Electricity</option>
+                              {% endif %}
+
+                              {% if NU_op == 'Hydrogengallons' %}
+                              <option value="Hydrogengallons" selected="selected">Hydrogen (gallons)</option>
+                              {% else %}
+                              <option value="Hydrogengallons">Hydrogen (gallons)</option>
+                              {% endif %}
+
+                              {% if NU_op == 'Hydrogenkg' %}
+                              <option value="Hydrogenkg" selected="selected">Hydrogen (kg)</option>
+                              {% else %}
+                              <option value="Hydrogenkg">Hydrogen (kg)</option>
+                              {% endif %}
+
+                              {% if NU_op == 'LPG' %}
+                              <option value="LPG" selected="selected">Propane (LPG)</option>
+                              {% else %}
+                              <option value="LPG">Propane (LPG)</option>
+                              {% endif %}
+
+                              {% if NU_op == 'LNG' %}
+                              <option value="LNG" selected="selected">Liquid Natural Gas (LNG)</option>
+                              {% else %}
+                              <option value="LNG">Liquid Natural Gas (LNG)</option>
+                              {% endif %}
+                              
+                          </select>
+                    </div>
+                    
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="clear">
+
+    {%if NU1 != None %}
+        <div class="card" id="Alternative Fuels Conversion Calculator">
+            <div class="card-header">
+                <h2 class="h2">Alternative Fuels Conversion</h2>
+            </div>
+    
+            
+                <div class="card-body">
+                    <strong>Result</strong>
+            <br>
+            {% if NU_op == "Gasoline" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;Gasoline Gallons =&nbsp;{{a|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "Biodiesel" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;Biodiesel B100 Gallons =&nbsp;{{b|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "CNG2400" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;CNG Gallons at 2400 psi =&nbsp;{{c|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "CNG3000" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;CNG Gallons at 3000 psi = &nbsp;{{d|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "CNG3600" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;CNG Gallons at 3600 psi =&nbsp;{{e|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "Diesel" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;Diesel Gallons =&nbsp;{{f|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "Ethanol" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;Ethanol (E85) Gallons =&nbsp;{{g|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "Electricity" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;Electricity kilowatt-hours (kWh) =&nbsp;{{h|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "Hydrogengallons" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;Hydrogen Gallons =&nbsp;{{i|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "Hydrogenkg" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;Hydrogen kg =&nbsp;{{j|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "LPG" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;LPG Gallons =&nbsp;{{k|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+
+            {% if NU_op == "LNG" %}
+            <p class="btn btn-outline-secondary active">{{NU1}}&nbsp;LNG Gallons at 14.7 psi and -234˚F = &nbsp;{{l|floatformat:"-3"}}&nbsp;GGE</p>
+            {% endif %}
+            <br>
+                <!-- </div> -->
+    
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                      <thead>
+                        <tr class="table-primary">
+                            <th>Fuel Type</th>
+                            <th>Measurement Unit</th>
+                            <th>Result (GGE)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="table-info">
+                            <td>Gasoline</td>
+                            <td>Gallons</td>
+                            <td>{{a|floatformat:"-3"}}</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>Biodiesel B100</td>
+                            <td>Gallons</td>
+                            <td>{{b|floatformat:"-3"}}</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>CNG</td>
+                            <td>Gallons at 2400 psi</td>
+                            <td>{{c|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>CNG</td>
+                            <td>Gallons at 3000 psi</td>
+                            <td>{{d|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>CNG</td>
+                            <td>Gallons at 3600 psi</td>
+                            <td>{{e|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>Diesel</td>
+                            <td>Gallons</td>
+                            <td>{{f|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>Ethanol (E85)</td>
+                            <td>Gallons</td>
+                            <td>{{g|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>Electricity</td>
+                            <td>kilowatt-hours (kWh)</td>
+                            <td>{{h|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>Hydrogen</td>
+                            <td>Gallons</td>
+                            <td>{{i|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td> Hydrogen</td>
+                            <td>kg</td>
+                            <td>{{j|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>LPG</td>
+                            <td>Gallons</td>
+                            <td>{{k|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>LNG</td>
+                            <td>Gallons at 14.7 psi and -234˚F</td>
+                            <td>{{l|floatformat:"-3"}}</td>
+                          
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+    
+                
+                <br><br><br>
+                    <h1>Alternative Fuel Conversion Formulas</h1>
+                
+    
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                      <thead>
+                        <tr class="table-primary">
+                            <th>Fuel Type</th>
+                            <th>Measurement Unit</th>
+                            <th>GGE Formula</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="table-info">
+                            <td>Gasoline</td>
+                            <td>Gallons</td>
+                            <td>Gasoline gal = GGE</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>Biodiesel B100</td>
+                            <td>Gallons</td>
+                            <td>Biodiesel B100 gal × 1.066 = GGE</td>
+                        </tr>
+                        <tr class="table-info">
+                            <td>CNG</td>
+                            <td>Gallons at 2400 psi</td>
+                            <td>CNG gal @ 2400 psi × 0.191 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>CNG</td>
+                            <td>Gallons at 3000 psi</td>
+                            <td>CNG gal @ 3000 psi × 0.239 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>CNG</td>
+                            <td>Gallons at 3600 psi</td>
+                            <td>CNG gal @ 3600 psi × 0.287 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>Diesel</td>
+                            <td>Gallons</td>
+                            <td>Diesel gal × 1.155 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>Ethanol (E85)</td>
+                            <td>Gallons</td>
+                            <td>Ethanol E85 gal × 0.734 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>Electricity</td>
+                            <td>kilowatt-hours (kWh)</td>
+                            <td>Electricity kWh × 0.031 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>Hydrogen</td>
+                            <td>Gallons</td>
+                            <td>Hydrogen gal × 0.256 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td> Hydrogen</td>
+                            <td>kg</td>
+                            <td>Hydrogen kg × 1.019 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>LPG</td>
+                            <td>Gallons</td>
+                            <td>LPG gal × 0.758 = GGE</td>
+                          
+                        </tr>
+                        <tr class="table-info">
+                            <td>LNG</td>
+                            <td>Gallons at 14.7 psi and -234˚F</td>
+                            <td>LNG gal × 0.666 = GGE</td>
+                          
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                
+    
+    
+        </div>
+        {% endif %}
+</div>
+</div>
+    
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            
+    
+                document.getElementsByName("NU")[0].value = "";
+                document.getElementsByName("NU_op")[0].value = "";
+                
+
+               
+                document.getElementById("clear").innerHTML = "";
+            }
+    </script>
+    <br>
+    
+    
+{%endblock%}
+
+    

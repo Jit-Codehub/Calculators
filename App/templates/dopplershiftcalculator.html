@@ -1,0 +1,679 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, iniwvelerence Temperaturel-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/lsvels/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/lsvels/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Doppler Shift  calculator | Free Calculator to find Doppler Shift </title>
+<meta name="description"
+    content="Doppler Shift  calculator makes it easy for you to find Doppler Shift ." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Doppler Shift  calculator | Free Calculator to find Doppler Shift " />
+<meta property="og:description" content="Doppler Shift  calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/doppler-shift-calculator/.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Doppler Shift  calculator | Free Calculator to find Doppler Shift " />
+<meta name="twitter:description"
+    content="Doppler Shift  calculator" />
+<meta name="twitter:image:src"
+
+    content="https://onlinecalculator.guru/static/images/Chemistry/doppler-shift-calculator//.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle> Doppler Shift  calculator</tittle>
+<meta property='og:title' content="Doppler Shift  calculatorr | Doppler Shift " />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/doppler-shift-calculator//
+.jpeg" />
+<meta property='og:description' content="Doppler Shift  calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1"> Doppler Shift  Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Choose a Calculation</strong></div>
+                        </div>
+                        <select name="given_data" id="inlineFormInputGroup" class="form-control"
+                            onchange="this.form.submit();" autofocus="">
+
+                            {% if given_data == 'form1' %}
+                            <option value="form1" selected="selected"> Find Wavelength  | Given Source Velocity, Wave Velocity and Source frequency </option>
+                            {% else %}
+                            <option value="form1"> Find Wavelength  | Given Source Velocity, Wave Velocity and Source frequency </option>
+                            {% endif %}
+
+                            {% if given_data == 'form2' %}
+                            <option value="form2" selected="selected"> Find  Wave Velocity | Given Source Velocity,Wavelength  and Source frequency  </option>
+                            {% else %}
+                            <option value="form2">Find  Wave Velocity | Given Source Velocity ,Wavelength and Source frequency </option>
+                            {% endif %}
+
+                            {% if given_data == 'form3' %}
+                            <option value="form3" selected="selected"> Find  Source Velocity | Given Wave Velocity , Wavelength and Source frequency</option>
+                            {% else %}
+                            <option value="form3">Find  Source Velocity | Given Wave Velocity, Wavelength and Source frequency</option>
+                            {% endif %}
+
+                           
+                            {% if given_data == 'form4' %}
+                            <option value="form4" selected="selected"> Find  Source frequency | Given Source Velocity  ,Wave Velocity and Wavelength</option>
+                            {% else %}
+                            <option value="form4"> Find  Source frequency | Given Source Velocity  ,Wave Velocity and Wavelength</option>
+                            {% endif %}
+ 
+                </select>
+                    </div>
+
+
+                    {% if given_data != "form3" %}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Source Velocity</strong></div>
+                        </div>
+                        <input type="number" step="0.000001"  oninput="validateNumber(this);" id="svel" required=""
+                            placeholder="Enter number"  class="form-control mt-1" name="svel" {% if svel %} value="{{svel1}}" {% else %} value="6" {% endif %}>
+
+
+                        <select class="select form-control mt-1" id="svel_op" name="svel_op">
+
+                           {% if svel_op == 'm/s' %}
+                            <option value="m/s" selected="selected">m/s</option>
+                            {% else %}
+                            <option value="m/s">m/s</option>
+                            {% endif %}
+
+                            {% if svel_op == 'km/hr' %}
+                            <option value="km/hr" selected="selected">km/hr</option>
+                            {% else %}
+                            <option value="km/hr">km/hr</option>
+                            {% endif %}
+
+
+                            {% if svel_op == 'mph' %}
+                            <option value="mph" selected="selected">mph</option>
+                            {% else %}
+                            <option value="mph">mph</option>
+                            {% endif %}
+
+                            
+                            
+                            {% if svel_op == 'ft/s' %}
+                            <option value="ft/s" selected="selected">ft/s</option>
+                            {% else %}
+                            <option value="ft/s">ft/s</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+                    {% endif %}
+
+
+                    {% if given_data != "form2" %}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Wave Velocity</strong></div>
+                        </div>
+                        <input type="number"  step="0.000001" oninput="validateNumber(this);" id="wvel" required=""
+                            placeholder="Enter number"  class="form-control mt-1" name="wvel" {% if wvel1 %} value="{{wvel1}}" {% else %} value="12" {% endif %}>
+
+
+                        <select class="select form-control mt-1" id="wvel_op" name="wvel_op">
+                         
+                          
+                          {% if wvel_op == 'm/s' %}
+                            <option value="m/s" selected="selected">m/s</option>
+                            {% else %}
+                            <option value="m/s">m/s</option>
+                            {% endif %}
+
+                            {% if wvel_op == 'km/hr' %}
+                            <option value="km/hr" selected="selected">km/hr</option>
+                            {% else %}
+                            <option value="km/hr">km/hr</option>
+                            {% endif %}
+
+
+                            {% if wvel_op == 'mph' %}
+                            <option value="mph" selected="selected">mph</option>
+                            {% else %}
+                            <option value="mph">mph</option>
+                            {% endif %}
+
+                            
+                            
+                            {% if wvel_op == 'ft/s' %}
+                            <option value="ft/s" selected="selected">ft/s</option>
+                            {% else %}
+                            <option value="ft/s">ft/s</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+                    {% endif %}
+
+
+
+                    {% if given_data != "form1" %}
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Wavelength</strong></div>
+                        </div>
+                        <input type="number"   step="0.000001" oninput="validateNumber(this);" id="wave" required=""
+                           placeholder="Enter number"  class="form-control mt-1" name="wave" {% if wave %} value="{{wave1}}" {% else %} value="7" {% endif %}>
+
+                        <select class="select form-control mt-1" id="wave_op" name="wave_op">
+                          
+                             {% if wave_op == 'm' %}
+                            <option value="m" selected="selected">meter(m)</option>
+                            {% else %}
+                            <option value="m">meter(m)</option>
+                            {% endif %}
+
+                            {% if wave_op == 'mm' %}
+                            <option value="mm" selected="selected">milli meter(mm)</option>
+                            {% else %}
+                            <option value="mm">milli meter(mm)</option>
+                            {% endif %}
+
+                            {% if wave_op == 'cm' %}
+                            <option value="cm" selected="selected">centimeter(cm)</option>
+                            {% else %}
+                            <option value="cm">centimeter(cm)</option>
+                            {% endif %}
+
+                            {% if wave_op == 'km' %}
+                            <option value="km" selected="selected">kilometer(km)</option>
+                            {% else %}
+                            <option value="km">kilometer(km)</option>
+                            {% endif %}
+
+                            
+                        </select>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if given_data != "form4" %}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Source Frequency</strong></div>
+                        </div>
+                        <input type="number"    step="0.000001" oninput="validateNumber(this);" id="freq" required=""
+                           placeholder="Enter number"  class="form-control mt-1" name="freq" {% if freq %} value="{{freq1}}" {% else %} value="7" {% endif %}>
+
+                        <select class="select form-control mt-1" id="freq_op" name="freq_op">
+                            {% if freq_op == 'Hz' %}
+                            <option value="Hz" selected="selected">Hertz(Hz)</option>
+                            {% else %}
+                            <option value="Hz" >Hertz(Hz)</option>
+                            {% endif %}
+         
+                           
+                            {% if freq_op == 'mHz' %}
+                            <option value="mHz" selected="selected">Milli Hertz (mHz)</option>
+                            {% else %}
+                            <option value="mHz" >Milli Hertz (mHz)</option>
+                            {% endif %}
+
+
+                            {% if freq_op == 'kHz' %}
+                            <option value="kHz" selected="selected">Kilohertz(kHz)</option>
+                            {% else %}
+                             <option value="kHz" >Kilohertz(kHz)</option>
+                            {% endif %}
+
+                            {% if freq_op == 'MHz' %}
+                            <option value="MHz" selected="selected">Megahertz(kHz)</option>
+                            {% else %}
+                             <option value="MHz" >Megahertz(kHz)</option>
+                            {% endif %}
+
+                        </select>
+
+                    </div>
+
+                    {% endif %}
+
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if given_data == "form1" and wave %}
+    <div class="card" id="magnetic-Reference Temperature">
+        <div class="card-header">
+            <h2 class="h2">Steps to Calculate Doppler Shift </h2>
+        </div>
+
+        <div class="card-body">
+                
+            <strong>Doppler Shift  formula-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active"> λ<sub>ƒ</sub> = ( v -u<sub>s</sub>)/f<sub>0</sub>  </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>  
+                    <li>λ<sub>ƒ</sub>  is the  Wavelength in Front of a Moving Source</li>
+                    <li>v is the Wave Velocity</li>
+                    <li>u<sub>s</sub> is the source Velocity</li>
+                    <li>f<sub>0</sub> is the source frequency</li>
+                    </ul>
+
+            <strong>Input values are:-</strong>
+            <p>Wave Velocity = {{wvel1}} {{wvel_op}} </p>
+            <p>Source Velocity = {{svel1}} {{svel_op}}</p>
+            <p>Source frequency = {{freq1}} {{freq_op}} </p>
+
+               
+            {% if wvel_op != 'm/s' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Wave Velocity  {{wvel1}}<b><i>"{{wvel_op}}"</i></b> to
+                    <b><i>"m/s"</i></b></b>
+                </summary>
+                <p>Converting Wave Velocity  ={{wvel1}} {{wvel_c|safe}}</p>
+                <p>Wave Velocity ={{wvel|safe}} m/s </p>
+            </details>
+            {% endif %}
+
+            
+            {% if svel_op != 'm/s' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Source Velocity  {{svel1}}<b><i>"{{svel_op}}"</i></b> to
+                    <b><i>"m/s"</i></b></b>
+                </summary>
+                <p>Converting Source Velocity  ={{svel1}} {{svel_c|safe}}</p>
+                <p>Source Velocity ={{svel|safe}} m/s </p>
+            </details>
+            {% endif %}
+
+            
+            {% if freq_op != 'Hz' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Source frequency  {{freq1}}<b><i>"{{freq_op}}"</i></b> to
+                    <b><i>"Hz"</i></b></b>
+                </summary>
+                <p>Converting Source frequency  ={{freq1}} {{freq_c|safe}}</p>
+                <p>Source frequency ={{freq|safe}} Hz </p>
+            </details>
+            {% endif %}
+
+            
+    
+            <strong>Put values into formula</strong>
+            <p> Wavelength   = ( v -u<sub>s</sub>)/f<sub>0</sub> </p>
+            <p> Wavelength   = ( {{wvel|safe}} - {{svel|safe}} )/({{freq|safe}}) </p>
+            <p> Wavelength   = {{wave|safe}}  m </p>
+
+
+        </div>
+
+    </div>
+    {% endif %}
+
+    
+
+    {% if given_data == "form2" and wvel %}
+    <div class="card" id="magnetic-Reference Temperature">
+        <div class="card-header">
+            <h2 class="h2">Steps to Calculate wave velocity</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Doppler Shift  formula-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active"> λ<sub>ƒ</sub> = ( v -u<sub>s</sub>)/f<sub>0</sub>  </p>
+            <br>
+            <strong>where:</strong>
+                    <ul>
+                        <li>λ<sub>ƒ</sub>  is the  Wavelength in Front of a Moving Source</li>
+                        <li>v is the Wave Velocity</li>
+                        <li>u<sub>s</sub> is the source Velocity</li>
+                        <li>f<sub>0</sub> is the source frequency</li>
+                    </ul>          
+
+            <strong>Input values are:-</strong>
+            <p>Source Velocity = {{svel1}} {{svel_op}}</p>
+            <p>Source frequency = {{freq1}} {{freq_op}} </p>
+            <p>Wavelength in Front of a Moving Source = {{wave1}} {{wave_op}}</p>
+        
+
+            
+            {% if svel_op != 'm/s' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Source Velocity  {{svel1}}<b><i>"{{svel_op}}"</i></b> to
+                    <b><i>"m/s"</i></b></b>
+                </summary>
+                <p>Converting Source Velocity  ={{svel1}} {{svel_c|safe}}</p>
+                <p>Source Velocity ={{svel|safe}} m/s </p>
+            </details>
+            {% endif %}
+
+            
+            {% if freq_op != 'Hz' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Source frequency  {{freq1}}<b><i>"{{freq_op}}"</i></b> to
+                    <b><i>"Hz"</i></b></b>
+                </summary>
+                <p>Converting Source frequency  ={{freq1}} {{freq_c|safe}}</p>
+                <p>Source frequency ={{freq|safe}} Hz </p>
+            </details>
+            {% endif %}
+
+            
+            {% if wave_op != 'm' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Wavelength = {{wave1}}<b><i>"{{wave_op}}"</i></b> to
+                    <b><i>"m"</i></b></b>
+                </summary>
+                <p>Converting Wavelength  ={{wave1}} {{wave_c|safe}}</p>
+                <p>Wavelength ={{wave|safe}} m </p>
+            </details>
+            {% endif %}
+
+
+            <strong>Put values into formula</strong>
+            <p>  λ<sub>ƒ</sub> = ( v -u<sub>s</sub>)/f<sub>0</sub>  </p>
+            <p>  v =  λ<sub>ƒ</sub> * f<sub>0</sub> + u<sub>s</sub>  </p>
+            <p>  v =  {{wave|safe}} * {{freq|safe}} + {{svel|safe}} </p>
+            <p>  Wave Velocity = {{wvel|safe}} m/s</p>
+           
+        </div>
+
+    </div>
+    {% endif %}
+
+
+
+
+    {% if given_data == "form3" and svel %}
+    <div class="card" id="magnetic-Reference Temperature">
+        <div class="card-header">
+            <h2 class="h2">Steps to Calculate Source Velocity</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Doppler Shift  formula-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active"> λ<sub>ƒ</sub> = ( v -u<sub>s</sub>)/f<sub>0</sub>  </p>
+            <br>
+            <strong>where:</strong>
+              <ul>
+                    <li>λ<sub>ƒ</sub>  is the  Wavelength in Front of a Moving Source</li>
+                    <li>v is the Wave Velocity</li>
+                    <li>u<sub>s</sub> is the source Velocity</li>
+                    <li>f<sub>0</sub> is the source frequency</li>
+              </ul>   
+
+
+
+            <strong>Input values are:-</strong>
+            <p>Wave Velocity = {{wvel1}} {{wvel_op}} </p>
+            <p>Source frequency = {{freq1}} {{freq_op}} </p>
+            <p>Wavelength in Front of a Moving Source = {{wave1}} {{wave_op}}</p>
+        
+           
+            {% if wvel_op != 'm/s' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Wave Velocity  {{wvel1}}<b><i>"{{wvel_op}}"</i></b> to
+                    <b><i>"m/s"</i></b></b>
+                </summary>
+                <p>Converting Wave Velocity  ={{wvel1}} {{wvel_c|safe}}</p>
+                <p>Wave Velocity ={{wvel|safe}} m/s </p>
+            </details>
+            {% endif %}
+
+            
+            {% if freq_op != 'Hz' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Source frequency  {{freq1}}<b><i>"{{freq_op}}"</i></b> to
+                    <b><i>"Hz"</i></b></b>
+                </summary>
+                <p>Converting Source frequency  ={{freq1}} {{freq_c|safe}}</p>
+                <p>Source frequency ={{freq|safe}} Hz </p>
+            </details>
+            {% endif %}
+
+            
+            {% if wave_op != 'm' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Wavelength = {{wave1}}<b><i>"{{wave_op}}"</i></b> to
+                    <b><i>"m"</i></b></b>
+                </summary>
+                <p>Converting Wavelength  ={{wave1}} {{wave_c|safe}}</p>
+                <p>Wavelength ={{wave|safe}} m </p>
+            </details>
+            {% endif %}
+
+           
+
+            <strong>Put values into formula</strong>
+            <p>λ<sub>ƒ</sub> = ( v -u<sub>s</sub>)/f<sub>0</sub></p>
+            <p>u<sub>s</sub> = v - λ<sub>ƒ</sub> * f<sub>0</sub> </p>
+            <p>u<sub>s</sub> = {{wvel|safe}} - {{wave|safe}} * {{freq|safe}}</p>
+            <p> Source Velocity = {{svel|safe}} m/s</p>
+            
+        </div>
+
+    </div>
+    {% endif %}
+
+    
+    {% if given_data == "form4" and freq %}
+    <div class="card" id="magnetic-Reference Temperature">
+        <div class="card-header">
+            <h2 class="h2">Steps to Calculate Frequency</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Doppler Shift  formula-</strong>
+            <br>
+            <p class="btn btn-outline-secondary active"> λ<sub>ƒ</sub> = ( v -u<sub>s</sub>)/f<sub>0</sub>  </p>
+            <br>
+            <strong>where:</strong>
+              <ul>
+                    <li>λ<sub>ƒ</sub>  is the  Wavelength in Front of a Moving Source</li>
+                    <li>v is the Wave Velocity</li>
+                    <li>u<sub>s</sub> is the source Velocity</li>
+                    <li>f<sub>0</sub> is the source frequency</li>
+              </ul>   
+
+
+
+            <strong>Input values are:-</strong>
+            <p>Wave Velocity = {{wvel1}} {{wvel_op}} </p>
+            <p>Source Velocity = {{svel1}} {{svel_op}}</p>
+            <p>Wavelength in Front of a Moving Source = {{wave1}} {{wave_op}}</p>
+        
+           
+            {% if wvel_op != 'm/s' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Wave Velocity  {{wvel1}}<b><i>"{{wvel_op}}"</i></b> to
+                    <b><i>"m/s"</i></b></b>
+                </summary>
+                <p>Converting Wave Velocity  ={{wvel1}} {{wvel_c|safe}}</p>
+                <p>Wave Velocity ={{wvel|safe}} m/s </p>
+            </details>
+            {% endif %}
+
+            
+            {% if svel_op != 'm/s' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Source Velocity  {{svel1}}<b><i>"{{svel_op}}"</i></b> to
+                    <b><i>"m/s"</i></b></b>
+                </summary>
+                <p>Converting Source Velocity  ={{svel1}} {{svel_c|safe}}</p>
+                <p>Source Velocity ={{svel|safe}} m/s </p>
+            </details>
+            {% endif %}
+
+
+            
+            {% if wave_op != 'm' %}
+            <details style="border:2px solid #009FE8; width:100%;">
+                <summary>
+                     <b>Convert the Wavelength = {{wave1}}<b><i>"{{wave_op}}"</i></b> to
+                    <b><i>"m"</i></b></b>
+                </summary>
+                <p>Converting Wavelength  ={{wave1}} {{wave_c|safe}}</p>
+                <p>Wavelength ={{wave|safe}} m </p>
+            </details>
+            {% endif %}
+
+           
+
+            <strong>Put values into formula</strong>
+            <p>λ<sub>ƒ</sub> = ( v -u<sub>s</sub>)/f<sub>0</sub> </p>
+            <p>f<sub>0</sub> = ( v -u<sub>s</sub>)/λ<sub>ƒ</sub> </p>
+            <p>f<sub>0</sub> = ( {{wvel|safe}} - {{svel|safe}})/{{wave|safe}}</p>
+            <p> Source Frequency = {{freq|safe}} Hz</p>
+            
+        </div>
+
+    </div>
+    {% endif %}
+
+
+
+
+</div>
+
+
+
+<script>
+    
+{% if id == 1 %}
+ 
+var scrollDiv = document.getElementById("clear").offsetTop;
+console.log(scrollDiv)
+window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+
+{%endif%}
+
+    
+
+</script>
+
+<script>
+    function myFunction() {
+
+            document.getElementById("clear").innerHTML = "";
+            
+            {% if given_data != 'form2' %}    
+            document.getElementById("wvel").value = "";
+            document.getElementById("wvel_op").value="m/s";
+            {%endif%}
+            
+            {% if given_data != 'form3' %}
+            document.getElementById("svel").value = "";
+            document.getElementById("svel_op").value="m/s";
+            {%endif%}
+
+            {% if given_data != 'form1' %}
+            document.getElementById("wave").value=""
+            document.getElementById("wave_op").value="m";
+            {% endif %}
+
+            
+            {% if given_data != 'form4' %}
+            document.getElementById("freq").value=""
+            document.getElementById("freq_op").value="Hz";
+            {% endif %}
+    
+    }
+</script>
+<br>
+
+{% endblock %}

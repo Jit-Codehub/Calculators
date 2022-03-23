@@ -1,0 +1,476 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Lead Time Calculator</title>
+<meta name="description"
+    content="Lead Time Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Lead Time Calculator | Free Calculator to find Half Life" />
+<meta property="og:description" content="Lead Time Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle>Lead Time Calculator</tittle>
+<meta property='og:title' content="Lead Time Calculator | Lead Time" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Lead Time Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Lead Time Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Lead Time:</strong></div>
+                        </div>
+                        <select name="given_data" id="inlineFormInputGroup" class="form-control"
+                            onchange="this.form.submit();" autofocus="">
+
+                            {% if given_data == 'form1' %}
+                            <option value="form1" selected="selected"> Manufacturing </option>
+                            {% else %}
+                            <option value="form1"> Manufacturing  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form2' %}
+                            <option value="form2" selected="selected"> Order
+                            </option>
+                            {% else %}
+                            <option value="form2">Order</option>
+                            {% endif %}
+
+                            {% if given_data == 'form3' %}
+                            <option value="form3" selected="selected"> Supply Chain Management
+                            </option>
+                            {% else %}
+                            <option value="form3">Supply Chain Management</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+
+                    
+                    
+                    
+                    {% if given_data == 'form1' %}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Pre-Production Time</strong></div>
+                        </div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in years"  class="form-control" name="YR" id="YR" {% if YR or YR == 0 %} value="{{YR}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>yrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in months"  class="form-control" name="MO" id="MO" {% if MO or MO == 0 %} value="{{MO}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>mos</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in days"  class="form-control" name="DY" id="DY" {% if DY or DY == 0 %} value="{{DY}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>days</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Hours"  class="form-control" name="TH" id="TH" {% if TH or TH == 0 %} value="{{TH}}" {% else %} value="1" {% endif %}>
+                        <div class="input-group-text"><strong>hrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Minutes"  class="form-control" name="TM" id="TM" {% if TM or TM == 0 %} value="{{TM}}" {% else %} value="30" {% endif %}>
+                        <div class="input-group-text"><strong>mins</strong></div> 
+                    </div>
+
+
+
+
+                    
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Production Time</strong></div>
+                        </div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in years"  class="form-control" name="YR1" id="YR1" {% if YR1 or YR1 == 0 %} value="{{YR1}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>yrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in months"  class="form-control" name="MO1" id="MO1" {% if MO1 or MO1 == 0 %} value="{{MO1}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>mos</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in days"  class="form-control" name="DY1" id="DY1" {% if DY1 or DY1 == 0 %} value="{{DY1}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>days</strong></div>
+
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Hours"  class="form-control" name="TH1" id="TH1" {% if TH1 or TH1 == 0 %} value="{{TH1}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>hrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Minutes"  class="form-control" name="TM1" id="TM1" {% if TM1 or TM1 == 0 %} value="{{TM1}}" {% else %} value="45" {% endif %}>
+                        <div class="input-group-text"><strong>mins</strong></div> 
+                    </div>
+
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Post-Production Time</strong></div>
+                        </div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in years"  class="form-control" name="YR2" id="YR2" {% if YR2 or YR2 == 0 %} value="{{YR2}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>yrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in months"  class="form-control" name="MO2" id="MO2" {% if MO2 or MO2 == 0 %} value="{{MO2}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>mos</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in days"  class="form-control" name="DY2" id="DY2" {% if DY2 or DY2 == 0 %} value="{{DY2}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>days</strong></div>
+
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Hours"  class="form-control" name="TH2" id="TH2" {% if TH2 or TH2 == 0 %} value="{{TH2}}" {% else %} value="1" {% endif %}>
+                        <div class="input-group-text"><strong>hrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Minutes"  class="form-control" name="TM2" id="TM2" {% if TM2 or TM2 == 0 %} value="{{TM2}}" {% else %} value="10" {% endif %}>
+                        <div class="input-group-text"><strong>mins</strong></div> 
+                    </div>
+                    {% endif %}
+
+
+
+
+
+                    {% if given_data == 'form3' %}
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Supply Delay</strong></div>
+                        </div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in years"  class="form-control" name="YR" id="YR" {% if YR or YR == 0 %} value="{{YR}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>yrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in months"  class="form-control" name="MO" id="MO" {% if MO or MO == 0 %} value="{{MO}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>mos</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in days"  class="form-control" name="DY" id="DY" {% if DY or DY == 0 %} value="{{DY}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>days</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Hours"  class="form-control" name="TH" id="TH" {% if TH or TH == 0 %} value="{{TH}}" {% else %} value="1" {% endif %}>
+                        <div class="input-group-text"><strong>hrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Minutes"  class="form-control" name="TM" id="TM" {% if TM or TM == 0 %} value="{{TM}}" {% else %} value="45" {% endif %}>
+                        <div class="input-group-text"><strong>mins</strong></div> 
+                    </div>
+
+
+
+
+                    
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Reorder Delay</strong></div>
+                        </div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in years"  class="form-control" name="YR1" id="YR1" {% if YR1 or YR1 == 0 %} value="{{YR1}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>yrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in months"  class="form-control" name="MO1" id="MO1" {% if MO1 or MO1 == 0 %} value="{{MO1}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>mos</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in days"  class="form-control" name="DY1" id="DY1" {% if DY1 or DY1 == 0 %} value="{{DY1}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>days</strong></div>
+
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Hours"  class="form-control" name="TH1" id="TH1" {% if TH1 or TH1 == 0 %} value="{{TH1}}" {% else %} value="2" {% endif %}>
+                        <div class="input-group-text"><strong>hrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0"
+                        placeholder="Enter Time in Minutes"  class="form-control" name="TM1" id="TM1" {% if TM1 or TM1 == 0 %} value="{{TM1}}" {% else %} value="11" {% endif %}>
+                        <div class="input-group-text"><strong>mins</strong></div> 
+                    </div>
+                    
+                    {% endif %}
+
+
+
+                    {% if given_data == 'form2' %}
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Date of placing an order</strong></div>
+                        </div>
+                        <input type="datetime-local" id="DT" required=""
+                           placeholder="Enter Date and Time"  class="form-control mt-1" name="DT" {% if DT or DT == 0 %} value="{{DT}}" {% else %} value="2022-04-25T12:19" {% endif %}>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Date of receiving an order</strong></div>
+                        </div>
+                        <input type="datetime-local" id="DT1" required=""
+                           placeholder="Enter Date and Time"  class="form-control mt-1" name="DT1" {% if DT1 or DT1 == 0 %} value="{{DT1}}" {% else %} value="2022-05-25T12:19" {% endif %}>
+                    </div>
+                    {% endif %}
+
+
+
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="data">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <h2 class="h2">Results</h2>
+        </div>
+        
+        
+        <div class="card-body"> 
+            {% if given_data == "form1" or given_data == "form3" %}
+            <h3><strong><span style="color: blue;">Lead Time:&nbsp;&nbsp;</span></strong><strong id="result">{{result|floatformat:"-2"}}</strong>
+                
+                <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
+                    <option value="1" selected="">minutes</option>
+                    <option value="0.0166667">hours</option>
+                    <option value="0.000694444">days</option>
+                    <option value="0.000022831">months</option>
+                    <option value="0.00000190259">years</option>
+                </select>
+                
+            </h3>
+            {% endif %}
+
+            {% if given_data == "form2" %}
+            <h3><strong><span style="color: blue;">Lead Time:&nbsp;&nbsp;</span>{{result}}</strong></h3>
+            {% endif %}
+            <br><br>
+
+            <h3>What is lead time?</h3>
+            <p>Lead time is the period between the initiation and completion of a process.</p>
+            <p>The lead time definition becomes more specific depending on which industry we use it in. In the next paragraphs, we will describe the differences between lead time used in manufacturing, supply chain management, and a few others.</p>
+            <h3>Manufacturing lead time formula</h3>
+            <p>In manufacturing, lead time means the time necessary for processing, preparing materials, manufacturing, and delivery of an order. Generally, it consists of three periods:</p>
+            <h4>Lead time = pre-processing + processing + post-processing</h4>
+            <p>where:</p>
+            <ul>
+                <li>Pre-processing is a time needed for, handling the order, making sales order, and preparing supplies.</li>
+                <li>Processing is a period when you make or collect the order. You may also know it by cycle time.</li>
+                <li>Post-processing is the time of delivery.</li>
+            </ul>
+            <h3>How to calculate lead time in supply chain management?</h3>
+            <p>In supply chain management (or inventory management), we tie the lead time to the amount of stock the company needs. It consists of two periods:</p>
+            <h4>Lead time = supply delay + reorder delay</h4>
+            <p>where:</p>
+            <ul>
+                <li>supply delay is the time between ordering and getting the supplies.</li>
+                <li>Reorder delay is the time you have to wait before reordering the supplies. That's because some suppliers carry out orders once a day, a week, or a month.</li>
+            </ul>
+
+        </div>
+
+        
+    
+
+    
+    
+    {% endif %}
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+
+        const result = document.getElementById("result").innerHTML
+        function modifyres1(){
+            
+            var sus  = document.getElementById("myunt1")
+            document.getElementById("result").innerHTML = +(Number(result) * sus.value).toFixed(2)
+        }
+
+
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                {% if given_data == "form1" %}
+                document.getElementsByName("YR")[0].value = "";
+                document.getElementsByName("MO")[0].value = "";
+                document.getElementsByName("DY")[0].value = "";
+                document.getElementsByName("TH")[0].value = "";
+                document.getElementsByName("TM")[0].value = "";
+                document.getElementsByName("YR1")[0].value = "";
+                document.getElementsByName("MO1")[0].value = "";
+                document.getElementsByName("DY1")[0].value = "";
+                document.getElementsByName("TH1")[0].value = "";
+                document.getElementsByName("TM1")[0].value = "";
+                document.getElementsByName("YR2")[0].value = "";
+                document.getElementsByName("MO2")[0].value = "";
+                document.getElementsByName("DY2")[0].value = "";
+                document.getElementsByName("TH2")[0].value = "";
+                document.getElementsByName("TM2")[0].value = "";
+                
+                {% endif %}
+
+                {% if given_data == "form3" %}
+                document.getElementsByName("YR")[0].value = "";
+                document.getElementsByName("MO")[0].value = "";
+                document.getElementsByName("DY")[0].value = "";
+                document.getElementsByName("TH")[0].value = "";
+                document.getElementsByName("TM")[0].value = "";
+                document.getElementsByName("YR1")[0].value = "";
+                document.getElementsByName("MO1")[0].value = "";
+                document.getElementsByName("DY1")[0].value = "";
+                document.getElementsByName("TH1")[0].value = "";
+                document.getElementsByName("TM1")[0].value = "";
+                {% endif %}
+
+                {% if given_data == "form2" %}
+                document.getElementsByName("DT")[0].value = "";
+                document.getElementsByName("DT1")[0].value = "";
+                
+                {% endif %}
+                
+                
+               
+                document.getElementById("clear").innerHTML = "";
+            }
+    </script>
+    <br>
+    
+    
+    {% endblock %}

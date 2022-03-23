@@ -1,0 +1,336 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>English Learning Time Calculator</title>
+<meta name="description"
+    content="Estimated Time of Arrival Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta property="og:description" content="Half Life Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle>English Learning Time Calculator</tittle>
+<meta property='og:title' content="Estimated Time of Arrival Calculator | Half Life" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Half Life Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">English Learning Time Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    
+
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><strong>Avg lesson time:</strong></div>
+                            </div>
+                            <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0" max="30"
+                            placeholder="Enter Time in Hours"  class="form-control" name="TH" id="TH" {% if TH or TH == 0 %} value="{{TH}}" {% else %} value="2" {% endif %}>
+                            <div class="input-group-text"><strong>hrs</strong></div>
+
+                            <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0" max="59"
+                            placeholder="Enter Time in Minutes"  class="form-control" name="TM" id="TM" {% if TM or TM == 0 %} value="{{TM}}" {% else %} value="0" {% endif %}>
+                            <div class="input-group-text"><strong>mins</strong></div> 
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><strong>Total time weekly:</strong></div>
+                            </div>
+                            <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0" max="168"
+                            placeholder="Enter Time in Hours"  class="form-control" name="TH1" id="TH1" {% if TH1 or TH1 == 0 %} value="{{TH1}}" {% else %} value="2" {% endif %}>
+                            <div class="input-group-text"><strong>hrs</strong></div>
+
+                            <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0" max="59"
+                            placeholder="Enter Time in Minutes"  class="form-control" name="TM1" id="TM1" {% if TM1 or TM1 == 0 %} value="{{TM1}}" {% else %} value="0" {% endif %}>
+                            <div class="input-group-text"><strong>mins</strong></div> 
+                        </div>
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="data">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <h2 class="h2">Results</h2>
+        </div>
+        
+        
+        <div class="card-body"> <span>
+            <p><strong><span style="color: blue;">Lessons weekly:&nbsp;&nbsp;&nbsp;</span>{{LW|floatformat:"-2"}}</strong></p>
+
+
+
+            <p><strong><span style="color: blue;">A1 -> A2 (KET):&nbsp;&nbsp;&nbsp;</span><span id="span1">{{A1ToA2|floatformat:"-1"}}</span></strong>
+                <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
+                    <option value="1" selected="">days</option>
+                    <option value="0.142857">weeks</option>
+                    <option value="0.0328767">months</option>
+                    <option value="0.00273973">years</option>
+                    
+                </select>
+            
+            </p>
+            <p><strong><span style="color: blue;">A2 -> B1 (PET):&nbsp;&nbsp;&nbsp;</span><span id="span2">{{A2ToB1|floatformat:"-1"}}</span></strong>
+                <select style="margin-left:5px" id="myunt2" onchange="modifyres2()">
+                    <option value="1" selected="">days</option>
+                    <option value="0.142857">weeks</option>
+                    <option value="0.0328767">months</option>
+                    <option value="0.00273973">years</option>
+                    
+                </select>
+            </p>
+            <p><strong><span style="color: blue;">B1 -> B2 (FCE):&nbsp;&nbsp;&nbsp;</span><span id="span3">{{B1ToB2|floatformat:"-1"}}</span></strong>
+                <select style="margin-left:5px" id="myunt3" onchange="modifyres3()">
+                    <option value="1" selected="">days</option>
+                    <option value="0.142857">weeks</option>
+                    <option value="0.0328767">months</option>
+                    <option value="0.00273973">years</option>
+                    
+                </select>
+            </p>
+            <p><strong><span style="color: blue;">B2 -> C1 (CAE):&nbsp;&nbsp;&nbsp;</span><span id="span4">{{B2ToC1|floatformat:"-1"}}</span></strong>
+                <select style="margin-left:5px" id="myunt4" onchange="modifyres4()">
+                    <option value="1" selected="">days</option>
+                    <option value="0.142857">weeks</option>
+                    <option value="0.0328767">months</option>
+                    <option value="0.00273973">years</option>
+                    
+                </select>
+            
+            </p>
+            <p><strong><span style="color: blue;">C1 -> C2 (CPE):&nbsp;&nbsp;&nbsp;</span><span id="span5">{{C1ToC2|floatformat:"-1"}}</span></strong>
+                <select style="margin-left:5px" id="myunt5" onchange="modifyres5()">
+                    <option value="1" selected="">days</option>
+                    <option value="0.142857">weeks</option>
+                    <option value="0.0328767">months</option>
+                    <option value="0.00273973">years</option>
+                    
+                </select>
+            </p>
+            <p><strong><span style="color: blue;">A1 -> C2:&nbsp;&nbsp;&nbsp;</span><span id="span6">{{A1ToC2|floatformat:"-1"}}</span></strong>
+                <select style="margin-left:5px" id="myunt6" onchange="modifyres6()">
+                    <option value="1" selected="">days</option>
+                    <option value="0.142857">weeks</option>
+                    <option value="0.0328767">months</option>
+                    <option value="0.00273973">years</option>
+                    
+                </select>
+            
+            </p><br>
+
+
+            
+            <p>The English learning time calculator evaluates time needed to reach a particular level of English language proficiency.</p>
+
+            <p>If you have ever wondered what the average time needed to learn English at particular level is, our tool should come in handy. In this calculator we use the English language levels set out by the <a href="https://en.wikipedia.org/wiki/Common_European_Framework_of_Reference_for_Languages"> Common European Framework of Reference for Languages.</a> This framework ranges from A1 (beginner) up until C2 (proficient) along with the respective certificates' names.</p>
+
+            <p>We used the data provided by the <a href="https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours">University of Cambridge's Cambridge English</a>  data to calculate the average number of hours needed to reach a specific level of English proficiency for each level. Please note that this number is very approximate as the actual number of hours a student needs depends heavily on:</p>
+
+            <ul>
+                <li>language background</li>
+                <li>intensity of study</li>
+                <li>age</li>
+                <li>amount of language exposure outside of classes</li>
+                <li>quality of classes and others</li>
+            </ul>
+
+            
+            
+
+        </div>
+
+        
+    
+
+    
+    
+    {% endif %}
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        const result = document.getElementById("span1").innerHTML
+        function modifyres1(){
+            
+            var sus  = document.getElementById("myunt1")
+            document.getElementById("span1").innerHTML = +(Number(result) * sus.value).toFixed(1)
+        }
+
+        const result1 = document.getElementById("span2").innerHTML
+        function modifyres2(){
+            
+            var sus  = document.getElementById("myunt2")
+            document.getElementById("span2").innerHTML = +(Number(result1) * sus.value).toFixed(1)
+        }
+
+        const result2 = document.getElementById("span3").innerHTML
+        function modifyres3(){
+            
+            var sus  = document.getElementById("myunt3")
+            document.getElementById("span3").innerHTML = +(Number(result2) * sus.value).toFixed(1)
+        }
+
+        const result3 = document.getElementById("span4").innerHTML
+        function modifyres4(){
+            
+            var sus  = document.getElementById("myunt4")
+            document.getElementById("span4").innerHTML = +(Number(result3) * sus.value).toFixed(1)
+        }
+
+        const result4 = document.getElementById("span5").innerHTML
+        function modifyres5(){
+            
+            var sus  = document.getElementById("myunt5")
+            document.getElementById("span5").innerHTML = +(Number(result4) * sus.value).toFixed(1)
+        }
+
+        const result5 = document.getElementById("span6").innerHTML
+        function modifyres6(){
+            
+            var sus  = document.getElementById("myunt6")
+            document.getElementById("span6").innerHTML = +(Number(result5) * sus.value).toFixed(1)
+        }
+
+
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                document.getElementsByName("TH")[0].value = "";
+                document.getElementsByName("TM")[0].value = "";
+                document.getElementsByName("TH1")[0].value = "";
+                document.getElementsByName("TM1")[0].value = "";
+                document.getElementById("clear").innerHTML = "";
+            }
+
+
+        
+
+
+    </script>
+    <br>
+    
+    
+    {% endblock %}

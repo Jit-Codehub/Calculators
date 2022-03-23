@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Repeating Decimal to Fraction Conversion | Free Calculator to Calculate Repeating Decimal to Fraction Conversion Calculator</title>
+<meta name="description"
+    content="Half Life Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta property="og:description" content="Half Life Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle>Repeating Decimal to Fraction Conversion</tittle>
+<meta property='og:title' content="Half Life Calculatorr | Half Life" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Half Life Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Repeating Decimal to Fraction Conversion</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    
+                
+
+                    
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Enter Non-Repeating Part After Decimal</strong></div>
+                        </div>
+                        <input type="number" min="0" step="1" oninput="validateNumber(this);" id="NR" 
+                           placeholder="Enter a number"  class="form-control mt-1" name="NR" {% if NR1 or NR1 == 0 %} value="{{NR1}}" {%else%}   value="321" {% endif %}>
+                    </div>
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Enter Repeating Part After Decimal</strong> </div>
+                        </div>
+                        <input type="number" min="0" step="1" oninput="validateNumber(this);" id="R"
+                           placeholder="Enter a number"  class="form-control mt-1" name="R" {% if R1 or R1 == 0 %} value="{{R1}}" {% else %} value="0708" {% endif %}>
+                        </div>
+
+                       
+
+                        <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+                   
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if result or result == 0 %}
+    <div class="card" id="Repeating Decimal to Fraction Conversion">
+        <div class="card-header">
+            <h2 class="h2">Steps to Find Repeating Decimal to Fraction Conversion</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Result</strong>
+            <br>
+            <p class="btn btn-outline-secondary active">{{result}}</p>
+            <br>
+            
+
+            <p><strong>Input values are:-</strong></p>
+            {%if NR1 %}
+            <p>Non Repeating Numbers = {{NR1}} </p>
+            {% endif %}
+            {%if R1 %}
+            <p>Repeating Numbers = {{R1}} </p>
+            {% endif %}
+
+            <h1>How to Convert Repeating Decimals to Fractions</h1>
+            <p>When a fraction is represented as a decimal, it can take the form of a terminating decimal; for example:</p>
+<p>3/5 = 0.6 and 1/8 = 0.125,</p>  
+<p>or a repeating decimal; for example,</p>  
+<p>19/70 = 0.2714285 and 1/6 = 0.16</p> 
+<p>The bar depicted above is presented above the repeating element of the numerical string. This is known as the repetend.</p>  
+<h3>You can revert a decimal to its original fraction by following the steps described below.</h3>
+<p><b>Step 1:</b> Separate the non-repeating part of the decimal from the repeating part. For instance, let's say you wanted to convert the following to a fraction:</p>     
+<p>0.321<span style="text-decoration:overline">0708</span></p>
+<p>The bar is positioned above the repeating part of the decimal. As such, you should separate 321 from 0708.</p>
+<p><b>Step 2:</b> Record the non-repeating part of the decimal over a power of 10 that incorporates as many zeros as there are numbers in the non-repeating part of the decimal (including any zeros). For instance, as 321 consists of three numbers, we represent the fraction as 321/1000.</p>
+<p><b>Step 3:</b> Record the repetend over as many nines as there are numbers in that repetend (again, including any zeros). For instance, as 0708 consists of four numbers, it is represented as 0708/9999. Next, divide this fraction by the power of 10 applied in Step 2. For instance, since we applied 1000 in step two, we calculate the following: (0708/9999)/1000 = 0708/9999000 = 708/9999000.</p>
+<p><b>Step 4:</b> Sum the two fractions generated in Step 2 and 3 respectively (as per the rules for adding fractions, make sure you give them a common denominator). For instance:</p>
+<p>321/1000 + 708/9999000</p>
+<p>= 3209679/9999000 + 708/9999000</p>
+<p>= 3210387/9999000</p>
+<p><b>Step 5:</b> Reduce the fraction generated in Step 4. For instance, both 3210387 and 9999000 can be divided by 3. As such, we divide the numerator and denominator by 3 to produce the following:</p>
+<p>1070129/3333000.</p>
+<p>This is the fraction equivalent of 0.321<span style="text-decoration:overline">0708</span></p>
+            
+            </div>
+            
+
+    </div>
+    {% endif %}
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+                document.getElementsByName("NR")[0].value = "";
+                document.getElementsByName("R")[0].value = "";
+                document.getElementById("clear").innerHTML = "";
+            }
+    </script>
+    <br>
+    
+    
+    {% endblock %}
