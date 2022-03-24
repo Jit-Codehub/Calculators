@@ -10926,3 +10926,14 @@ def hairgrowthcalculator(request):
     return render(request, "hairgrowthcalculator.html")
   else:
     return render(request, "hairgrowthcalculator.html")
+
+
+
+
+
+def showercostcalculator(request):
+  if request.method == "POST":
+    print(request.POST)
+    return render(request, "showercostcalculator.html")
+  else:
+    return render(request, "showercostcalculator.html")
