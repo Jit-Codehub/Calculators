@@ -172,7 +172,7 @@
                     </div>
 
 
-                    <div class="input-group mb-2">
+                    <!-- <div class="input-group mb-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Total water used</strong></div>
                         </div>
@@ -208,7 +208,7 @@
                                   {% endif %}
       
                               </select>
-                    </div>
+                    </div> -->
 
 
                     <div class="input-group mb-2">
@@ -232,11 +232,11 @@
 
 
                         <select class="select form-control" id="inlineFormInputGroup" name="SFR_op" id="SFR_op">
-                            {% if SFR_op == 'cubicmeter' %}
+                                <!-- {% if SFR_op == 'cubicmeter' %}
                                   <option value="cubicmeter" selected="selected">cubic meter</option>
                                   {% else %}
                                   <option value="cubicmeter">cubic meter</option>
-                                  {% endif %}
+                                  {% endif %} -->
       
                                   {% if SFR_op == 'liter' %}
                                   <option value="liter" selected="selected">liter</option>
@@ -295,18 +295,23 @@
         
         <div class="card-body"> <span> 
             
-            <p><strong><span style="color: blue;">Growth length:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{result|floatformat:"-3"}}</span></strong>
+            <h3><strong><span style="color: blue;">Total water used:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{TWU|floatformat:"-2"}}</span></strong>
                 <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
-                    <option value="1" selected="">mm</option>
-                    <option value="0.1">cm</option>
-                    <option value="0.0393701">inches</option>
+                    <option value="1" selected="">liters</option>
+                    <option value="0.001">cubic meters</option>
+                    <option value="0.219969">gallon(uk)</option>
+                    <option value="0.264200">gallon(us)</option>
                     
                     
                 </select>
+
+            <h3><strong><span style="color: blue;">Single shower cost:&nbsp;&nbsp;&nbsp;</span>₹&nbsp;{{SSC|floatformat:"-2"}}</strong></h3>
+            <h3><strong><span style="color: blue;">Total shower cost:&nbsp;&nbsp;&nbsp;</span>₹&nbsp;{{TSC|floatformat:"-2"}}</strong></h3>
+
             
-            </p><br>
-            <h3>How fast does hair grow? The formula behind hair growth calculator</h3>
-            <p>The average hair growth rate is 0.5 inches per month, so growth in inches per month can be calculated according to the following equation:&nbsp; &nbsp;L = 0.5 * t, where L represents the length in inches, and t represents the amount of time in months. For the average hair growth rate in centimeters or millimeters per month, 0.5 can be converted and substituted into the equation.</p>
+                
+            
+            
             
             
         </div>

@@ -10934,6 +10934,137 @@ def hairgrowthcalculator(request):
 def showercostcalculator(request):
   if request.method == "POST":
     print(request.POST)
+
+    def conversionToLiter(value, unit):
+      if unit == "gallon(us)": return value * 3.78541
+      elif unit == "gallon(uk)": return value * 4.54609
+      else: return value
+
+    def conversionToMoney(value, unit):
+      if unit == "cubicmeter": return value / 1000
+      elif unit == "gallon(us)": return value / 3.78541
+      elif unit == "gallon(uk)": return value / 4.54609
+      else: return value
+
+    if request.POST.get('PH')!=None and request.POST.get('PH')!='' :  
+      #Storing POST-Production time value in minutes
+      inp=str(request.POST.get('PH'))
+      PHinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        PH=int(request.POST.get('PH'))
+      else:
+        PH=float(request.POST.get('PH'))
+    else:
+      PH=None
+
+    if request.POST.get('TH')!=None and request.POST.get('TH')!='' :  
+      #Storing POST-Production time value in minutes
+      inp=str(request.POST.get('TH'))
+      THinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        TH=int(request.POST.get('TH'))
+      else:
+        TH=float(request.POST.get('TH'))
+    else:
+      TH=None
+
+    if request.POST.get('TM')!=None and request.POST.get('TM')!='' :  
+      #Storing POST-Production time value in minutes
+      inp=str(request.POST.get('TM'))
+      TMinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        TM=int(request.POST.get('TM'))
+      else:
+        TM=float(request.POST.get('TM'))
+    else:
+      TM=None
+
+    if request.POST.get('SP')!=None and request.POST.get('SP')!='' :  
+      #Storing POST-Production time value in minutes
+      inp=str(request.POST.get('SP'))
+      SPinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        SP=int(request.POST.get('SP'))
+      else:
+        SP=float(request.POST.get('SP'))
+    else:
+      SP=None
+
+    if request.POST.get('WP')!=None and request.POST.get('WP')!='' :  
+      #Storing POST-Production time value in minutes
+      inp=str(request.POST.get('WP'))
+      WPinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        WP=int(request.POST.get('WP'))
+      else:
+        WP=float(request.POST.get('WP'))
+    else:
+      WP=None
+
+    if request.POST.get('EP')!=None and request.POST.get('EP')!='' :  
+      #Storing POST-Production time value in minutes
+      inp=str(request.POST.get('EP'))
+      EPinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        EP=int(request.POST.get('EP'))
+      else:
+        EP=float(request.POST.get('EP'))
+    else:
+      EP=None
+
+    if request.POST.get('SFR')!=None and request.POST.get('SFR')!='' :  
+      #Storing POST-Production time value in minutes
+      inp=str(request.POST.get('SFR'))
+      SFRinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        SFR=int(request.POST.get('SFR'))
+      else:
+        SFR=float(request.POST.get('SFR'))
+    else:
+      SFR=None
+
+    WP_op = request.POST.get("WP_op")
+
+    SFR_op = request.POST.get("SFR_op")
+
+    f1 = request.POST.get("f1")
+
+    #converting Average Shower Duration in minutes
+    ASD = TH * 60 + TM
+
+    WP = conversionToMoney(WP, WP_op)
+    print("WP after change = ",WP)
+    SFR = conversionToLiter(SFR, SFR_op)
+
+    if (PH == 0) or (TH == 0 and TM == 0) or (SP == 0) or (WP == 0) or (EP == 0) or (SFR == 0):
+      return render(request, "showercostcalculator.html",{"message":"Input values must be greater than 0."})
+
+
+    if PH and SP and f1:
+      TWU = PH * SP * ASD * SFR
+      print("TWU= ", TWU)
+      TSC = WP * TWU + ((TWU / SFR) * EP * 0.2455555555)
+      SSC = TSC / (PH * SP)
+      print("Total Shower Cost= ", TSC,"  Single Shower Cost= ",SSC)
+
+      context = {
+        "PH":PHinp,
+        "TH":THinp,
+        "TM":TMinp,
+        "SP":SPinp,
+        "WP":WPinp,
+        "EP":EPinp,
+        "SFR":SFRinp,
+        "WP_op":WP_op,
+        "SFR_op":SFR_op,
+        "TWU":TWU,
+        "TSC":TSC,
+        "SSC":SSC,
+        "f1":f1,
+      }
+      return render(request, "showercostcalculator.html", context)
+
+    
     return render(request, "showercostcalculator.html")
   else:
     return render(request, "showercostcalculator.html")
