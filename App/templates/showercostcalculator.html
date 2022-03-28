@@ -22,7 +22,7 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
 <!-- Meta Title, Description and Canonical URL Starts --->
-<title>Hair Growth Calculator</title>
+<title>Shower Cost Calculator</title>
 <meta name="description"
     content="Hair Growth Calculator makes it easy for you to Half Life." />
 <link rel="canonical" href="{{request.build_absolute_uri}}">
@@ -54,8 +54,8 @@
 <meta property="twitter:image:width" content="354" />
 <!-- TWITTER CARD CONFIGURATION ENDS  -->
 <!--  LINKEDIN CONFIGURATION STARTS-->
-<tittle>English Learning Time Calculator</tittle>
-<meta property='og:title' content="Hair Growth Calculator | Hair Growth" />
+<tittle>Shower Cost Calculator</tittle>
+<meta property='og:title' content="Shower Cost Calculator | Shower Cost" />
 <meta property='og:image'
     content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
 .jpeg" />
@@ -79,7 +79,7 @@
 <div class="container" style="height: auto !important;">
     <div class="card c1">
         <div class="card-header">
-            <h1 class="h1">Hair Growth Calculator</h1>
+            <h1 class="h1">Shower Cost Calculator</h1>
         </div>
         <div class="card-body">
             <ul class="messages">
@@ -143,16 +143,18 @@
 
                         <select class="select form-control" id="inlineFormInputGroup" name="WP_op" id="WP_op">
 
-                          {% if WP_op == 'cubicmeter' %}
-                            <option value="cubicmeter" selected="selected">cubic meter</option>
-                            {% else %}
-                            <option value="cubicmeter">cubic meter</option>
-                            {% endif %}
+                          
 
                             {% if WP_op == 'liter' %}
                             <option value="liter" selected="selected">liter</option>
                             {% else %}
                             <option value="liter">liter</option>
+                            {% endif %}
+
+                            {% if WP_op == 'cubicmeter' %}
+                            <option value="cubicmeter" selected="selected">cubic meter</option>
+                            {% else %}
+                            <option value="cubicmeter">cubic meter</option>
                             {% endif %}
 
 
@@ -217,7 +219,7 @@
                         </div>
                         
                         <input type="number" step="0.01" min="0" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
-                            placeholder="Enter Growth Time"  class="form-control" name="EP" id="EP" {% if EP or EP == 0 %} value="{{EP}}" {% else %} value="2" {% endif %}> 
+                            placeholder="Enter Energy price"  class="form-control" name="EP" id="EP" {% if EP or EP == 0 %} value="{{EP}}" {% else %} value="2" {% endif %}> 
                             <span id="inlineFormInputGroup" class="form-control">/kWh</span>
                     </div>
 
@@ -228,7 +230,7 @@
                             <div class="input-group-text"><strong>Shower flow rate per minute</strong></div>
                         </div>
                         <input type="number" step="0.01" min="0" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
-                            placeholder="Enter Growth Time"  class="form-control" name="SFR" id="SFR" {% if SFR or SFR == 0 %} value="{{SFR}}" {% else %} value="2" {% endif %}>
+                            placeholder="Enter flow rate per minute"  class="form-control" name="SFR" id="SFR" {% if SFR or SFR == 0 %} value="{{SFR}}" {% else %} value="2" {% endif %}>
 
 
                         <select class="select form-control" id="inlineFormInputGroup" name="SFR_op" id="SFR_op">
@@ -363,7 +365,13 @@
     <script>
         function myFunction() {
 
-                document.getElementsByName("GT")[0].value = "";
+                document.getElementsByName("PH")[0].value = "";
+                document.getElementsByName("TH")[0].value = "";
+                document.getElementsByName("TM")[0].value = "";
+                document.getElementsByName("SP")[0].value = "";
+                document.getElementsByName("WP")[0].value = "";
+                document.getElementsByName("EP")[0].value = "";
+                document.getElementsByName("SFR")[0].value = "";
                 document.getElementById("clear").innerHTML = "";
             }
         </script>
