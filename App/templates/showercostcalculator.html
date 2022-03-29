@@ -272,7 +272,7 @@
 
                     <div class=" center col mt-2 ">
                         <center><button type="submit" class="btn btn-primary" name="f1" value="data">Calculate</button>
-                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                            <button type="button" onclick="myFunction();" style="margin-top:5px;"
                                 class="btn btn-danger">Reset</button>
                         </center>
                     </div>
@@ -296,6 +296,10 @@
         
         
         <div class="card-body"> <span> 
+            <strong>Formulas Used:</strong><br>
+            <p class="btn btn-outline-secondary active">Total Water Used &nbsp; = &nbsp; People in household &nbsp;*&nbsp; Showers per person&nbsp; *&nbsp; Avg shower duration &nbsp;*&nbsp; Shower flow rate per minute</p>
+            <p class="btn btn-outline-secondary active">Total shower cost &nbsp; = &nbsp; Water Price &nbsp;*&nbsp; Total Water Used&nbsp; +&nbsp; ((Total Water Used &nbsp;/&nbsp; Shower flow rate per minute)&nbsp;*&nbsp;Energy Price&nbsp;*&nbsp;0.24)</p>
+            <p class="btn btn-outline-secondary active">Single shower cost &nbsp; = &nbsp; Total Shower Cost &nbsp;/&nbsp; (People in Household&nbsp; *&nbsp; Shower Per Person)</p><br><br>
             
             <h3><strong><span style="color: blue;">Total water used:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{TWU|floatformat:"-2"}}</span></strong>
                 <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
@@ -308,7 +312,10 @@
                 </select>
 
             <h3><strong><span style="color: blue;">Single shower cost:&nbsp;&nbsp;&nbsp;</span>₹&nbsp;{{SSC|floatformat:"-2"}}</strong></h3>
-            <h3><strong><span style="color: blue;">Total shower cost:&nbsp;&nbsp;&nbsp;</span>₹&nbsp;{{TSC|floatformat:"-2"}}</strong></h3>
+            <h3><strong><span style="color: blue;">Total shower cost:&nbsp;&nbsp;&nbsp;</span>₹&nbsp;{{TSC|floatformat:"-2"}}</strong></h3><br><br>
+            <h4>Shower Cost Calculator</h4>
+            <p>It lets you know how much single shower costs you and also calculates the total amount of water used while taking the shower.</p>
+            <h1></h1>
 
             
                 
@@ -324,22 +331,28 @@
 
 
 
+
 <script>
     
-    {% if id == 1 %}
+    
      
     var scrollDiv = document.getElementById("clear").offsetTop;
+    console.log(scrollDiv)
+    
     window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
     
-    {%endif%}
+    
+    
+    
     
         
-    {% if id == 2 %}
-     
-    var scrollDiv = document.getElementById("my_form1").offsetTop;
-    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
     
-    {%endif%}
+</script>
+
+
+<script>
+    
+    
     
     
         var validNumber = new RegExp(/^\d*\.?-?\d*$/);
@@ -360,9 +373,9 @@
             document.getElementById("span1").innerHTML = +(Number(result) * sus.value).toFixed(4)
         }
 
-    </script>
     
-    <script>
+    
+    
         function myFunction() {
 
                 document.getElementsByName("PH")[0].value = "";
@@ -374,7 +387,7 @@
                 document.getElementsByName("SFR")[0].value = "";
                 document.getElementById("clear").innerHTML = "";
             }
-        </script>
+    </script>
     <br>
     
     

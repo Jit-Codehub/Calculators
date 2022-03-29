@@ -478,13 +478,14 @@
 
 <script>
     
-{% if id == 1 %}
+{% comment %} {% if id == 1 %} {% endcomment %}
  
 var scrollDiv = document.getElementById("clear").offsetTop;
 console.log(scrollDiv)
+console.log("jaimatadi")
 window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
 
-{%endif%}
+{% comment %} {%endif%} {% endcomment %}
 
     
 

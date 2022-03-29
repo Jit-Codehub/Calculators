@@ -11071,3 +11071,16 @@ def showercostcalculator(request):
     return render(request, "showercostcalculator.html")
   else:
     return render(request, "showercostcalculator.html")
+
+  
+
+
+
+
+
+# def sunscreencalculator(request):
+#   if request.method == "POST":
+#     print(request.POST)
+#     return render(request, "sunscreencalculator.html")
+#   else:
+#     return render(request, "sunscreencalculator.html")
