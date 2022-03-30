@@ -38,5 +38,5 @@ path('meeting-cost-calculator/', views.meetingcostcalculator),
 path('lead-time-calculator/', views.leadtimecalculator),
 path('hair-growth-calculator/', views.hairgrowthcalculator),
 path('shower-cost-calculator/', views.showercostcalculator),
-# path('sunscreen-calculator/', views.sunscreencalculator),
+path('sunscreen-calculator/', views.sunscreencalculator),
 ]

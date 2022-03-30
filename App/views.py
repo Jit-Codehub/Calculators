@@ -11078,9 +11078,87 @@ def showercostcalculator(request):
 
 
 
-# def sunscreencalculator(request):
-#   if request.method == "POST":
-#     print(request.POST)
-#     return render(request, "sunscreencalculator.html")
-#   else:
-#     return render(request, "sunscreencalculator.html")
+def sunscreencalculator(request):
+  if request.method == "POST":
+    print(request.POST)
+
+    if request.POST.get('W')!=None and request.POST.get('W')!='' :  
+      #Storing value for shower flow rate per minute
+      inp=str(request.POST.get('W'))
+      Winp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        W=int(request.POST.get('W'))
+      else:
+        W=float(request.POST.get('W'))
+    else:
+      W=None
+
+    if request.POST.get('H')!=None and request.POST.get('H')!='' :  
+      #Storing value for shower flow rate per minute
+      inp=str(request.POST.get('H'))
+      Hinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        H=int(request.POST.get('H'))
+      else:
+        H=float(request.POST.get('H'))
+    else:
+      H=None
+
+    W_op = request.POST.get("W_op")
+    H_op = request.POST.get("H_op")
+    upr = request.POST.get("upr")
+    lwr = request.POST.get("lwr")
+    f1 = request.POST.get("f1")
+
+    #if weight is in pounds, it converts the weight into kgs
+    if W_op == "lb":
+      W = W * 0.453592
+
+    #converting height into centimeters
+    if H_op == "mtr":
+      H = H * 100
+    elif H_op == "in":
+      H = H * 2.54
+    elif H_op == "ft":
+      H = H * 30.48
+
+    #Total Body area in cm2
+    BA = (71.84 * (H**0.725) * (W**0.425) )
+
+    #converting Body area by using formula = "2 mg/cm2" into ml.
+    TBA = ((2 * BA) * 0.001)
+
+    #
+    if upr == "Longsleeve":
+      TBA = ((TBA * 47.19387390243167) * 0.01)
+    elif upr == "Sleeveless":
+      TBA = ((TBA  *64.355282594225) * 0.01)
+    elif upr == "T-Shirt":
+      TBA = ((TBA * 55.774578248328346) * 0.01)
+
+    if lwr == "Shorts":
+      TBA = ((TBA * 92.24257171838917) * 0.01)
+    elif lwr == "Long":
+      TBA = ((TBA * 64.355282594225) * 0.01)
+    elif lwr == "Midi":
+      TBA = ((TBA * 83.66186737249251) * 0.01)
+
+    if (TBA or TBA == 0) and f1:
+      context = {
+        "W": Winp,
+        "H": Hinp,
+        "W_op": W_op,
+        "H_op": H_op,
+        "upr": upr,
+        "lwr": lwr,
+        "f1": f1,
+        "TBA": TBA,
+        "TS": TBA / 5,
+      }
+      print("TBA= ",TBA)
+      return render(request, "sunscreencalculator.html", context)
+
+
+    return render(request, "sunscreencalculator.html")
+  else:
+    return render(request, "sunscreencalculator.html")
