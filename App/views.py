@@ -11080,10 +11080,9 @@ def showercostcalculator(request):
 
 def sunscreencalculator(request):
   if request.method == "POST":
-    print(request.POST)
-
+    
     if request.POST.get('W')!=None and request.POST.get('W')!='' :  
-      #Storing value for shower flow rate per minute
+      #Storing value of Weight
       inp=str(request.POST.get('W'))
       Winp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11094,7 +11093,7 @@ def sunscreencalculator(request):
       W=None
 
     if request.POST.get('H')!=None and request.POST.get('H')!='' :  
-      #Storing value for shower flow rate per minute
+      #Storing value of Height
       inp=str(request.POST.get('H'))
       Hinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11104,10 +11103,19 @@ def sunscreencalculator(request):
     else:
       H=None
 
+    #value of weight unit
     W_op = request.POST.get("W_op")
+
+    #value of height unit
     H_op = request.POST.get("H_op")
+
+    #value of upper body clothes
     upr = request.POST.get("upr")
+
+    #value of lower body clothes
     lwr = request.POST.get("lwr")
+
+    #value of calculate button
     f1 = request.POST.get("f1")
 
     #if weight is in pounds, it converts the weight into kgs
@@ -11125,10 +11133,10 @@ def sunscreencalculator(request):
     #Total Body area in cm2
     BA = (71.84 * (H**0.725) * (W**0.425) )
 
-    #converting Body area by using formula = "2 mg/cm2" into ml.
+    #converting Body area by keeping in mind "2 mg/cm2" into ml.
     TBA = ((2 * BA) * 0.001)
 
-    #
+    
     if upr == "Longsleeve":
       TBA = ((TBA * 47.19387390243167) * 0.01)
     elif upr == "Sleeveless":
@@ -11144,6 +11152,7 @@ def sunscreencalculator(request):
       TBA = ((TBA * 83.66186737249251) * 0.01)
 
     if (TBA or TBA == 0) and f1:
+      #Dicionary to pass all the required values to the template
       context = {
         "W": Winp,
         "H": Hinp,
@@ -11152,10 +11161,10 @@ def sunscreencalculator(request):
         "upr": upr,
         "lwr": lwr,
         "f1": f1,
-        "TBA": TBA,
-        "TS": TBA / 5,
+        "TBA": TBA, #value of total sunscreen used
+        "TS": TBA / 5, #value of teaspoons
       }
-      print("TBA= ",TBA)
+      
       return render(request, "sunscreencalculator.html", context)
 
 
