@@ -39,4 +39,5 @@ path('lead-time-calculator/', views.leadtimecalculator),
 path('hair-growth-calculator/', views.hairgrowthcalculator),
 path('shower-cost-calculator/', views.showercostcalculator),
 path('sunscreen-calculator/', views.sunscreencalculator),
+path('bath-vs-shower-calculator/', views.bathvsshowercalculator),
 ]

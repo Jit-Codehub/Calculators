@@ -1,0 +1,473 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Shower VS Bath calculator</title>
+<meta name="description"
+    content="Shower VS Bath calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Hair Growth Calculator | Free Calculator to find Hair Growth" />
+<meta property="og:description" content="Half Life Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle>Shower VS Bath calculator</tittle>
+<meta property='og:title' content="Shower VS Bath calculator | Shower Cost" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Hair Growth Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Shower Vs Bath calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+
+                    
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Avg shower duration</strong></div>
+                        </div>
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0" max="23"
+                        placeholder="Enter Time in Hours"  class="form-control" name="TH" id="TH" {% if TH or TH == 0 %} value="{{TH}}" {% else %} value="0" {% endif %}>
+                        <div class="input-group-text"><strong>hrs</strong></div>
+
+                        <input type="number" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" min="0" max="59"
+                        placeholder="Enter Time in Minutes"  class="form-control" name="TM" id="TM" {% if TM or TM == 0 %} value="{{TM}}" {% else %} value="5" {% endif %}>
+                        <div class="input-group-text"><strong>mins</strong></div> 
+                    </div>
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Shower frequency daily</strong></div>
+                        </div>
+                        
+                        <input type="number" step="1" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Shower frequency daily"  class="form-control" name="SF" id="SF" {% if SF or SF == 0 %} value="{{SF}}" {% else %} value="1" {% endif %}> 
+                            
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Shower flow rate per minute</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="0.01" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Shower flow rate per minute"  class="form-control" name="SFR" id="SFR" {% if SFR or SFR == 0 %} value="{{SFR}}" {% else %} value="2" {% endif %}>
+
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="SFR_op" id="SFR_op">
+                                
+      
+                                  {% if SFR_op == 'liter' %}
+                                  <option value="liter" selected="selected">liter</option>
+                                  {% else %}
+                                  <option value="liter">liter</option>
+                                  {% endif %}
+      
+      
+                                  {% if SFR_op == 'gallon(us)' %}
+                                  <option value="gallon(us)" selected="selected">gallon(us)</option>
+                                  {% else %}
+                                  <option value="gallon(us)">gallon(us)</option>
+                                  {% endif %}
+      
+                                  {% if SFR_op == 'gallon(uk)' %}
+                                  <option value="gallon(uk)" selected="selected">gallon(uk)</option>
+                                  {% else %}
+                                  <option value="gallon(uk)">gallon(uk)</option>
+                                  {% endif %}
+                                
+                          
+
+                        </select>
+                    </div>
+
+                    <div class=" center col mt-2 ">
+                        <center><button class="btn btn-primary" disabled>VS</button></center>
+                    </div>
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Bathtub size</strong></div>
+                        </div>
+                        
+                    <select class="select form-control" id="inlineFormInputGroup" name="BTS" id="BTS">
+                                
+      
+                                  {% if BTS == '140' %}
+                                  <option value="140" selected="selected">
+                                    Small 140-L (37-gal) tub</option>
+                                  {% else %}
+                                  <option value="140">
+                                    Small 140-L (37-gal) tub</option>
+                                  {% endif %}
+      
+      
+                                  {% if BTS == '160' %}
+                                  <option value="160" selected="selected">Small 160-L (42-gal) tub</option>
+                                  {% else %}
+                                  <option value="160">Small 160-L (42-gal) tub</option>
+                                  {% endif %}
+      
+                                  {% if BTS == '180' %}
+                                  <option value="180" selected="selected">
+                                    Standard 180-L (48-gal) tub</option>
+                                  {% else %}
+                                  <option value="180">
+                                    Standard 180-L (48-gal) tub</option>
+                                  {% endif %}
+
+
+                                  {% if BTS == '200' %}
+                                  <option value="200" selected="selected">
+                                    Medium-sized 200-L (53-gal) tub</option>
+                                  {% else %}
+                                  <option value="200">
+                                    Medium-sized 200-L (53-gal) tub</option>
+                                  {% endif %}
+      
+      
+                                  {% if BTS == '220' %}
+                                  <option value="220" selected="selected">Medium-sized 220-L (60-gal) tub</option>
+                                  {% else %}
+                                  <option value="220">Medium-sized 220-L (60-gal) tub</option>
+                                  {% endif %}
+      
+                                  {% if BTS == '260' %}
+                                  <option value="260" selected="selected">Semi-large 260-L (70-gal) tub</option>
+                                  {% else %}
+                                  <option value="260">Semi-large 260-L (70-gal) tub</option>
+                                  {% endif %}
+
+                                  {% if BTS == '300' %}
+                                  <option value="300" selected="selected">
+                                    Large 300-L (80-gal) tub</option>
+                                  {% else %}
+                                  <option value="300">
+                                    Large 300-L (80-gal) tub</option>
+                                  {% endif %}
+      
+      
+                                  {% if BTS == '340' %}
+                                  <option value="340" selected="selected">Free-standing 340-L (90-gal) tub</option>
+                                  {% else %}
+                                  <option value="340">Free-standing 340-L (90-gal) tub</option>
+                                  {% endif %}
+      
+                                  
+                                
+                          
+
+                        </select>
+                    </div>
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>I like to bath in a...</strong></div>
+                        </div>
+                        
+
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="like" id="like">
+                                
+      
+                                  {% if like == '1' %}
+                                  <option value="1" selected="selected">fully-filled tub</option>
+                                  {% else %}
+                                  <option value="1">fully-filled tub</option>
+                                  {% endif %}
+      
+      
+                                  {% if like == '0.75' %}
+                                  <option value="0.75" selected="selected">3/4-filled tub</option>
+                                  {% else %}
+                                  <option value="0.75">3/4-filled tub</option>
+                                  {% endif %}
+      
+                                  {% if like == '0.5' %}
+                                  <option value="0.5" selected="selected">
+                                    half-filled tub</option>
+                                  {% else %}
+                                  <option value="0.5">
+                                    half-filled tub</option>
+                                  {% endif %}
+
+                                  {% if like == '0.33' %}
+                                  <option value="0.33" selected="selected">
+                                    1/3-filled tub</option>
+                                  {% else %}
+                                  <option value="0.33">
+                                    1/3-filled tub</option>
+                                  {% endif %}
+                                
+                          
+
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>I get in the bath...</strong></div>
+                        </div>
+                        
+                        <select class="select form-control" id="inlineFormInputGroup" name="Iget" id="Iget">
+                                
+      
+                                  {% if Iget == 'before' %}
+                                  <option value="before" selected="selected">before the water reaches that level</option>
+                                  {% else %}
+                                  <option value="before">before the water reaches that level</option>
+                                  {% endif %}
+      
+      
+                                  {% if Iget == 'after' %}
+                                  <option value="after" selected="selected">when the water reaches that level</option>
+                                  {% else %}
+                                  <option value="after">when the water reaches that level</option>
+                                  {% endif %}
+      
+                        </select>
+                    </div>
+
+
+
+                    
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Bath frequency daily</strong></div>
+                        </div>
+                        
+                        <input type="number" step="1" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Bath frequency daily"  class="form-control" name="BF" id="BF" {% if BF or BF == 0 %} value="{{BF}}" {% else %} value="1" {% endif %}> 
+                            
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Your weight</strong></div>
+                        </div>
+                        <input type="number" step="0.0001" min="15" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Your weight"  class="form-control" name="W" id="W" {% if W or W == 0 %} value="{{W}}" {% else %} value="60" {% endif %}>
+
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="W_op" id="W_op">
+
+                          
+
+                            {% if W_op == 'kg' %}
+                            <option value="kg" selected="selected">kilograms (kgs)</option>
+                            {% else %}
+                            <option value="kg">kilograms (kgs)</option>
+                            {% endif %}
+
+                            {% if W_op == 'lb' %}
+                            <option value="lb" selected="selected">pounds (lbs)</option>
+                            {% else %}
+                            <option value="lb">pounds (lbs)</option>
+                            {% endif %}
+
+
+                            
+
+                        </select>
+                    </div>
+
+
+
+                    
+
+                        
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="data">Calculate</button>
+                            <button type="button" onclick="myFunction();" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <h2 class="h2">Results</h2>
+        </div>
+        
+        
+        <div class="card-body"> <span> 
+            <strong>Formulas Used:</strong><br>
+            <p class="btn btn-outline-secondary active">Water Used in Shower &nbsp; = &nbsp; Avg shower duration(mins)&nbsp;*&nbsp; Shower flow rate per minute/liter&nbsp; *&nbsp; Shower frequency daily</p>
+            
+            <p class="btn btn-outline-secondary active">Water Used in Bath &nbsp; = &nbsp;((Bathtub size &nbsp;*&nbsp;Water level in Bathtub)&nbsp; - &nbsp;Weight)&nbsp;* &nbsp;Bath frequency daily</p><br>
+            <strong>*Note - Weight will be subtracted from "Water Used in Bath" formula only if the Person enters the bathtub after it has been filled with water.</strong>
+            <br><br>
+            
+            <h3><strong><span style="color: blue;">Total water used in Shower:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{ShowerWU|floatformat:"-2"}}&nbsp;&nbsp;liters&nbsp;({{GShowerWU|floatformat:"-2"}}&nbsp;gallons(US))</span></strong>
+
+            <h3><strong><span style="color: blue;">Total water used in Bath:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{BathWU|floatformat:"-2"}}&nbsp;&nbsp;liters&nbsp;({{GBathWU|floatformat:"-2"}}&nbsp;gallons(US))</span></strong>
+                <h1></h1>
+                
+
+            
+            
+            <h1></h1>
+
+            
+                
+            
+            
+            
+            
+        </div>
+
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+<script>
+    
+    
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    console.log(scrollDiv)
+    
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    
+    
+    
+    
+        
+    
+</script>
+
+
+<script>
+    
+    
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        
+
+    
+    
+    
+        function myFunction() {
+
+                document.getElementsByName("SF")[0].value = "";
+                document.getElementsByName("TH")[0].value = "";
+                document.getElementsByName("TM")[0].value = "";
+                document.getElementsByName("SFR")[0].value = "";
+                document.getElementsByName("BF")[0].value = "";
+                document.getElementsByName("W")[0].value = "";
+                
+                document.getElementById("clear").innerHTML = "";
+            }
+    </script>
+    <br>
+    
+    
+    {% endblock %}
