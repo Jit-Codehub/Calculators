@@ -11180,10 +11180,10 @@ def sunscreencalculator(request):
 
 def bathvsshowercalculator(request):
   if request.method == "POST":
-    print(request.POST)
+    
 
     if request.POST.get('TH')!=None and request.POST.get('TH')!='' :  
-      #Storing value of Weight
+      #Storing value of avg shower duration in hours
       inp=str(request.POST.get('TH'))
       THinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11194,7 +11194,7 @@ def bathvsshowercalculator(request):
       TH=None
 
     if request.POST.get('TM')!=None and request.POST.get('TM')!='' :  
-      #Storing value of Weight
+      #Storing value of average shower duration in minutes
       inp=str(request.POST.get('TM'))
       TMinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11205,7 +11205,7 @@ def bathvsshowercalculator(request):
       TM=None
 
     if request.POST.get('SF')!=None and request.POST.get('SF')!='' :  
-      #Storing value of Weight
+      #Storing value of Shower frequency per day
       inp=str(request.POST.get('SF'))
       SFinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11216,7 +11216,7 @@ def bathvsshowercalculator(request):
       SF=None
 
     if request.POST.get('SFR')!=None and request.POST.get('SFR')!='' :  
-      #Storing value of Weight
+      #Storing value of shower flow rate per minute
       inp=str(request.POST.get('SFR'))
       SFRinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11227,7 +11227,7 @@ def bathvsshowercalculator(request):
       SFR=None
 
     if request.POST.get('BF')!=None and request.POST.get('BF')!='' :  
-      #Storing value of Weight
+      #Storing value of bath frequency
       inp=str(request.POST.get('BF'))
       BFinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11249,24 +11249,29 @@ def bathvsshowercalculator(request):
       W=None
 
     SFR_op = request.POST.get("SFR_op")
+    BTSinp = request.POST.get("BTS")
+    likeinp = request.POST.get("like")
     BTS = float(request.POST.get("BTS"))
     like = float(request.POST.get("like"))
     W_op = request.POST.get("W_op")
     Iget = request.POST.get("Iget")
     f1 = request.POST.get("f1")
+    
 
     if (TH == 0 and TM == 0):
       return render(request, "bathvsshowercalculator.html",{"message":"Both hours and minutes can't be 0."})
-
+    
     if W < 34 and W_op == "lb":
       return render(request, "bathvsshowercalculator.html", {"message":"Weight should be more than 34 lbs"})
     elif W_op == "lb":
       W = W * 0.453592
-
+    
+    
     if SFR_op == "gallon(us)":
-      return SFR * 3.78541
+      SFR = SFR * 3.78541
     elif SFR_op == "gallon(uk)" :
-      return SFR * 4.54609
+      SFR = SFR * 4.54609
+    
 
     if Iget == "after":
       W = 0
@@ -11275,7 +11280,7 @@ def bathvsshowercalculator(request):
     if f1:
       ShowerWU = (TH * 60 + TM) * SFR * SF
 
-      BathWU = ((BTS * like) - W) *  BF
+      BathWU = max(0,((BTS * like) - W) *  BF)
 
       context = {
         "f1":f1,
@@ -11284,8 +11289,8 @@ def bathvsshowercalculator(request):
         "SF":SFinp,
         "SFR":SFRinp,
         "SFR_op":SFR_op,
-        "BTS":BTS,
-        "like":like,
+        "BTS":BTSinp,
+        "like":likeinp,
         "Iget":Iget,
         "BF":BF,
         "W_op":W_op,
@@ -11296,6 +11301,7 @@ def bathvsshowercalculator(request):
         "GBathWU":BathWU * 0.264172,
 
       }
+      
       return render(request, "bathvsshowercalculator.html", context)
 
     return render(request, "bathvsshowercalculator.html")

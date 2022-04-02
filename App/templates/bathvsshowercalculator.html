@@ -292,17 +292,16 @@
                         <select class="select form-control" id="inlineFormInputGroup" name="Iget" id="Iget">
                                 
       
-                                  {% if Iget == 'before' %}
-                                  <option value="before" selected="selected">before the water reaches that level</option>
-                                  {% else %}
-                                  <option value="before">before the water reaches that level</option>
-                                  {% endif %}
-      
-      
                                   {% if Iget == 'after' %}
                                   <option value="after" selected="selected">when the water reaches that level</option>
                                   {% else %}
                                   <option value="after">when the water reaches that level</option>
+                                  {% endif %}
+
+                                  {% if Iget == 'before' %}
+                                  <option value="before" selected="selected">before the water reaches that level</option>
+                                  {% else %}
+                                  <option value="before">before the water reaches that level</option>
                                   {% endif %}
       
                         </select>
