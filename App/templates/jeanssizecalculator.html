@@ -255,8 +255,8 @@
             <h2 class="h2">Results</h2>
         </div>
         
-        
-        <div class="card-body"> <span>
+        {% if !er %}
+        <div class="card-body">
             <h3><strong><span style="color: blue;">Your Indian size is:&nbsp;&nbsp;</span>{{India}}</strong>
             </h3>
             <h3><strong><span style="color: blue;">UK size:&nbsp;&nbsp;</span>{{UK}}</strong>
@@ -265,11 +265,16 @@
             </h3>
             <h3><strong><span style="color: blue;">US size:&nbsp;&nbsp;</span>{{US}}</strong>
             </h3>
-            
-
-           
-
         </div>
+        {% endif %}
+
+        {% if er %}
+        <div class="card-body">
+            <h3><strong><span style="color: blue;"></span>{{er}}</strong>
+            </h3>
+        </div>
+        {% endif %}
+
 
         
     
@@ -283,12 +288,12 @@
 
 <script>
     
-    {% if id == 1 %}
+    
      
     var scrollDiv = document.getElementById("clear").offsetTop;
     window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
     
-    {%endif%}
+    
     
         
     {% if id == 2 %}
@@ -314,9 +319,9 @@
     <script>
         function myFunction() {
 
-                document.getElementsByName("D")[0].value = "";
-                document.getElementsByName("S")[0].value = "";
-                // document.getElementsByName("DT")[0].value = "";
+                document.getElementsByName("W")[0].value = "";
+                document.getElementsByName("L")[0].value = "";
+                
                 
                
                 document.getElementById("clear").innerHTML = "";
