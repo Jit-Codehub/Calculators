@@ -11307,3 +11307,232 @@ def bathvsshowercalculator(request):
     return render(request, "bathvsshowercalculator.html")
   else:
     return render(request, "bathvsshowercalculator.html")
+
+
+
+
+
+def jeanssizecalculator(request):
+  if request.method == "POST":
+    print(request.POST)
+
+    if request.POST.get('W')!=None and request.POST.get('W')!='' :  
+      #Storing value of Weight
+      inp=str(request.POST.get('W'))
+      Winp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        W=int(request.POST.get('W'))
+      else:
+        W=float(request.POST.get('W'))
+    else:
+      W=None
+
+    if request.POST.get('L')!=None and request.POST.get('L')!='' :  
+      #Storing value of Weight
+      inp=str(request.POST.get('L'))
+      Linp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        L=int(request.POST.get('L'))
+      else:
+        L=float(request.POST.get('L'))
+    else:
+      L=None
+
+    given_data = request.POST.get("given_data")
+    Sex = request.POST.get("Sex")
+    W_op = request.POST.get("W_op")
+    L_op = request.POST.get("L_op")
+    f1 = request.POST.get("f1")
+
+    if W_op == "cm":
+      W = W * 0.393701
+
+    if L_op == "cm":
+      L = L * 0.393701
+
+    print("W= ",W,"L= ",L)
+    if W <= 7.5:
+      return render(request, "jeanssizecalculator.html",{"message":"Waist or Width must be greater than 7.5 inches (20 cm)."})
+
+    if L <= 15:
+      return render(request, "jeanssizecalculator.html",{"message":"Length must be greater than 15 inches (40 cm)."})
+
+    if given_data == "form2":
+      W = W * 2
+
+    if given_data == "form1" and Sex == "Male" and f1:
+      if W <= 28 and L <=30:
+        India = "28"
+        US = "28/30, 30, or XS"
+        European = "40"
+        UK = "30"
+      elif W <= 29 and L <=30:
+        India = "30"
+        US = "29/30, 32, or XS"
+        European = "42"
+        UK = "32"
+      elif W <= 30 and L <=32:
+        India = "30"
+        US = "30/32, 34, or S"
+        European = "44"
+        UK = "34"
+      elif W <= 32 and L <=32:
+        India = "32"
+        US = "32/32, 36, or S"
+        European = "46"
+        UK = "36"
+      elif W <= 33 and L <=32:
+        India = "34"
+        US = "33/32, 38, or M"
+        European = "48"
+        UK = "38"
+      elif W <= 34 and L <=32:
+        India = "34"
+        US = "34/32, 40, or M"
+        European = "50"
+        UK = "40"
+      elif W <= 36 and L <=34:
+        India = "36"
+        US = "36/34, 42, or L"
+        European = "52"
+        UK = "42"
+      elif W <= 38 and L <=34:
+        India = "38"
+        US = "38/34, 44, or L"
+        European = "54"
+        UK = "44"
+      elif W <= 40 and L <=34:
+        India = "40"
+        US = "40/34, 46, or XL"
+        European = "56"
+        UK = "46"
+      elif W <= 42 and L <=34:
+        India = "42"
+        US = "42/34, 48, or XL"
+        European = "58"
+        UK = "48"
+      elif W <= 44 and L <=34:
+        India = "44"
+        US = "44/34, 50, or XXL"
+        European = "60"
+        UK = "50"
+
+      context = {
+        "given_data":given_data,
+        "f1":f1,
+        "W":Winp,
+        "L":Linp,
+        "Sex":Sex,
+        "W_op":W_op,
+        "L_op":L_op,
+        "India":India,
+        "US":US,
+        "European":European,
+        "UK":UK,
+      }
+      return render(request, "jeanssizecalculator.html", context)
+
+    # else:
+    #   return render(request, "jeanssizecalculator.html",{"er":"Ooops, we're sorry, but we couldn't find a specific size for you. It seems that you have a very unique body shape - you'll have to try them on yourself!"})
+
+    
+
+    if given_data == "form2" and Sex == "Female" and f1:
+      if W <= 25 and L <=32:
+        India = "26"
+        US = "25/32, 0, or XXS"
+        European = "32"
+        UK = "4"
+      elif W <= 26 and L <=32:
+        India = "36"
+        US = "26/32, 2, or XS"
+        European = "34"
+        UK = "6"
+      elif W <= 27 and L <=32:
+        India = "28"
+        US = "27/32, 4, or XS"
+        European = "36"
+        UK = "8"
+      elif W <= 28 and L <=32:
+        India = "28"
+        US = "28/32, 6, or S"
+        European = "38"
+        UK = "10"
+      elif W <= 29 and L <=32:
+        India = "30"
+        US = "29/32, 8, or S"
+        European = "40"
+        UK = "12"
+      elif W <= 30 and L <=32:
+        India = "30"
+        US = "30/32, 10, or M"
+        European = "42"
+        UK = "14"
+      elif W <= 31 and L <=32:
+        India = "32"
+        US = "31/32, 12, or M"
+        European = "44"
+        UK = "16"
+      elif W <= 32 and L <=32:
+        India = "32"
+        US = "32/32, 14, or L"
+        European = "46"
+        UK = "18"
+      elif W <= 33 and L <=32:
+        India = "34"
+        US = "33/32, 16, or L"
+        European = "48"
+        UK = "20"
+      elif W <= 34 and L <=32:
+        India = "34"
+        US = "34/32, 18, or XL"
+        European = "50"
+        UK = "22"
+      elif W <= 35 and L <=32:
+        India = "36"
+        US = "35/32, 20, or XL"
+        European = "52"
+        UK = "24"
+      elif W <= 36 and L <=32:
+        India = "36"
+        US = "36/32, 22, or XXL"
+        European = "54"
+        UK = "26"
+      elif W <= 37 and L <=32:
+        India = "38"
+        US = "37/32, 24, or XXL"
+        European = "56"
+        UK = "28"
+      elif W <= 38 and L <=32:
+        India = "38"
+        US = "38/32, 26, or XXXL"
+        European = "58"
+        UK = "30"
+      elif W <= 39 and L <=32:
+        India = "40"
+        US = "39/32, 28, or XXXL"
+        European = "60"
+        UK = "32"
+
+      context = {
+        "given_data":given_data,
+        "f1":f1,
+        "W":Winp,
+        "L":Linp,
+        "Sex":Sex,
+        "W_op":W_op,
+        "L_op":L_op,
+        "India":India,
+        "US":US,
+        "European":European,
+        "UK":UK,
+      }
+      return render(request, "jeanssizecalculator.html", context)
+      
+    if given_data == "form1" and given_data == "form2" and f1:
+      return render(request, "jeanssizecalculator.html",{"er":"Ooops, we're sorry, but we couldn't find a specific size for you. It seems that you have a very unique body shape - you'll have to try them on yourself!"})
+
+
+    return render(request, "jeanssizecalculator.html",{"given_data":given_data})
+  else:
+    return render(request, "jeanssizecalculator.html", {"given_data":"form1"})
