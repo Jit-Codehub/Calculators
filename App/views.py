@@ -11314,7 +11314,7 @@ def bathvsshowercalculator(request):
 
 def jeanssizecalculator(request):
   if request.method == "POST":
-    print(request.POST)
+    
 
     if request.POST.get('W')!=None and request.POST.get('W')!='' :  
       #Storing value of Weight
@@ -11328,7 +11328,7 @@ def jeanssizecalculator(request):
       W=None
 
     if request.POST.get('L')!=None and request.POST.get('L')!='' :  
-      #Storing value of Weight
+      #Storing value of Length
       inp=str(request.POST.get('L'))
       Linp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11338,25 +11338,38 @@ def jeanssizecalculator(request):
     else:
       L=None
 
+    #storing value of "I am measuring" input from frontend
     given_data = request.POST.get("given_data")
+
+    #storing value of Sex
     Sex = request.POST.get("Sex")
+
+    #storing value of width or waist unit
     W_op = request.POST.get("W_op")
+
+    #storing value of lenght unit
     L_op = request.POST.get("L_op")
+
+    #storing value of calculate button
     f1 = request.POST.get("f1")
 
+    #converting width or waist in inches if it's in cms
     if W_op == "cm" and W !=None:
       W = W * 0.393701
 
+    #converting width or waist in inches if it's in cms
     if L_op == "cm" and L !=None:
       L = L * 0.393701
-    print(W,L,"OPOPOPOP")
+    
 
-    print("W= ",W,"L= ",L)
+    
+    #applying validation on width or waist
     if W !=None and W <= 7.5:
-      return render(request, "jeanssizecalculator.html",{"message":"Waist or Width must be greater than 7.5 inches (20 cm).","given_data":given_data})
+      return render(request, "jeanssizecalculator.html",{"message":"Waist or Width must be greater than 7.5 inches (20 cm).","given_data":given_data,"Sex":Sex})
 
+    #applying validation on Length
     if L !=None and L <= 15:
-      return render(request, "jeanssizecalculator.html",{"message":"Length must be greater than 15 inches (40 cm).","given_data":given_data})
+      return render(request, "jeanssizecalculator.html",{"message":"Length must be greater than 15 inches (40 cm).","given_data":given_data,"Sex":Sex})
 
     if given_data == "form2" and W !=None:
       W = W * 2
@@ -11418,8 +11431,8 @@ def jeanssizecalculator(request):
           US = "44/34, 50, or XXL"
           European = "60"
           UK = "50"
-        print("jk===============gkflgk====")
-        print("India")
+        
+        
         context = {
           "given_data":given_data,
           "f1":f1,
@@ -11433,7 +11446,7 @@ def jeanssizecalculator(request):
           "European":European,
           "UK":UK,
         }
-        print("return111111===============")
+        
         return render(request, "jeanssizecalculator.html", context)
       except:
         context = {
@@ -11446,7 +11459,7 @@ def jeanssizecalculator(request):
         "L_op":L_op,
         "er":"Ooops, we're sorry, but we couldn't find a specific size for you. It seems that you have a very unique body shape - you'll have to try them on yourself!",
         }
-        print("return2222222===============")
+        
         return render(request, "jeanssizecalculator.html", context)
 
 
@@ -11545,7 +11558,7 @@ def jeanssizecalculator(request):
         "European":European,
         "UK":UK,
         }
-        print("return2222222===============")
+        
         return render(request, "jeanssizecalculator.html", context)
         
       except:
@@ -11559,15 +11572,15 @@ def jeanssizecalculator(request):
         "L_op":L_op,
         "er":"Ooops, we're sorry, but we couldn't find a specific size for you. It seems that you have a very unique body shape - you'll have to try them on yourself!",
         }
-        print("return2222222===============")
+        
         return render(request, "jeanssizecalculator.html", context)
 
       
     if (given_data == "form1" or given_data == "form2") and f1 and W !=None and L !=None:
-      print("return3333333========444=======")
-      return render(request, "jeanssizecalculator.html",{"er":"Ooops, we're sorry, but we couldn't find a specific size for you. It seems that you have a very unique body shape - you'll have to try them on yourself!","given_data":given_data})
+      
+      return render(request, "jeanssizecalculator.html",{"er":"Ooops, we're sorry, but we couldn't find a specific size for you. It seems that you have a very unique body shape - you'll have to try them on yourself!","given_data":given_data,"Sex":Sex})
 
-    print("return444444===============")
-    return render(request, "jeanssizecalculator.html",{"given_data":given_data})
+    
+    return render(request, "jeanssizecalculator.html",{"given_data":given_data,"Sex":Sex})
   else:
     return render(request, "jeanssizecalculator.html", {"given_data":"form1"})
