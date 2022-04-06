@@ -11584,3 +11584,115 @@ def jeanssizecalculator(request):
     return render(request, "jeanssizecalculator.html",{"given_data":given_data,"Sex":Sex})
   else:
     return render(request, "jeanssizecalculator.html", {"given_data":"form1"})
+
+
+
+
+def lostsockscalculator(request):
+  if request.method == "POST":
+    print(request.POST)
+
+    if request.POST.get('PH')!=None and request.POST.get('PH')!='' :  
+      #Storing value of People in Household
+      inp=str(request.POST.get('PH'))
+      PHinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        PH=int(request.POST.get('PH'))
+      else:
+        PH=float(request.POST.get('PH'))
+    else:
+      PH=None
+
+    if request.POST.get('PT')!=None and request.POST.get('PT')!='' :  
+      #Storing value of Precautions taken
+      inp=str(request.POST.get('PT'))
+      PTinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        PT=int(request.POST.get('PT'))
+      else:
+        PT=float(request.POST.get('PT'))
+    else:
+      PT=None
+
+    if request.POST.get('TW')!=None and request.POST.get('TW')!='' :  
+      #Storing value of Types of washes per week
+      inp=str(request.POST.get('TW'))
+      TWinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        TW=int(request.POST.get('TW'))
+      else:
+        TW=float(request.POST.get('TW'))
+    else:
+      TW=None
+
+    if request.POST.get('NW')!=None and request.POST.get('NW')!='' :  
+      #Storing value of Number of washes
+      inp=str(request.POST.get('NW'))
+      NWinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        NW=int(request.POST.get('NW'))
+      else:
+        NW=float(request.POST.get('NW'))
+    else:
+      NW=None
+
+    if request.POST.get('TS')!=None and request.POST.get('TS')!='' :  
+      #Storing value of Total socks washed
+      inp=str(request.POST.get('TS'))
+      TSinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        TS=int(request.POST.get('TS'))
+      else:
+        TS=float(request.POST.get('TS'))
+    else:
+      TS=None
+
+    def conversionToWeek(days, unit):
+      """converts the days into weeks"""
+      if unit == "day": return days * 7
+      elif unit == "month": return days * 0.2299795
+      elif unit == "year": return days * 0.01916496
+      else: return days
+
+    #storing value of Number of washes unit
+    NW_op = request.POST.get("NW_op")
+
+    #storing value of Attitude towards doing laundry
+    AT = request.POST.get("AT")
+
+    #storing value of Total Socks washed unit
+    TS_op = request.POST.get("TS_op")
+
+    #storing value of calculate button
+    f1 = request.POST.get("f1")
+
+    
+    NW = conversionToWeek(NW, NW_op)
+    TS = conversionToWeek(TS, TS_op)
+    print(type(PH))
+
+    
+    #Runs if calculate button is pressed
+    if f1:
+      lost = max(0, 0.38 + ((0.005 * PH*NW) + (0.0012 * TW * TS)) - (0.0159 * PT * int(AT)))
+
+      #dictionary to pass all the required values to the template
+      context = {
+        "PH":PHinp,
+        "PT":PTinp,
+        "TW":TWinp,
+        "NW":NWinp,
+        "NW_op":NW_op,
+        "AT":AT,
+        "TS":TSinp,
+        "TS_op":TS_op,
+        "f1":f1,
+        "lost":lost, #passing the value of Socks lost
+        "Chance":lost * 100, #passing the value of Chance of losing a sock per week
+      }
+      return render(request, "lostsockscalculator.html", context)
+
+
+    return render(request, "lostsockscalculator.html")
+  else:
+    return render(request, "lostsockscalculator.html")
