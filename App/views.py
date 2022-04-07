@@ -11590,7 +11590,7 @@ def jeanssizecalculator(request):
 
 def lostsockscalculator(request):
   if request.method == "POST":
-    print(request.POST)
+    
 
     if request.POST.get('PH')!=None and request.POST.get('PH')!='' :  
       #Storing value of People in Household
@@ -11669,7 +11669,7 @@ def lostsockscalculator(request):
     
     NW = conversionToWeek(NW, NW_op)
     TS = conversionToWeek(TS, TS_op)
-    print(type(PH))
+    
 
     
     #Runs if calculate button is pressed
