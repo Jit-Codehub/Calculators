@@ -11696,3 +11696,80 @@ def lostsockscalculator(request):
     return render(request, "lostsockscalculator.html")
   else:
     return render(request, "lostsockscalculator.html")
+
+
+
+
+
+
+def pleatedskirtcalculator(request):
+  if request.method == "POST":
+    print(request.POST)
+
+    if request.POST.get('WA')!=None and request.POST.get('WA')!='' :  
+      #Storing value of People in Household
+      inp=str(request.POST.get('WA'))
+      WAinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        WA=int(request.POST.get('WA'))
+      else:
+        WA=float(request.POST.get('WA'))
+    else:
+      WA=None
+
+    if request.POST.get('SA')!=None and request.POST.get('SA')!='' :  
+      #Storing value of People in Household
+      inp=str(request.POST.get('SA'))
+      SAinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        SA=int(request.POST.get('SA'))
+      else:
+        SA=float(request.POST.get('SA'))
+    else:
+      SA=None
+
+    if request.POST.get('L')!=None and request.POST.get('L')!='' :  
+      #Storing value of People in Household
+      inp=str(request.POST.get('L'))
+      Linp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        L=int(request.POST.get('L'))
+      else:
+        L=float(request.POST.get('L'))
+    else:
+      L=None
+
+    if request.POST.get('N')!=None and request.POST.get('N')!='' :  
+      #Storing value of People in Household
+      inp=str(request.POST.get('N'))
+      Ninp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        N=int(request.POST.get('N'))
+      else:
+        N=float(request.POST.get('N'))
+    else:
+      N=None
+
+    if request.POST.get('WT')!=None and request.POST.get('WT')!='' :  
+      #Storing value of People in Household
+      inp=str(request.POST.get('WT'))
+      WTinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        WT=int(request.POST.get('WT'))
+      else:
+        WT=float(request.POST.get('WT'))
+    else:
+      WT=None
+
+    WA_op = request.POST.get("WA_op")
+    SA_op = request.POST.get("SA_op")
+    PT = request.POST.get("PT")
+    L_op = request.POST.get("L_op")
+    WT_op = request.POST.get("WT_op")
+    f1 = request.POST.get("f1")
+
+
+
+    return render(request, "pleatedskirtcalculator.html")
+  else:
+    return render(request, "pleatedskirtcalculator.html")
