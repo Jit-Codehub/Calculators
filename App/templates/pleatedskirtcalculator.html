@@ -318,37 +318,65 @@
         </div>
         
         
-        <div class="card-body"> <span>
-            <strong>Formulas Used:</strong><br>
-            
-            <p class="btn btn-outline-secondary active">Sock loss index&nbsp; = &nbsp;[&nbsp;L(p&nbsp; *&nbsp; f)&nbsp;+&nbsp;C(t &nbsp;*&nbsp; s)]&nbsp;-&nbsp;(P &nbsp;*&nbsp; A)</p><br>
-            
-            <h3><strong><span style="color: blue;">Chance of losing a sock per week:&nbsp;</span>&nbsp;{{Chance|floatformat:"-2"}}%</strong></h3>
+        <div class="card-body">
+            <strong>Formulas Used For Knife Pleats:</strong> <br>
+            <p class="btn btn-outline-secondary active">Fabric width for one pleat&nbsp; = &nbsp;(waist measurement / number of pleats) * 2</p><br>
+            <p class="btn btn-outline-secondary active">Skirt fabric width&nbsp; = &nbsp;(fabric for one pleat * number of pleats) + seam allowance</p>
+            <br>
 
-            <h3><strong><span style="color: blue;">Socks lost:&nbsp;</span>&nbsp;<span id="span1">{{lost|floatformat:"-2"}}</span>&nbsp;/</strong>
+            <strong>Formulas Used For Box Pleats:</strong> <br>
+            <p class="btn btn-outline-secondary active">Fabric width for one pleat&nbsp; = &nbsp;(waist measurement / number of pleats) * 3</p><br>
+            <p class="btn btn-outline-secondary active">Skirt fabric width&nbsp; = &nbsp;(fabric for one pleat * number of pleats) + seam allowance</p>
+            <br>
+
+            <strong>For both types of pleats:</strong> <br>
+            <p class="btn btn-outline-secondary active">Skirt fabric for skirt length&nbsp; = &nbsp;desired skirt length + bottom hem + seam allowance</p><br>
+            <p class="btn btn-outline-secondary active">Waistband fabric length&nbsp; = &nbsp;(desired waistband length * 2) + (seam allowance * 2)</p><br>
+            <p class="btn btn-outline-secondary active">Waistband fabric width&nbsp; = &nbsp;waist measurement + overlap extra + (seam allowace * 2)</p>
+            <br>
+
+            <h3><strong><span style="color: blue;">Pleat width for skirt:&nbsp;</span>&nbsp;<span id="span1">{{pleatWidth|floatformat:"-2"}}</span>&nbsp;/</strong>
                 <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
-                    <option value="1" selected="">week</option>
-                    <option value="0.143">day</option>
-                    <option value="4.35">month</option>
-                    <option value="52.18">year</option>
-                    
+                    <option value="1" selected="">cms</option>
+                    <option value="0.393701">inches</option>
                     
                 </select>
             </h3>
-            <br>
-            <h5>Sock loss index = [L(p * f) + C(t * s)] - (P * A)</h5> <strong> </strong>
-            <p>where:</p>
-            <ul>
-                <li><strong>L</strong> stands for <strong>laundry size</strong>, calculated as the number of people in the household, <strong>p</strong>, multiplied by the frequency of washes over a week, <strong>f</strong>.</li>
-                <li><strong>C</strong> represents <strong>washing complexity</strong>, and is found by multiplying how many types of wash, <strong>t</strong>, your household does in a week, by the number of socks, <strong>s</strong>, washed in a week.</li>
-                <li><strong>P</strong> is your <strong>positivity towards doing laundry</strong>, measured on a scale from 1 to 5.</li>
-                <li><strong>A</strong> stands for <strong>degree of attention</strong> - that is, the number of precautions taken before doing the laundry. Precautions might include checking pockets, unrolling sleeves, turning clothes the right way, and unrolling socks.</li>
-            </ul>
 
-            
+            <h3><strong><span style="color: blue;">Needed fabric length for skirt:&nbsp;</span>&nbsp;<span id="span2">{{neededFabricLength|floatformat:"-2"}}</span>&nbsp;/</strong>
+                <select style="margin-left:5px" id="myunt2" onchange="modifyres2()">
+                    <option value="1" selected="">cms</option>
+                    <option value="0.393701">inches</option>
+                    <option value="0.01">meters</option>
+                </select>
+            </h3>
+
+            <h3><strong><span style="color: blue;">Needed fabric width for skirt:&nbsp;</span>&nbsp;<span id="span3">{{neededFabricWidth|floatformat:"-2"}}</span>&nbsp;/</strong>
+                <select style="margin-left:5px" id="myunt3" onchange="modifyres3()">
+                    <option value="1" selected="">cms</option>
+                    <option value="0.393701">inches</option>
+                    <option value="0.01">meters</option>
+                </select>
+            </h3>
+
+            <h3><strong><span style="color: blue;">Needed fabric length for the waistband:&nbsp;</span>&nbsp;<span id="span4">{{neededfabricLen|floatformat:"-2"}}</span>&nbsp;/</strong>
+                <select style="margin-left:5px" id="myunt4" onchange="modifyres4()">
+                    <option value="1" selected="">cms</option>
+                    <option value="0.393701">inches</option>
+                    
+                </select>
+            </h3>
+
+            <h3><strong><span style="color: blue;">Needed fabric width for the waistband:&nbsp;</span>&nbsp;<span id="span5">{{neededFabricWid|floatformat:"-2"}}</span>&nbsp;/</strong>
+                <select style="margin-left:5px" id="myunt5" onchange="modifyres5()">
+                    <option value="1" selected="">cms</option>
+                    <option value="0.393701">inches</option>
+                    <option value="0.01">meters</option>
+                </select>
+            </h3>
+            <p>If you love making your own unique clothes and you're wondering how to make a pleated skirt, this pleated skirt calculator is just for you! This tool doubles as a fabric calculator, and is therefore perfect if you want to figure out the exact amount of fabric you will need for your DIY pleated skirt. Use it to make sure you purchase the correct amount of material for your project, so that you may enjoy your hobby without having to worry about any tedious calculations.</p>
+
         </div>
-        
-
     </div>
     {% endif %}
 </div>
@@ -389,6 +417,34 @@
             
             var sus  = document.getElementById("myunt1")
             document.getElementById("span1").innerHTML = +(Number(result) * sus.value).toFixed(2)
+        }
+
+        const result1 = document.getElementById("span2").innerHTML
+        function modifyres2(){
+            
+            var sus  = document.getElementById("myunt2")
+            document.getElementById("span2").innerHTML = +(Number(result1) * sus.value).toFixed(2)
+        }
+
+        const result2 = document.getElementById("span3").innerHTML
+        function modifyres3(){
+            
+            var sus  = document.getElementById("myunt3")
+            document.getElementById("span3").innerHTML = +(Number(result2) * sus.value).toFixed(2)
+        }
+
+        const result3 = document.getElementById("span4").innerHTML
+        function modifyres4(){
+            
+            var sus  = document.getElementById("myunt4")
+            document.getElementById("span4").innerHTML = +(Number(result3) * sus.value).toFixed(2)
+        }
+
+        const result4 = document.getElementById("span5").innerHTML
+        function modifyres5(){
+            
+            var sus  = document.getElementById("myunt5")
+            document.getElementById("span5").innerHTML = +(Number(result4) * sus.value).toFixed(2)
         }
 
 

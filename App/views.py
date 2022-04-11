@@ -11704,10 +11704,10 @@ def lostsockscalculator(request):
 
 def pleatedskirtcalculator(request):
   if request.method == "POST":
-    print(request.POST)
+
 
     if request.POST.get('WA')!=None and request.POST.get('WA')!='' :  
-      #Storing value of People in Household
+      #Storing value of Waist
       inp=str(request.POST.get('WA'))
       WAinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11718,7 +11718,7 @@ def pleatedskirtcalculator(request):
       WA=None
 
     if request.POST.get('SA')!=None and request.POST.get('SA')!='' :  
-      #Storing value of People in Household
+      #Storing value of Seam allowance
       inp=str(request.POST.get('SA'))
       SAinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11729,7 +11729,7 @@ def pleatedskirtcalculator(request):
       SA=None
 
     if request.POST.get('L')!=None and request.POST.get('L')!='' :  
-      #Storing value of People in Household
+      #Storing value of Desired skirt length
       inp=str(request.POST.get('L'))
       Linp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11740,7 +11740,7 @@ def pleatedskirtcalculator(request):
       L=None
 
     if request.POST.get('N')!=None and request.POST.get('N')!='' :  
-      #Storing value of People in Household
+      #Storing value of Number of pleats
       inp=str(request.POST.get('N'))
       Ninp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11751,7 +11751,7 @@ def pleatedskirtcalculator(request):
       N=None
 
     if request.POST.get('WT')!=None and request.POST.get('WT')!='' :  
-      #Storing value of People in Household
+      #Storing value of Waistband thickness
       inp=str(request.POST.get('WT'))
       WTinp=inp #storing input as string so that the initial zeros in input can be preserved
       if inp.isdigit():
@@ -11761,6 +11761,12 @@ def pleatedskirtcalculator(request):
     else:
       WT=None
 
+    def conversionToCm(value, unit):
+      if unit == "mtr": return value * 100
+      elif unit == "inch": return value * 2.54
+      else: return value
+
+
     WA_op = request.POST.get("WA_op")
     SA_op = request.POST.get("SA_op")
     PT = request.POST.get("PT")
@@ -11768,8 +11774,47 @@ def pleatedskirtcalculator(request):
     WT_op = request.POST.get("WT_op")
     f1 = request.POST.get("f1")
 
+    WA = conversionToCm(WA, WA_op)
+    SA = conversionToCm(SA, SA_op)
+    L = conversionToCm(L, L_op)
+    WT = conversionToCm(WT, WT_op)
 
+    if PT == "Knife" and WA !=None and SA !=None and N !=None and f1:
+      neededFabricWidth = (WA * 2) + SA
+      pleatWidth = (WA / N) * 2
+      
 
-    return render(request, "pleatedskirtcalculator.html")
+    if PT == "Box" and WA !=None and SA !=None and N !=None and f1:
+      neededFabricWidth = (WA * 3) + SA
+      pleatWidth = (WA / N) * 3
+      
+    neededFabricLength = SA * 2 + L
+    neededFabricWid = WA + (SA * 3)
+    neededfabricLen = WT * 2 + SA * 2
+    
+    
+    try:
+      context = {
+        "WA":WAinp,
+        "WA_op":WA_op,
+        "SA":SAinp,
+        "SA_op":SA_op,
+        "PT":PT,
+        "L":Linp,
+        "L_op":L_op,
+        "N":Ninp,
+        "WT":WTinp,
+        "WT_op":WT_op,
+        "f1":f1,
+        "neededFabricWidth":neededFabricWidth,
+        "pleatWidth":pleatWidth,
+        "neededFabricLength":neededFabricLength,
+        "neededFabricWid":neededFabricWid,
+        "neededfabricLen":neededfabricLen,
+      }
+      return render(request, "pleatedskirtcalculator.html", context)
+    except:
+      return render(request, "pleatedskirtcalculator.html",{"message":"Something is missing."})
+
   else:
     return render(request, "pleatedskirtcalculator.html")
