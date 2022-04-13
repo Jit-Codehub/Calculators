@@ -11924,3 +11924,14 @@ def quiltbindingcalculator(request):
     return render(request, "quiltbindingcalculator.html")
   else:
     return render(request, "quiltbindingcalculator.html")
+
+
+
+
+
+def quiltcalculator(request):
+  if request.method == "POST":
+    print(request.POST)
+    return render(request, "quiltcalculator.html")
+  else:
+    return render(request, "quiltcalculator.html")
