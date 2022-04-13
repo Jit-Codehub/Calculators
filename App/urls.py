@@ -43,4 +43,5 @@ path('bath-vs-shower-calculator/', views.bathvsshowercalculator),
 path('jeans-size-calculator/', views.jeanssizecalculator),
 path("lost-socks-calculator", views.lostsockscalculator),
 path("pleated-skirt-calculator", views.pleatedskirtcalculator),
+path("quilt-binding-calculator", views.quiltbindingcalculator),
 ]

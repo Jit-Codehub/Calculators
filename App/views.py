@@ -11818,3 +11818,109 @@ def pleatedskirtcalculator(request):
 
   else:
     return render(request, "pleatedskirtcalculator.html")
+
+
+
+
+
+
+def quiltbindingcalculator(request):
+  if request.method == "POST":
+    
+
+    if request.POST.get('W')!=None and request.POST.get('W')!='' :  
+      #Storing value of Quild Width
+      inp=str(request.POST.get('W'))
+      Winp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        W=int(request.POST.get('W'))
+      else:
+        W=float(request.POST.get('W'))
+    else:
+      W=None
+
+    if request.POST.get('L')!=None and request.POST.get('L')!='' :  
+      #Storing value of Quilt Length
+      inp=str(request.POST.get('L'))
+      Linp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        L=int(request.POST.get('L'))
+      else:
+        L=float(request.POST.get('L'))
+    else:
+      L=None
+
+    if request.POST.get('BW')!=None and request.POST.get('BW')!='' :  
+      #Storing value of Binding Widtho of Straps
+      inp=str(request.POST.get('BW'))
+      BWinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        BW=int(request.POST.get('BW'))
+      else:
+        BW=float(request.POST.get('BW'))
+    else:
+      BW=None
+
+    if request.POST.get('F')!=None and request.POST.get('F')!='' :  
+      #Storing value of Binding Width of Fabric
+      inp=str(request.POST.get('F'))
+      Finp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        F=int(request.POST.get('F'))
+      else:
+        F=float(request.POST.get('F'))
+    else:
+      F=None
+
+    
+
+    W_op = request.POST.get("W_op")
+    L_op = request.POST.get("L_op")
+    BW_op = request.POST.get("BW_op")
+    F_op = request.POST.get("F_op")
+    f1 = request.POST.get("f1")
+
+    def conversionToCm(value, unit):
+      if unit == "mtr": return value * 100
+      elif unit == "inch": return value * 2.54
+      else: return value
+
+    W = conversionToCm(W, W_op)
+    L = conversionToCm(L, L_op)
+    BW = conversionToCm(BW, BW_op)
+    F = conversionToCm(F, F_op)
+
+    if W != None and L != None and BW != None and F != None and f1:
+      lenOfBinding = (2 * W) + (2 * L) + 25.4
+      strips = lenOfBinding / F
+      pieceofFabric = strips * BW 
+      bi = lenOfBinding * BW
+      biArea = bi / F
+
+      context = {
+        "W": Winp,
+        "L": Linp,
+        "BW": BWinp,
+        "F": Finp,
+        "W_op":W_op,
+        "L_op":L_op,
+        "BW_op":BW_op,
+        "F_op":F_op,
+        "J": F,
+        "f1":f1,
+        "lenOfBinding": lenOfBinding,
+        "strips": strips,
+        "pieceofFabric": pieceofFabric,
+        "pieceofFabricInInches": pieceofFabric * 0.393701,
+        "bi": bi,
+        "biInches": bi * 0.155,
+        "biArea": biArea,
+        "FInch": F * 0.393701,
+        "biAreaInch": biArea * 0.393701,
+      }
+      return render(request, "quiltbindingcalculator.html", context)
+
+    
+    return render(request, "quiltbindingcalculator.html")
+  else:
+    return render(request, "quiltbindingcalculator.html")
