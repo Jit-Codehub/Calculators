@@ -1,4 +1,5 @@
 import math
+from xdrlib import ConversionError
 # from termios import B0
 from django.shortcuts import render
 import numpy as np
@@ -11931,7 +11932,164 @@ def quiltbindingcalculator(request):
 
 def quiltcalculator(request):
   if request.method == "POST":
-    print(request.POST)
-    return render(request, "quiltcalculator.html")
+    
+
+    if request.POST.get('W')!=None and request.POST.get('W')!='' :  
+      #Storing value of Width
+      inp=str(request.POST.get('W'))
+      Winp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        W=int(request.POST.get('W'))
+      else:
+        W=float(request.POST.get('W'))
+    else:
+      W=None
+
+    if request.POST.get('L')!=None and request.POST.get('L')!='' :  
+      #Storing value of Length
+      inp=str(request.POST.get('L'))
+      Linp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        L=int(request.POST.get('L'))
+      else:
+        L=float(request.POST.get('L'))
+    else:
+      L=None
+
+    if request.POST.get('BW')!=None and request.POST.get('BW')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('BW'))
+      BWinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        BW=int(request.POST.get('BW'))
+      else:
+        BW=float(request.POST.get('BW'))
+    else:
+      BW=None
+
+    if request.POST.get('A')!=None and request.POST.get('A')!='' :  
+      #Storing value of Additional Coverage
+      inp=str(request.POST.get('A'))
+      Ainp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        A=int(request.POST.get('A'))
+      else:
+        A=float(request.POST.get('A'))
+    else:
+      A=None
+
+    W_op = request.POST.get("W_op")
+    L_op = request.POST.get("L_op")
+    BW_op = request.POST.get("BW_op")
+    A_op = request.POST.get("A_op")
+    f1 = request.POST.get("f1")
+
+    def conversionToInches(value, unit):
+      if unit == "mtr": return value * 39.3701
+      elif unit == "cm": return value * 0.393701
+      else: return value
+
+    W = conversionToInches(W, W_op)
+    L = conversionToInches(L, L_op)
+    BW = conversionToInches(BW, BW_op)
+    A = conversionToInches(A, A_op)
+
+    if W > L:
+      context = {
+      "L":Linp,
+      "W":Winp,
+      "BW":BWinp,
+      "A":Ainp,
+      "W_op":W_op,
+      "L_op":L_op,
+      "BW_op":BW_op,
+      "A_op":A_op,
+      
+      "message":"Width should be the shorter edge of the quilt top, and length - the longer."
+      }
+      return render(request, "quiltcalculator.html",context)
+
+    if BW <= 8:
+      context = {
+      "L":Linp,
+      "W":Winp,
+      "BW":BWinp,
+      "A":Ainp,
+      "W_op":W_op,
+      "L_op":L_op,
+      "BW_op":BW_op,
+      "A_op":A_op,
+      
+      "message":"Sorry! The width of the bolt of fabric must be longer than 8 inches (20.4 cm)."
+      }
+      return render(request, "quiltcalculator.html",context)
+
+    if L != None and W != None and BW != None and A != None and f1:
+      L = (L + 8) + (2 * A)
+      W = (W + 8) + (2 * A)
+      
+
+    if W > BW * 5 and f1:
+      
+      
+      context = {
+      "L":Linp,
+      "W":Winp,
+      "BW":BWinp,
+      "A":Ainp,
+      "W_op":W_op,
+      "L_op":L_op,
+      "BW_op":BW_op,
+      "A_op":A_op,
+      
+      "message":"You will need more than 5 pieces of fabric. We recommend that you buy a bigger bolt of fabric."
+      }
+      return render(request, "quiltcalculator.html",context)
+
+    #for backing and directional
+    if W > BW:
+      for i in range(1,6):
+        if BW * i >= W:
+          pieces = i
+          
+          break
+    elif W <= BW: 
+      pieces = 1
+      
+
+    neededFabric = L * pieces * 0.0254
+    neededWidth = W / pieces
+    
+
+    try:
+      context = {
+        "L":Linp,
+        "W":Winp,
+        "BW":BWinp,
+        "A":Ainp,
+        "W_op":W_op,
+        "L_op":L_op,
+        "BW_op":BW_op,
+        "A_op":A_op,
+        "f1":f1,
+        "pieces":pieces,
+        "neededFabric":neededFabric,
+        "resultL":L,
+        "CMresultL":L * 2.54,
+        "yard":neededFabric * 1.094,
+        "neededWidth":neededWidth,
+        "CMneededWidth":neededWidth * 2.54,
+        "NonneededFabric":W * pieces * 0.0254,
+        "Nonyard":W * pieces * 0.0254 * 1.094,
+        "Nonwidth":L / pieces,
+        "CMNonwidth":(L / pieces) * 2.54,
+        "NoW":W,
+        "CMW": W * 2.54,
+      }
+      
+      return render(request, "quiltcalculator.html",context)
+    except:
+      return render(request, "quiltcalculator.html")
+    
   else:
-    return render(request, "quiltcalculator.html")
+    return render(request, "quiltcalculator.html") 
