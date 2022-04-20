@@ -262,7 +262,7 @@
 
 
 
-    {% if f1 %}
+{% if f1 %}
 <div id="clear">   
     
     <div class="card" id="Results">
@@ -273,15 +273,15 @@
         
         <div class="card-body">
             
-
+            <!-- For Formulas -->
             <strong>Formulas Used For Box Pleats:</strong> <br>
             <p class="btn btn-outline-secondary active">Fabric width for one pleat&nbsp; = &nbsp;(waist measurement / number of pleats) * 3</p><br>
-            <p class="btn btn-outline-secondary active">Skirt fabric width&nbsp; = &nbsp;(fabric for one pleat * number of pleats) + seam allowance</p>
-            <br>
-
+            
             
 
-            <h3><strong><span style="color: blue;">Pleat width for skirt:&nbsp;</span>&nbsp;<&nbsp;>{{pleatWidth|floatformat:"-2"}}&nbsp;</strong>
+            
+            <!-- For results -->
+            <h3><strong><span style="color: blue;">Pleat width for skirt:&nbsp;</span>&nbsp;{{pleatWidth|floatformat:"-2"}}&nbsp;</strong>
                 
             </h3>
 
@@ -297,7 +297,7 @@
         </div>
     </div>
 </div> 
-    {% endif %}
+{% endif %}
 
 
 
