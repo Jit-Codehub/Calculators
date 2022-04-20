@@ -1,0 +1,360 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Cash Back or Low Interest Calculator</title>
+<meta name="description"
+    content="Cash Back or Low Interest Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Lost Socks Calculator | Free Calculator to find Sunscreen" />
+<meta property="og:description" content="Lost Socks Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Sunscreen Calculator | Free Calculator to find Sunscreen" />
+<meta name="twitter:description"
+    content="Sunscreen Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle>Cash Back or Low Interest Calculator</tittle>
+<meta property='og:title' content="Cash Back or Low Interest Calculator | Sunscreen" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Cash Back or Low Interest Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Cash Back or Low Interest Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="button" class="btn btn-dark">Cash Back Offer</button>
+                            
+                        </center>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Cash Back Amount</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Cash Back Amount"  class="form-control" name="CA" id="CA" {% if CA or CA == 0 %} value="{{CA}}" {% else %} value="1000" {% endif %}>
+                    </div>
+
+                
+                    
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Interest Rate (High) %</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Interest Rate"  class="form-control" name="IRH" id="IRH" {% if IRH or IRH == 0 %} value="{{IRH}}" {% else %} value="4.5" {% endif %}>
+                    </div>
+                    
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="button" class="btn btn-dark">Low Interest Rate Offer</button>
+                            
+                        </center>
+                    </div>
+
+
+
+
+
+
+                    
+
+                    
+
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Interest Rate (Low) %</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Interest Rate"  class="form-control" name="IRL" id="IRL" {% if IRL or IRL == 0 %} value="{{IRL}}" {% else %} value="3.5" {% endif %}>
+
+
+                        
+                    </div>
+
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="button" class="btn btn-dark">Other Information</button>
+                            
+                        </center>
+                    </div>
+                    
+
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Auto Price</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Auto Price"  class="form-control" name="AP" id="AP" {% if AP or AP == 0 %} value="{{AP}}" {% else %} value="25000" {% endif %}>
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Loan Term(months)</strong></div>
+                        </div>
+                        <input type="number" step="1" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Loan Term"  class="form-control" name="LT" id="LT" {% if LT or LT == 0 %} value="{{LT}}" {% else %} value="60" {% endif %}>
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Down Payment</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Down Payment"  class="form-control" name="DP" id="DP" {% if DP or DP == 0 %} value="{{DP}}" {% else %} value="5000" {% endif %}>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Trade-in Value</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="0" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Trade-in Value"  class="form-control" name="TV" id="TV" {% if TV or TV == 0 %} value="{{TV}}" {% else %} value="0" {% endif %}>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Sales Tax %</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Sales Tax"  class="form-control" name="ST" id="ST" {% if ST or ST == 0 %} value="{{ST}}" {% else %} value="7" {% endif %}>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Title, Registration and Other Fees</strong></div>
+                        </div>
+                        <input type="number" step="0.01" min="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter Other Fees"  class="form-control" name="OF" id="OF" {% if OF or OF == 0 %} value="{{OF}}" {% else %} value="300" {% endif %}>
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Include All Fees in Loan</strong></div>
+                        </div>
+                        
+                        <select class="select form-control" id="inlineFormInputGroup" name="IAF" id="IAF">
+                                
+                                  {% if IAF == "NO" %}
+                                  <option value="NO" selected="selected">NO</option>
+                                  {% else %}
+                                  <option value="NO">NO</option>
+                                  {% endif %}
+
+                                  {% if IAF == "Yes" %}
+                                  <option value="Yes" selected="selected">Yes</option>
+                                  {% else %}
+                                  <option value="Yes">Yes</option>
+                                  {% endif %}
+
+                        </select>
+                    </div>
+
+
+
+                    
+
+
+                    
+
+
+
+                    
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="data">Calculate</button>
+                            <button type="button" onclick="myFunction();" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+    {% if f1 %}
+<div id="clear">   
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <h2 class="h2">Results</h2>
+        </div>
+        
+        
+        <div class="card-body">
+            
+
+            <strong>Formulas Used For Box Pleats:</strong> <br>
+            <p class="btn btn-outline-secondary active">Fabric width for one pleat&nbsp; = &nbsp;(waist measurement / number of pleats) * 3</p><br>
+            <p class="btn btn-outline-secondary active">Skirt fabric width&nbsp; = &nbsp;(fabric for one pleat * number of pleats) + seam allowance</p>
+            <br>
+
+            
+
+            <h3><strong><span style="color: blue;">Pleat width for skirt:&nbsp;</span>&nbsp;<&nbsp;>{{pleatWidth|floatformat:"-2"}}&nbsp;</strong>
+                
+            </h3>
+
+           
+
+            
+
+            
+
+            
+            
+
+        </div>
+    </div>
+</div> 
+    {% endif %}
+
+
+
+
+
+<script>
+    
+    
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    console.log(scrollDiv)
+    
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+</script>
+
+
+<script>
+    
+    
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        
+
+
+    
+    
+    
+        function myFunction() {
+
+                document.getElementsByName("CA")[0].value = "";
+                document.getElementsByName("IRH")[0].value = "";
+                document.getElementsByName("IRL")[0].value = "";
+                document.getElementsByName("AP")[0].value = "";
+                document.getElementsByName("LT")[0].value = "";
+                document.getElementsByName("DP")[0].value = "";
+                document.getElementsByName("TV")[0].value = "";
+                document.getElementsByName("ST")[0].value = "";
+                document.getElementsByName("OF")[0].value = "";
+                
+                
+                
+                document.getElementById("clear").innerHTML = "";
+            }
+    </script>
+    <br>
+    
+    
+    {% endblock %} 

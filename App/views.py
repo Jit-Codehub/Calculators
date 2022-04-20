@@ -12092,4 +12092,199 @@ def quiltcalculator(request):
       return render(request, "quiltcalculator.html")
     
   else:
-    return render(request, "quiltcalculator.html") 
+    return render(request, "quiltcalculator.html")
+
+
+
+
+
+def cashbackorlowinterestcalculator(request):
+  if request.method == "POST":
+    print(request.POST)
+
+    if request.POST.get('CA')!=None and request.POST.get('CA')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('CA'))
+      CAinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        CA=int(request.POST.get('CA'))
+      else:
+        CA=float(request.POST.get('CA'))
+    else:
+      CA=None
+
+    if request.POST.get('IRH')!=None and request.POST.get('IRH')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('IRH'))
+      IRHinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        IRH=int(request.POST.get('IRH'))
+      else:
+        IRH=float(request.POST.get('IRH'))
+    else:
+      IRH=None
+
+    if request.POST.get('IRL')!=None and request.POST.get('IRL')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('IRL'))
+      IRLinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        IRL=int(request.POST.get('IRL'))
+      else:
+        IRL=float(request.POST.get('IRL'))
+    else:
+      IRL=None
+
+    if request.POST.get('AP')!=None and request.POST.get('AP')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('AP'))
+      APinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        AP=int(request.POST.get('AP'))
+      else:
+        AP=float(request.POST.get('AP'))
+    else:
+      AP=None
+
+    if request.POST.get('LT')!=None and request.POST.get('LT')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('LT'))
+      LTinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        LT=int(request.POST.get('LT'))
+      else:
+        LT=float(request.POST.get('LT'))
+    else:
+      LT=None
+
+    if request.POST.get('DP')!=None and request.POST.get('DP')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('DP'))
+      DPinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        DP=int(request.POST.get('DP'))
+      else:
+        DP=float(request.POST.get('DP'))
+    else:
+      DP=None
+
+    if request.POST.get('TV')!=None and request.POST.get('TV')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('TV'))
+      TVinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        TV=int(request.POST.get('TV'))
+      else:
+        TV=float(request.POST.get('TV'))
+    else:
+      TV=None
+
+    if request.POST.get('ST')!=None and request.POST.get('ST')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('ST'))
+      STinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        ST=int(request.POST.get('ST'))
+      else:
+        ST=float(request.POST.get('ST'))
+    else:
+      ST=None
+
+    if request.POST.get('OF')!=None and request.POST.get('OF')!='' :  
+      #Storing value of Bolt Width
+      inp=str(request.POST.get('OF'))
+      OFinp=inp #storing input as string so that the initial zeros in input can be preserved
+      if inp.isdigit():
+        OF=int(request.POST.get('OF'))
+      else:
+        OF=float(request.POST.get('OF'))
+    else:
+      OF=None
+
+    IAF = request.POST.get("IAF")
+    f1 = request.POST.get("f1")
+
+    if IRH <= IRL and f1:
+      context = {
+        "CA":CAinp,
+        "IRH":IRHinp,
+        "IRL":IRLinp,
+        "AP":APinp,
+        "LT":LTinp,
+        "DP":DPinp,
+        "TV":TVinp,
+        "ST":STinp,
+        "OF":OFinp,
+        "IAF":IAF,
+        # "f1":f1,
+        "message":"Since the interest rate with cash back offer is not lower. So it is always good to take the cash back offer."
+      }
+      return render(request, "cashbackorlowinterestcalculator.html", context)
+
+    SaleTax = ((AP - TV) * ST)/100
+    print(SaleTax)
+
+    if IAF == "Yes" and f1:
+      TotalLoanAmount = AP - DP - TV + SaleTax + OF
+      CBTotalLoanAmount = AP - DP - TV + SaleTax + OF - CA
+      UpfrontPayment = DP
+      MonthlyPay = TotalLoanAmount * (IRL/1200) * (((IRL/1200)+1)**LT)/((((IRL/1200)+1)**LT)-1)
+      CBMonthlyPay = CBTotalLoanAmount * (IRH/1200) *(((IRH/1200)+1)**LT)/((((IRH/1200)+1)**LT)-1)
+      TotalPayments = MonthlyPay * LT
+      CBTotalPayments = CBMonthlyPay * LT
+      TotalInterest = TotalPayments - TotalLoanAmount
+      CBTotalInterest = CBTotalPayments - CBTotalLoanAmount
+      TotalCost = TotalPayments + UpfrontPayment + TV
+      CBTotalCost = CBTotalPayments + UpfrontPayment + TV
+      print("TotalLoanAmount= ",TotalLoanAmount,"CBTotalLoanAmount= ", CBTotalLoanAmount,"UpfrontPayment= ", UpfrontPayment,"MonthlyPay= ",MonthlyPay,"CBMonthlyPay= ",CBMonthlyPay,"TotalPayments= ",TotalPayments,"CBTotalPayments= ",CBTotalPayments,"TotalInterest= ",TotalInterest,"CBTotalInterest= ",CBTotalInterest,"TotalCost= ",TotalCost,"CBTotalCost= ",CBTotalCost, sep="\n")
+    elif IAF == "NO" and f1:
+      TotalLoanAmount = AP - DP - TV 
+      CBTotalLoanAmount = AP - DP - TV - CA
+      UpfrontPayment = DP + SaleTax + OF
+      MonthlyPay = TotalLoanAmount * (IRL/1200) * (((IRL/1200)+1)**LT)/((((IRL/1200)+1)**LT)-1)
+      CBMonthlyPay = CBTotalLoanAmount * (IRH/1200) *(((IRH/1200)+1)**LT)/((((IRH/1200)+1)**LT)-1) 
+      TotalPayments = MonthlyPay * LT
+      CBTotalPayments = CBMonthlyPay * LT  
+      TotalInterest = TotalPayments - TotalLoanAmount
+      CBTotalInterest = CBTotalPayments - CBTotalLoanAmount 
+      TotalCost = TotalPayments + UpfrontPayment + TV
+      CBTotalCost = CBTotalPayments + UpfrontPayment + TV
+      print("TotalLoanAmount= ",TotalLoanAmount,"CBTotalLoanAmount= ", CBTotalLoanAmount,"UpfrontPayment= ", UpfrontPayment,"MonthlyPay= ",MonthlyPay,"CBMonthlyPay= ",CBMonthlyPay,"TotalPayments= ",TotalPayments,"CBTotalPayments= ",CBTotalPayments,"TotalInterest= ",TotalInterest,"CBTotalInterest= ",CBTotalInterest,"TotalCost= ",TotalCost,"CBTotalCost= ",CBTotalCost,sep="\n")
+
+    context = {
+        "CA":CAinp,
+        "IRH":IRHinp,
+        "IRL":IRLinp,
+        "AP":APinp,
+        "LT":LTinp,
+        "DP":DPinp,
+        "TV":TVinp,
+        "ST":STinp,
+        "OF":OFinp,
+        "IAF":IAF,
+        "SaleTax":SaleTax,
+        "TotalLoanAmount":TotalLoanAmount,
+        "CBTotalLoanAmount":CBTotalLoanAmount,
+        "UpfrontPayment":UpfrontPayment,
+        "MonthlyPay":MonthlyPay,
+        "CBMonthlyPay":CBMonthlyPay,
+        "TotalPayments":TotalPayments,
+        "CBTotalPayments":CBTotalPayments,
+        "TotalInterest":TotalInterest,
+        "CBTotalInterest":CBTotalInterest,
+        "TotalCost":TotalCost,
+        "CBTotalCost":CBTotalCost,
+      }
+    return render(request, "cashbackorlowinterestcalculator.html", context)
+
+
+
+    
+    return render(request, "cashbackorlowinterestcalculator.html")
+  else:
+    return render(request, "cashbackorlowinterestcalculator.html")
+
+
+
+
+

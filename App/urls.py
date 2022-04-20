@@ -45,4 +45,5 @@ path("lost-socks-calculator", views.lostsockscalculator),
 path("pleated-skirt-calculator", views.pleatedskirtcalculator),
 path("quilt-binding-calculator", views.quiltbindingcalculator),
 path("quilt-calculator", views.quiltcalculator),
+path("cash-back-or-low-interest-calculator", views.cashbackorlowinterestcalculator),
 ]
