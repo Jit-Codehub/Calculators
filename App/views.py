@@ -12100,7 +12100,7 @@ def quiltcalculator(request):
 
 def cashbackorlowinterestcalculator(request):
   if request.method == "POST":
-    print(request.POST)
+    
 
     if request.POST.get('CA')!=None and request.POST.get('CA')!='' :  
       #Storing value of Cash Back Amount
@@ -12222,7 +12222,7 @@ def cashbackorlowinterestcalculator(request):
       return render(request, "cashbackorlowinterestcalculator.html", context)
     try:
       SaleTax = ((AP - TV) * ST)/100
-      print(SaleTax)
+      
 
       if IAF == "Yes" and f1:
         TotalLoanAmount = AP - DP - TV + SaleTax + OF
@@ -12236,7 +12236,7 @@ def cashbackorlowinterestcalculator(request):
         CBTotalInterest = CBTotalPayments - CBTotalLoanAmount
         TotalCost = TotalPayments + UpfrontPayment + TV
         CBTotalCost = CBTotalPayments + UpfrontPayment + TV
-        print("TotalLoanAmount= ",TotalLoanAmount,"CBTotalLoanAmount= ", CBTotalLoanAmount,"UpfrontPayment= ", UpfrontPayment,"MonthlyPay= ",MonthlyPay,"CBMonthlyPay= ",CBMonthlyPay,"TotalPayments= ",TotalPayments,"CBTotalPayments= ",CBTotalPayments,"TotalInterest= ",TotalInterest,"CBTotalInterest= ",CBTotalInterest,"TotalCost= ",TotalCost,"CBTotalCost= ",CBTotalCost, sep="\n")
+        
       elif IAF == "NO" and f1:
         TotalLoanAmount = AP - DP - TV 
         CBTotalLoanAmount = AP - DP - TV - CA
@@ -12249,20 +12249,20 @@ def cashbackorlowinterestcalculator(request):
         CBTotalInterest = CBTotalPayments - CBTotalLoanAmount 
         TotalCost = TotalPayments + UpfrontPayment + TV
         CBTotalCost = CBTotalPayments + UpfrontPayment + TV
-        print("TotalLoanAmount= ",TotalLoanAmount,"CBTotalLoanAmount= ", CBTotalLoanAmount,"UpfrontPayment= ", UpfrontPayment,"MonthlyPay= ",MonthlyPay,"CBMonthlyPay= ",CBMonthlyPay,"TotalPayments= ",TotalPayments,"CBTotalPayments= ",CBTotalPayments,"TotalInterest= ",TotalInterest,"CBTotalInterest= ",CBTotalInterest,"TotalCost= ",TotalCost,"CBTotalCost= ",CBTotalCost,sep="\n")
+        
 
       if TotalCost < CBTotalCost:
         result = "The Low Interest Rate Offer is Better!" 
-        result1 = f"The low rate will save you {CBTotalCost - TotalCost} in interest, which is larger than the cash back of {CAinp}."
-        print(result, result1)
+        result1 = f"The low rate will save you {CBTotalCost - TotalCost:.2f} in interest."
+        
       elif TotalCost > CBTotalCost:
         result = "The Cash Back Offer is Better!" 
-        result1 = f"The low rate will save you only {TotalCost - CBTotalCost} in interest, which is larger than the cash back of {CAinp}."
-        print(result, result1)
+        result1 = f"The cashback will save you {TotalCost - CBTotalCost:.2f} in interest."
+        
       elif TotalCost ==  CBTotalCost:
         result = "Both offers save same amount of money!" 
         result1 = "Choose options as per your convenience"
-        print(result, result1)
+        
 
       context = {
           "CA":CAinp,

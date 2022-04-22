@@ -274,16 +274,60 @@
         <div class="card-body">
             
             <!-- For Formulas -->
-            <strong>Formulas Used For Box Pleats:</strong> <br>
-            <p class="btn btn-outline-secondary active">Fabric width for one pleat&nbsp; = &nbsp;(waist measurement / number of pleats) * 3</p><br>
+            <strong>Formulas Used in Cash Back Offer:</strong> <br>
+            <p class="btn btn-outline-secondary active">Total Loan Amount&nbsp; = &nbsp;Auto Price - Down Payment - Trade-in Value - Cash Back Amount</p><br>
+            <p class="btn btn-outline-secondary active">Sale Tax&nbsp; = &nbsp;((Auto Price - Trade-in Value) * Sales Tax) / 100</p><br>
+            
+            <p class="btn btn-outline-secondary active">Upfront Payment&nbsp; = &nbsp;Down Payment + SaleTax + Title, Registration and Other Fees</p><br>
+            <p class="btn btn-outline-secondary active">Monthly Pay&nbsp; = &nbsp;Total Loan Amount * (Interest Rate High / 1200) * (((Interest Rate High / 1200) + 1)**Loan Term) / ((((IRH / 1200) + 1)**Loan Term) - 1)</p><br>
+            
+            <p class="btn btn-outline-secondary active">Total of 60 Loan Payments&nbsp; = &nbsp;Monthly Pay * Loan Term</p><br>
+            <p class="btn btn-outline-secondary active">Total Loan Interest&nbsp; = &nbsp; Total Payments - Total Loan Amount</p><br>
+            
+            <p class="btn btn-outline-secondary active">Total Cost (price, interest, tax, fees)&nbsp; = &nbsp;Total Payments + Up front Payment + Trade-in Value</p><br><br>
+
+
+            <strong>Formulas Used in Low Interest Rate Offer:</strong> <br>
+            <p class="btn btn-outline-secondary active">Total Loan Amount&nbsp; = &nbsp;Auto Price - Down Payment - Trade-in Value</p><br>
+            <strong>**Note :- Rest Formulas are same as cashback offer</strong> <br>
+            <strong>**Note :- If all fees are included in loan then add Sales Tax and Title, Registration
+                and Other Fees in Total Loan Amount</strong> <br><br>
+            <!-- <p class="btn btn-outline-secondary active">Sale Tax&nbsp; = &nbsp;((Auto Price - Trade-in Value) * Sales Tax) / 100</p><br>
+            
+            <p class="btn btn-outline-secondary active">Upfront Payment&nbsp; = &nbsp;Down Payment + SaleTax + Title, Registration and Other Fees</p><br>
+            <p class="btn btn-outline-secondary active">Monthly Pay&nbsp; = &nbsp;Total Loan Amount * (Interest Rate High / 1200) * (((Interest Rate High / 1200) + 1)**Loan Term) / ((((IRH / 1200) + 1)**Loan Term) - 1)</p><br>
+            
+            <p class="btn btn-outline-secondary active">Total of 60 Loan Payments&nbsp; = &nbsp;Monthly Pay * Loan Term</p><br>
+            <p class="btn btn-outline-secondary active">Total Loan Interest&nbsp; = &nbsp; Total Payments - Total Loan Amount</p><br>
+            
+            <p class="btn btn-outline-secondary active">Total Cost (price, interest, tax, fees)&nbsp; = &nbsp;Total Payments + Up front Payment + Trade-in Value</p><br><br> -->
+            
             
             
 
             
             <!-- For results -->
-            <h3><strong><span style="color: blue;">Pleat width for skirt:&nbsp;</span>&nbsp;{{pleatWidth|floatformat:"-2"}}&nbsp;</strong>
-                
-            </h3>
+            <h3><strong><span style="color: red;">{{result}}</span></strong></h3>
+            <h3><strong><span style="color: red;">{{result1}}</span></strong></h3><br>
+
+
+            <h2 style="color: brown;">With Cash Back Offer</h2>
+            <h3><strong><span style="color: blue;">Total Loan Amount:&nbsp;</span>&nbsp;{{CBTotalLoanAmount|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Sale Tax:&nbsp;</span>&nbsp;{{SaleTax|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Upfront Payment:&nbsp;</span>&nbsp;{{UpfrontPayment|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Monthly Pay:&nbsp;</span>&nbsp;{{CBMonthlyPay|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Total of 60 Loan Payments:&nbsp;</span>&nbsp;{{CBTotalPayments|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Total Loan Interest:&nbsp;</span>&nbsp;{{CBTotalInterest|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Total Cost (price, interest, tax, fees):&nbsp;</span>&nbsp;{{CBTotalCost|floatformat:"-2"}}&nbsp;</strong></h3><br>
+
+            <h2 style="color: brown;">With Low Interest Rate Offer</h2>
+            <h3><strong><span style="color: blue;">Total Loan Amount:&nbsp;</span>&nbsp;{{TotalLoanAmount|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Sale Tax:&nbsp;</span>&nbsp;{{SaleTax|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Upfront Payment:&nbsp;</span>&nbsp;{{UpfrontPayment|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Monthly Pay:&nbsp;</span>&nbsp;{{MonthlyPay|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Total of 60 Loan Payments:&nbsp;</span>&nbsp;{{TotalPayments|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Total Loan Interest:&nbsp;</span>&nbsp;{{TotalInterest|floatformat:"-2"}}&nbsp;</strong></h3>
+            <h3><strong><span style="color: blue;">Total Cost (price, interest, tax, fees):&nbsp;</span>&nbsp;{{TotalCost|floatformat:"-2"}}&nbsp;</strong></h3>
 
            
 
