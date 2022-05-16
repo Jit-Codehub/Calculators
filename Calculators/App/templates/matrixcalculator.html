@@ -1,0 +1,1602 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Matrix  calculator | Free Calculator to find Matrix </title>
+<meta name="description"
+    content="Matrix  calculator makes it easy for you to find Matrix ." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Matrix  calculator | Free Calculator to find Matrix " />
+<meta property="og:description" content="Matrix  calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Matrix-calculator
+.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Matrix  calculator | Free Calculator to find Matrix " />
+<meta name="twitter:description"
+    content="Matrix  calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Matrix-calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle> Matrix  calculator</tittle>
+<meta property='og:title' content="Matrix  calculatorr | Matrix " />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Matrix-calculator
+.jpeg" />
+<meta property='og:description' content="Matrix  calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+<form action="" method="POST" id="my_form" >
+ {% csrf_token %}
+
+<div class="row">
+
+<div class="container col-md-5" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1"> Matrix A</h1>
+        </div>
+
+
+        <div class="card-body">
+            <ul class="messages">
+                {% if message and name == 'A' %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}
+                
+                {% if message and name == 'AB' %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}
+            </ul>
+              
+              <input style="display:none;" {%if dimensionA%} value="{{dimensionA}}"{%else%} value="3"{%endif%} name="dimensionA"></input>
+
+              {%for array in dataA%}
+                <div class="row">
+                
+                   {%for i in array%}      
+                        <div class="col m-1">
+                            <input type="number" step="0.00001" class="form-control" placeholder="Enter the number" name="matA" value="{{i}}">
+                        </div>
+                    {%endfor%}
+
+                </div>
+              {%endfor%}  
+
+                
+                    <div class=" center col mt-2 ">
+                        <center>
+                        
+                          <button type="submit" name="resetA"  style="margin-top:5px;padding:14px;"
+                                class="btn btn-danger">🧹︎</button>
+                        <button type="submit" class="btn btn-primary" name="addA"><h3>+</h3></button>
+                            <button type="submit" name="subA"  style="margin-top:5px;"
+                                class="btn btn-danger"><h3>-</h3></button>
+                        </center>
+                    </div>
+                    <br>
+
+                    
+                   <div class="container">
+                    
+                    <div class="row">
+                        <div class="col-sm">
+                           <button type="submit" name="detA" class="btn btn-secondary" style="margin-top:8px;">Find Determinant</button>
+                        </div>
+                        <div class="col-sm">
+                         <button type="submit" name="TransposeA" class="btn btn-secondary" style="margin-top:8px;" >Find Transpose</button>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                       <div class="col-sm">
+                       <button type="submit" name="inverseA" class="btn btn-secondary" style="margin-top:8px;" >Find Inverse</button>
+                       </div>
+
+                       <div class="col-sm">
+                        <button type="submit" name="rankA" class="btn btn-secondary" style="margin-top:8px;">Find Rank</button>
+                       </div>                    
+                    </div>
+
+                    
+                    <div class="row">
+                       <div class="col-sm">
+                            <div class="btn" style="display:inline-flex;margin-left:-13px;">
+                            <button type="submit" name="multiplyA" class="btn btn-secondary" style="margin-top:5px;">Multiply By</button>
+                            
+                            <input type="number" step="0.0000001" name="mulA" {%if val and name == "A" %} value="{{val}}" {%else%} value="2" {%endif%} placeholder="Enter number" class="border border-dark" style="width:4vw;margin-top:5px;" required="">
+                            
+                            </div>
+
+                       </div>
+
+                       <div class="col-sm">
+                              <div class="btn" style="display:inline-flex; margin-left:-13px;">
+                                <button type="submit" name="raiseA" class="btn btn-secondary" style="margin-top:5px;">Raise To</button>
+                                
+                                <input type="number"  name="raA" {%if Raise and name == "A" %} value="{{Raise}}" {%else%} value="2" {%endif%} placeholder="Enter number" class="border border-dark" style="width:4vw;margin-top:5px;" required="">
+                                
+                            </div>    
+                             
+                       </div>                    
+                    </div>
+
+                    
+                    <div class="row">
+                       <div class="col-sm">
+                         <button type="submit" name="LuA" class="btn btn-secondary" style="margin-top:5px;">LU Decomposition</button>
+                       </div>
+
+                       <div class="col-sm">
+                         <button type="submit" name="chomA" class="btn btn-secondary" style="margin-top:5px;">Cholesky Decomposition</button>
+                       </div>                    
+                    </div>
+
+                    
+                    <div class="row">
+                       <div class="col-sm">
+                       <button type="submit" name="diagonalA" class="btn btn-secondary" style="margin-top:8px;">Diagonal matrix</button>
+                       </div>
+
+                       <div class="col-sm">
+                       <button type="submit" name="triangleA" class="btn btn-secondary" style="margin-top:8px;">Triangular matrix</button>
+                       </div>                    
+                    </div>
+
+
+
+                    </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container col-md-1 my-auto" style="height: auto !important;">
+  <div class="card c1">
+ 
+  <button type="submit" name="change" class="btn btn-secondary" style="margin-top:8px;" ><h1>⇔</h1></button>
+ 
+  <button type="submit" name="addAB" class="btn btn-secondary" style="margin-top:16px;" > {%if changes == 2 %}B+A {%else%} A+B {%endif%}</button>
+  <button type="submit" name="minusAB" class="btn btn-secondary" style="margin-top:8px;" >{%if changes == 2 %}B-A {%else%} A-B {%endif%}</button>
+   
+  <button type="submit" name="mulAB" class="btn btn-secondary" style="margin-top:8px;" >{%if changes == 2 %}B*A {%else%} A*B {%endif%}</button>
+
+  
+<input style="display:none;" {%if changes == 2 %} value="{{changes}}"{%else%} value="1"{%endif%} name="changes"></input>
+ 
+ </div>
+</div>
+
+
+<div class="container col-md-5" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1"> Matrix B</h1>
+        </div>
+
+
+        <div class="card-body">
+            <ul class="messages">
+                {% if message and name == 'B'  %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}
+                
+                {% if message and name == 'AB' %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}
+            </ul>
+
+        
+        
+              <input style="display:none;" {%if dimensionB%} value="{{dimensionB}}"{%else%} value="3"{%endif%} name="dimensionB"></input>
+
+              {%for array in dataB%}
+                <div class="row">
+                
+                   {%for i in array%}      
+                        <div class="col m-1">
+                            <input type="number" step="0.00001" class="form-control" placeholder="Enter the number" name="matB" value="{{i}}">
+                        </div>
+                    {%endfor%}
+
+                </div>
+              {%endfor%}  
+
+                
+                    <div class=" center col mt-2 ">
+                        <center>
+                          <button type="submit" name="resetB"  style="margin-top:5px;padding:14px;"
+                                class="btn btn-danger">🧹︎</button>
+
+                        <button type="submit" class="btn btn-primary" name="addB"><h3>+</h3></button>
+                            <button type="submit" name="subB"  style="margin-top:5px;"
+                                class="btn btn-danger"><h3>-</h3></button>
+                          
+                        </center>
+                    </div>
+
+                    <br>
+
+
+                   <div class="container">
+                    
+                    <div class="row">
+                        <div class="col-sm">
+                           <button type="submit" name="detB" class="btn btn-secondary" style="margin-top:8px;">Find Determinant</button>
+                        </div>
+                        <div class="col-sm">
+                         <button type="submit" name="TransposeB" class="btn btn-secondary" style="margin-top:8px;" >Find Transpose</button>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                       <div class="col-sm">
+                       <button type="submit" name="inverseB" class="btn btn-secondary" style="margin-top:8px;" >Find Inverse</button>
+                       </div>
+
+                       <div class="col-sm">
+                        <button type="submit" name="rankB" class="btn btn-secondary" style="margin-top:8px;">Find Rank</button>
+                       </div>                    
+                    </div>
+
+                    
+                    <div class="row">
+                       <div class="col-sm">
+                            <div class="btn" style="display:inline-flex;margin-left:-13px;">
+                            <button type="submit" name="multiplyB" class="btn btn-secondary" style="margin-top:5px;">Multiply By</button>
+                            
+                            <input type="number" step="0.0000001" name="mulB" {%if val and name == "B" %} value="{{val}}" {%else%} value="2" {%endif%} placeholder="Enter number" class="border border-dark" style="width:4vw;margin-top:5px;" required="">
+                            
+                            </div>
+
+                       </div>
+
+                       <div class="col-sm">
+                              <div class="btn" style="display:inline-flex; margin-left:-13px;">
+                                <button type="submit" name="raiseB" class="btn btn-secondary" style="margin-top:5px;">Raise To</button>
+                                
+                                <input type="number"  name="raB" {%if Raise and name == "B" %} value="{{Raise}}" {%else%} value="2" {%endif%} placeholder="Enter number" class="border border-dark" style="width:4vw;margin-top:5px;" required="">
+                                
+                            </div>    
+                             
+                       </div>                    
+                    </div>
+
+                    
+                    <div class="row">
+                       <div class="col-sm">
+                         <button type="submit" name="LuB" class="btn btn-secondary" style="margin-top:5px;">LU Decomposition</button>
+                       </div>
+
+                       <div class="col-sm">
+                         <button type="submit" name="chomB" class="btn btn-secondary" style="margin-top:5px;">Cholesky Decomposition</button>
+                       </div>                    
+                    </div>
+
+                    
+                    <div class="row">
+                       <div class="col-sm">
+                       <button type="submit" name="diagonalB" class="btn btn-secondary" style="margin-top:8px;">Diagonal matrix</button>
+                       </div>
+
+                       <div class="col-sm">
+                       <button type="submit" name="triangleB" class="btn btn-secondary" style="margin-top:8px;">Triangular matrix</button>
+                       </div>                    
+                    </div>
+
+
+
+                    </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+</form>
+
+
+<div class="container p-0" id="clear">
+
+{% comment %} FOR THE DETERMINANT OF MATRICES {% endcomment %}
+{%if id == 'det' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2">To Calculate Determinant of matrix {{name}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> Determinant of matrix {{name}} =  </div>
+        <div class="container col-md-5 ml-1 border-dark border-right border-left ">
+
+              {%for array in dataB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">{{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        </div>
+    <br> 
+    <p><b> Determinant of matrix {{name}} = {{det}} </b></p>
+    
+    {%else%}
+
+    <br>    
+    <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> Determinant of matrix {{name}} =  </div>
+        <div class="container col-md-5 ml-1 border-dark border-right border-left ">
+
+              {%for array in dataA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        </div>
+    <br> 
+    <p><b> Determinant of matrix {{name}} = {{det}} </b></p>
+
+
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+{% comment %} FOR THE TRANSPOSE OF MATRICES {% endcomment %}
+{%if id == 'Transpose' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2">To Calculate Transpose of matrix {{name}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> Transpose of matrix {{name}} =  </div>
+        <div class="container col-md-5 ml-1 border-dark border-right border-left ">
+
+              {%for array in det%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        </div>
+    <br> 
+ 
+    {%else%}
+
+    <br>    
+    <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> Transpose of matrix {{name}} =  </div>
+        <div class="container col-md-5 ml-1 border-dark border-right border-left ">
+
+              {%for array in det%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        </div>
+    <br> 
+    
+
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+
+
+{% comment %} FOR THE INVERSE OF MATRICES {% endcomment %}
+{%if id == 'inverse' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2">To Calculate Inverse of matrix {{name}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> Inverse of matrix {{name}} =  </div>
+        <div class="container col-md-5 ml-1 border-dark border-right border-left border-dark border-right border-left ">
+
+              {%for array in d1%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        </div>
+    <br> 
+    
+    
+    {%else%}
+
+    <br>    
+    <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> Inverse of matrix {{name}} =  </div>
+        <div class="container col-md-5 ml-1 border-dark border-right border-left ">
+
+              {%for array in d1%}
+                <div class="row ml-0 border-dark border-right border-left">
+                   {%for i in array%}      
+                        <div class="col">
+                     
+                            {{i}}
+                        
+                        </div> 
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        </div>
+    <br> 
+    
+
+
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+
+{% comment %} FOR THE Rank OF MATRICES {% endcomment %}
+{%if id == 'rank' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2">To Calculate Rank of matrix {{name}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> Rank of matrix {{name}} =  </div>
+        <div class="container col-md-5 ml-1 border-dark border-right border-left border-dark border-right border-left">
+
+              {%for array in dataA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                         {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        </div>
+    <br> 
+    <p><b> Rank of matrix {{name}} = {{rank}} </b></p>
+    
+    {%else%}
+
+    <br>    
+    <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> Rank of matrix {{name}} =  </div>
+        <div class="container col-md-5 ml-1 border-dark border-right border-left border-dark border-right border-left">
+
+              {%for array in dataA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        </div>
+    <br> 
+    <p><b> Rank of matrix {{name}} = {{rank}} </b></p>
+
+
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+{% comment %} FOR THE MULTIPLICATION OF MATRIX OF MATRICES {% endcomment %}
+{%if id == 'mul' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2">Multiplication  of matrix {{name}} by {{val}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        <div class="row" >
+        
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        <div class="col-md-2 mt-4"> {{val}} *  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-leftborder-dark border-right border-left">
+
+              {%for array in ansB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        </div>
+
+
+
+    {%else%}
+        <br>    
+        <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        <div class="col-md-2 mt-4"> {{val}} *  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left border-dark border-right border-left">
+
+              {%for array in dataA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left border-dark border-right border-left ">
+
+              {%for array in ansA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        </div>
+
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+
+{% comment %} FOR THE POWER OF MATRIX  {% endcomment %}
+{%if id == 'raise' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2"> Matrix {{name}} raised to {{Raise}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        <div class="row" >
+        
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        
+        <br>
+        <br>
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in ansB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        </div>
+
+
+
+    {%else%}
+        <br>    
+        <br>
+
+        <div class="row">
+        
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in ansA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        </div>
+
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+
+{% comment %} FOR THE LU DECOMPOSITION OF MATRIX  {% endcomment %}
+{%if id == 'lu' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2"> LU Decomposition of Matrix {{name}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        
+        <div class="row">
+        <div class="col-md-2 mt-4"> Lower Triangular matrix(L) =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in l%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        
+      <br>
+      <br>
+      <br>
+        
+        <div class="row">
+        <div class="col-md-2 mt-4"> Upper Triangular matrix (U) =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in l%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        </div>
+
+
+
+    {%else%}
+        <br>    
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> Lower Triangular Matrix(L) =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in l%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        
+
+        
+        <br>
+        <br>
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> Upper Triangular Matrix (U) =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in u%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        </div>
+
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+
+
+
+{% comment %} FOR THE CHOLESKY DECOMPOSITION OF MATRIX  {% endcomment %}
+{%if id == 'cholesky' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2"> Cholesky Decomposition of Matrix {{name}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> Lower Triangular Matrix(L) =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in l%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        
+
+        
+        <br>
+        <br>
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> Upper Triangular Matrix (U) =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in u%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        </div>
+
+    {%else%}
+        <br>    
+        <br>
+
+        
+        <div class="row">
+        <div class="col-md-2 mt-4"> Lower Triangular Matrix(L) =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in l%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        
+
+        
+        <br>
+        <br>
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> Upper Triangular Matrix (U) =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in u%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        </div>
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+
+
+
+
+{% comment %} FOR THE Triangular Form OF MATRIX  {% endcomment %}
+{%if id == 'Triangular' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2"> Triangular Form of Matrix {{name}}</h2>
+        </div>
+  
+
+
+    {%if name == 'B' %}
+        <br>    
+        <br>
+
+        <div class="row">
+        <div class="col-md-2 mt-4"> Triangular Form =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in ansB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        
+
+        
+    {%else%}
+        <br>    
+        <br>
+
+        
+        <div class="row">
+        <div class="col-md-2 mt-4"> Triangular Form =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in ansA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        
+
+        </div>
+        
+
+        
+    {%endif%}
+
+
+</div>
+{%endif%}
+
+
+
+
+{% comment %} FOR THE Diagonal Form OF MATRIX OF MATRICES {% endcomment %}
+{%if id == 'diagonal' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2">Diagonal Form  of matrix {{name}} </h2>
+        </div>
+  
+        <br>    
+        <br>
+
+        <div class="row" >
+        
+        <div class="col-md-2 mt-4"> matrix {{name}} =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in p%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        *
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in D %}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        *
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in p_inv %}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+         
+
+        </div>
+
+  <br>
+  <br>
+  
+
+</div>
+{%endif%}
+
+
+
+
+{% comment %} FOR THE Addition of   MATRICES {% endcomment %}
+{%if id == 'AddAB' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+            <h2 class="h2">Addition of matrix A and B </h2>
+        </div>
+  
+        <br>    
+        <br>
+
+        <div class="row" >
+        
+        <div class="col-md-2 mt-4"> Addition =  </div>
+        
+        {% if changes == 1 %}
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+        <div class="col-md-1"> <h1>+</h1> </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataB %}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        
+        {%else%}
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        <div class="col-md-1"> <h1>+</h1> </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataA %}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        {%endif%} 
+
+
+
+        </div>
+
+  <br>
+  <br>
+
+  <div class="row" >
+        
+        <div class="col-md-2 mt-4"> Addition =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in x%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+  </div>
+  <br>
+  <br>
+
+</div>
+{%endif%}
+
+
+
+{% comment %} FOR THE Subtraction of   MATRICES {% endcomment %}
+{%if id == 'subAB' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+          {% if changes == 2 %}
+            <h2 class="h2">Subtraction of matrix A and from B </h2>
+           {%else%}
+             <h2 class="h2">Subtraction of matrix B and from A </h2>
+           {%endif%} 
+        </div>
+  
+        <br>    
+        <br>
+
+        <div class="row" >
+        
+        <div class="col-md-2 mt-4"> Subtraction =  </div>
+        
+        {% if changes == 1 %}
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        <div class="col-md-1"> <h1>-</h1> </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataB %}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+
+        {%else%}
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        <div class="col-md-1"> <h1>-</h1> </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataA %}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        {%endif%} 
+
+
+
+        </div>
+
+  <br>
+  <br>
+
+  <div class="row" >
+        
+        <div class="col-md-2 mt-4"> Subtraction =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in x%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+  </div>
+  <br>
+  <br>
+
+</div>
+{%endif%}
+
+
+
+
+
+{% comment %} FOR THE Multiplication of   MATRICES {% endcomment %}
+{%if id == 'mulAB' %}
+
+<div class="card" >
+    
+        <div class="card-header">
+          
+            <h2 class="h2">Multiplication of matrix A and  B </h2>
+            
+        </div>
+  
+        <br>    
+        <br>
+
+        <div class="row" >
+        
+        <div class="col-md-2 mt-4"> Multiplication =  </div>
+        
+        {% if changes == 1 %}
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataA%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        <div class="col-md-1"> <h1>*</h1> </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataB %}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+
+        {%else%}
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataB%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        <div class="col-md-1"> <h1>*</h1> </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in dataA %}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+
+        {%endif%} 
+
+
+
+        </div>
+
+  <br>
+  <br>
+
+  <div class="row" >
+        
+        <div class="col-md-2 mt-4"> Multiplication =  </div>
+        <div class="container col-md-3 ml-1 border-dark border-right border-left">
+
+              {%for array in x%}
+                <div class="row ml-0">
+                   {%for i in array%}      
+                        <div class="col">
+                        {{i}}
+                        </div>
+                    {%endfor%}
+                </div>
+              {%endfor%}  
+        </div>
+  </div>
+  <br>
+  <br>
+
+</div>
+{%endif%}
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<script>
+    
+{% if id  %}
+ 
+var scrollDiv = document.getElementById("clear").offsetTop;
+console.log(scrollDiv)
+window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+
+{%endif%}
+
+    
+
+</script>
+
+<script>
+  
+    function myFunction() {
+
+            document.getElementById("clear").innerHTML = "";
+            
+            {% if given_data != 'form2' %}    
+            document.getElementById("Ia").value = "";
+            document.getElementById("Ia_op").value="N";
+            {%endif%}
+            
+            {% if given_data != 'form3' %}
+            document.getElementById("Ib").value = "";
+            document.getElementById("Ib_op").value="s";
+            {%endif%}
+
+            {% if given_data != 'form1' %}
+            document.getElementById("F").value=""
+            document.getElementById("F_op").value="kgm/s";
+            {% endif %}
+    
+    }
+</script>
+<br>
+
+{% endblock %}

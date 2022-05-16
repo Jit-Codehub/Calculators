@@ -1,0 +1,417 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Freight Class Calculator| Free Calculator to find Freight Class</title>
+<meta name="description"
+    content="Ohm's law Calculator makes it easy for you to find Ohm's law." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Ohm's law Calculator | Free Calculator to find Ohm's law" />
+<meta property="og:description" content="Ohm's law Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/ohms-law-calculator.jpeg"
+    property="og:image" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Ohm's law Calculator | Free Calculator to find Ohm's law" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/ohms-law-calculator.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle> Freight Class Calculator</tittle>
+<meta property='og:title' content="Freight Class Calculator| Ohm's law" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/ohms-law-calculator.jpeg" />
+<meta property='og:description' content="Ohm's law Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Freight Class & Density Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% for message in messages %}
+                <p {% if message.tags %} id="message_container" class="alert alert-danger text-center" {% endif %}
+                    style="color:red">{{ message }}</p>
+                {% endfor %}
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <!-- <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Choose a Calculation</strong></div>
+                        </div> -->
+                        <!-- <select name="given_data" id="inlineFormInputGroup" class="form-control"
+                            onchange="this.form.submit();" autofocus="">
+
+                            {% if given_data == 'form1' %}
+                            <option value="form1" selected="selected"> Find Voltage,Power | Given Current and Resistance  </option>
+                            {% else %}
+                            <option value="form1"> Find Voltage,Power | Given Current and Resistance </option>
+                            {% endif %}
+
+                            {% if given_data == 'form2' %}
+                            <option value="form2" selected="selected"> Find Current,Power | Given Voltage and Resistance  </option>
+                            {% else %}
+                            <option value="form2">Find Current,Power  | Given Voltage and Resistance </option>
+                            {% endif %}
+
+                            {% if given_data == 'form3' %}
+                            <option value="form3" selected="selected"> Find Resistance,Power| Given Current and Voltage
+                            </option>
+                            {% else %}
+                            <option value="form3"> Find Resistance ,Power| Given Current and Voltage  </option>
+                            {% endif %}
+                </select> -->
+                    <!-- </div> -->
+
+
+                    <!-- {% if given_data != "form3" %} -->
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Length</strong></div>
+                        </div>
+                        <input type="number" step="0.001" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number"  class="form-control" name="L" id="L" {% if L1 or L1 == 0 %} value="{{L1}}" {% else %} value="6" {% endif %}>
+
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="L_op" id="L_op">
+
+                          {% if L_op == 'Inches' %}
+                            <option value="Inches" selected="selected"> Inches</option>
+                            {% else %}
+                            <option value="Inches">Inches</option>
+                            {% endif %}
+
+                            {% if L_op == 'Feet' %}
+                            <option value="Feet" selected="selected">Feet</option>
+                            {% else %}
+                            <option value="Feet">Feet</option>
+                            {% endif %}
+
+
+                            {% if L_op == 'Centimeters' %}
+                            <option value="Centimeters" selected="selected">Centimeters</option>
+                            {% else %}
+                            <option value="Centimeters">Centimeters</option>
+                            {% endif %}
+
+                            
+                            
+                            {% if L_op == 'Meters' %}
+                            <option value="Meters" selected="selected">Meters</option>
+                            {% else %}
+                            <option value="Meters">Meters</option>
+                            {% endif %}
+                            
+                        </select>
+                    </div>
+                    <!-- {% endif %} -->
+
+
+                    <!-- {% if given_data != "form2" %} -->
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Width</strong></div>
+                        </div>
+                        <input type="number" step="0.001" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                            placeholder="Enter number"  class="form-control"  id="W" name="W" {% if W1 or W1 == 0 %} value="{{W1}}" {% else %} value="10" {% endif %}>
+
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="W_op" id="W_op">
+
+                            {% if W_op == 'Inches' %}
+                            <option value="Inches" selected="selected">Inches</option>
+                            {% else %}
+                            <option value="Inches">Inches</option>
+                            {% endif %}
+
+                            {% if W_op == 'Feet' %}
+                            <option value="Feet" selected="selected">Feet</option>
+                            {% else %}
+                            <option value="Feet">Feet</option>
+                            {% endif %}
+
+
+                            {% if W_op == 'Centimeters' %}
+                            <option value="Centimeters" selected="selected">Centimeters</option>
+                            {% else %}
+                            <option value="Centimeters">Centimeters</option>
+                            {% endif %}
+
+                            {% if W_op == 'Meters' %}
+                            <option value="Meters" selected="selected">Meters</option>
+                            {% else %}
+                            <option value="Meters">Meters</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+                    <!-- {% endif %} -->
+
+
+                    <!-- {% if given_data != "form1" %} -->
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Height</strong></div>
+                        </div>
+                        <input type="number" step="0.001" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                           placeholder="Enter number"  class="form-control" id="H" name="H" {% if H1 or H1 == 0 %} value="{{H1}}" {% else %} value="7" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="H_op"  id="H_op">
+                          
+                          {% if H_op == 'Inches' %}
+                            <option value="Inches" selected="selected">Inches</option>
+                            {% else %}
+                            <option value="Inches">Inches</option>
+                            {% endif %}
+
+                            {% if H_op == 'Feet' %}
+                            <option value="Feet" selected="selected">Feet</option>
+                            {% else %}
+                            <option value="Feet">Feet</option>
+                            {% endif %}
+
+
+                            {% if H_op == 'Centimeters' %}
+                            <option value="Centimeters" selected="selected">Centimeters</option>
+                            {% else %}
+                            <option value="Centimeters">Centimeters</option>
+                            {% endif %}
+
+                            
+                            
+                            {% if H_op == 'Meters' %}
+                            <option value="Meters" selected="selected">Meters</option>
+                            {% else %}
+                            <option value="Meters">Meters</option>
+                            {% endif %}
+                            
+
+                        </select>
+
+                    </div>
+
+                    <!-- {% endif %} -->
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Total Weight</strong></div>
+                        </div>
+                        <input type="number" min="0.001" step="0.001" oninput="validateNumber(this);" id="inlineFormInputGroup" required=""
+                           placeholder="Enter number"  class="form-control" id="TW" name="TW" {% if TW1 or TW1 == 0 %} value="{{TW1}}" {% else %} value="7" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="TW_op"  id="TW_op">
+                          
+                          {% if TW_op == 'Lbs' %}
+                            <option value="Lbs" selected="selected">Lbs</option>
+                            {% else %}
+                            <option value="Lbs">Lbs</option>
+                            {% endif %}
+
+                            {% if TW_op == 'Kgs' %}
+                            <option value="Kgs" selected="selected">Kgs</option>
+                            {% else %}
+                            <option value="Kgs">Kgs</option>
+                            {% endif %}
+
+
+                            <!-- {% if F_op == 'kV' %}
+                            <option value="kV" selected="selected">Kilo Volts(kV)</option>
+                            {% else %}
+                            <option value="kV">Kilo Volts(kV)</option>
+                            {% endif %} -->
+
+                            
+                            
+                            <!-- {% if F_op == 'MV' %}
+                            <option value="MV" selected="selected">Mega Volts(MV)</option>
+                            {% else %}
+                            <option value="MV">Mega Volts(MV)</option>
+                            {% endif %} -->
+                            
+
+                        </select>
+
+                    </div>
+
+                    
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<div id="clear">
+
+{% if L1 or H1 or W1 or TW1 %}
+    <div class="card" id="Freight Class & Density">
+        <div class="card-header">
+            <h2 class="h2">Steps to  Calculate Freight Class & Density</h2>
+        </div>
+
+        <div class="card-body">
+
+            <strong>Volume Formula</strong>&nbsp;&nbsp;"If your measurements are in feet"
+            
+            <br>
+            <p class="btn btn-outline-secondary active">Volume = Length * Width * Height</p>
+            <br><br>
+            
+
+            <strong>Density Formula</strong>&nbsp;&nbsp;"If weight (in pounds) and volume (cubic feet)"
+            <br>
+            <p class="btn btn-outline-secondary active"> Density = Weight / Volume</p>
+            <br>
+            
+            
+
+            <strong>Input values are:-</strong>
+            
+            <p>Total Weight = {{TW1}} </p>
+            <p>Width = {{W1}} </p>
+            <p>Length = {{L1}} </p>
+            <p>Height = {{H1}} </p>
+            
+
+            <p><strong>Volume : {{volume|floatformat:"-5"}}&nbsp;&nbsp;ft<sup>3</sup>&nbsp;&nbsp;or&nbsp;&nbsp;{{volumeM|floatformat:"-5"}}&nbsp;&nbsp;m<sup>3</sup> </strong></p>
+            <p><strong>Density : {{density|floatformat:"-5"}}&nbsp;&nbsp;lb/ft<sup>3</sup>&nbsp;&nbsp;or&nbsp;&nbsp;{{densityM|floatformat:"-5"}}&nbsp;&nbsp;kg/m<sup>3</sup></strong></p>
+            <p><strong>Estimated Freight Class:{{EFC}}</strong></p>
+
+            </div>
+
+            
+
+
+    </div>
+    {% endif %}
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+    
+            
+    
+                document.getElementsByName("TW")[0].value = "";
+                document.getElementsByName("W")[0].value = "";
+                document.getElementsByName("L")[0].value = "";
+                document.getElementsByName("H")[0].value = "";
+
+               
+                document.getElementById("clear").innerHTML = "";
+    
+            
+    
+            
+    
+            
+    
+            
+    
+    
+    
+        }
+    </script>
+    <br>
+    
+    
+{% endblock %}
+
+    

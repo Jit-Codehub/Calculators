@@ -1,0 +1,336 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Estimated Time of Arrival Calculator</title>
+<meta name="description"
+    content="Estimated Time of Arrival Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta property="og:description" content="Half Life Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<tittle>Estimated Time of Arrival Calculator</tittle>
+<meta property='og:title' content="Estimated Time of Arrival Calculator | Half Life" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Half Life Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <h1 class="h1">Estimated Time of Arrival Calculator</h1>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Unit System:</strong></div>
+                        </div>
+                        <select name="given_data" id="inlineFormInputGroup" class="form-control"
+                            onchange="this.form.submit();" autofocus="">
+
+                            {% if given_data == 'form1' %}
+                            <option value="form1" selected="selected"> Imperial </option>
+                            {% else %}
+                            <option value="form1"> Imperial  </option>
+                            {% endif %}
+
+                            {% if given_data == 'form2' %}
+                            <option value="form2" selected="selected"> Metric
+                            </option>
+                            {% else %}
+                            <option value="form2">Metric</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+
+                    
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            {% if given_data == "form1" %}
+                            <div class="input-group-text"><strong>Total Distance to Drive(mi):</strong></div>
+                            {% endif %}
+                            {% if given_data == "form2" %}
+                            <div class="input-group-text"><strong>Total Distance to Drive(km):</strong></div>
+                            {% endif %}
+                        </div>
+                        <input type="number" min="1"  step=".01" oninput="validateNumber(this);" id="D" required=""
+                           placeholder="Enter Total Distance to Drive"  class="form-control mt-1" name="D" {% if D or D == 0 %} value="{{D}}" {%else%}   value="500" {% endif %}>
+                    </div>
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            {% if given_data == "form1" %}
+                            <div class="input-group-text"><strong>Avg Vehicle Speed(MPH):</strong></div>
+                            {% endif %}
+                            {% if given_data == "form2" %}
+                            <div class="input-group-text"><strong>Avg Vehicle Speed(KPH):</strong></div>
+                            {% endif %}
+                        </div>
+                        <input type="number" min="1"  step=".01" oninput="validateNumber(this);" id="S" required=""
+                           placeholder="Enter Avg Vehicle Speed"  class="form-control mt-1" name="S" {% if S or S == 0 %} value="{{S}}" {%else%}   value="60" {% endif %}>
+                    </div>
+
+                    
+                    
+
+
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Departure Date & Time:</strong></div>
+                        </div>
+
+                          <input type="datetime-local" id="DT" required=""
+                           placeholder="Enter Date and Time"  class="form-control mt-1" name="DT" {% if DT or DT == 0 %} value="{{DT}}" {% else %} value="2022-03-25T12:19" {% endif %}>
+                        </div>
+
+
+
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><strong>Scheduled Stops:</strong></div>
+                            </div>
+                            <select name="SS" id="inlineFormInputGroup" size="1" class="form-control">
+                                {% if SS or SS == 0 %}
+                                <option value="{{SS}}">{{SS}}</option>
+                                {% endif %}
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><strong>Avg Time @ Each Stop:</strong></div>
+                            </div>
+
+                            <select name="ATH" id="inlineFormInputGroup" size="1" class="form-control">
+                                {% if ATH or ATH == 0 %}
+                                <option value="{{ATH}}">{{ATH}}</option>
+                                {% endif %}
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            
+                            <div class="input-group-text"><strong>hrs</strong></div>
+
+                            <select name="ATM" id="inlineFormInputGroup" size="1" class="form-control">
+                                {% if ATM or ATM == 0 %}
+                                <option value="{{ATM}}">{{ATM}}</option>
+                                {% endif %}
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                                <option value="55">55</option>
+                            </select>
+                            <div class="input-group-text"><strong>mins</strong></div> 
+                        </div>
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="data">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <h2 class="h2">Results</h2>
+        </div>
+        
+        
+        <div class="card-body"> <span>
+            <p><span style="color: blue;">Estimated Date and Time of Arrival:&nbsp;</span><strong>{{resultDate}}</strong></p>
+            <p><span style="color: blue;">Total Drive Time:&nbsp;</span><strong>{{Hour}}&nbsp;hours&nbsp;{{Minutes|floatformat:"0"}}&nbsp;minutes</strong></p><br>
+
+            <h3>Estimated Time of Arrival (ETA)</h3>
+            <p>The estimated time of arrival is the time at which any cargo, airplane, ship, or vehicle is predicted to reach a given destination, e.g., a bus company will provide an ETA for its journeys based on the average speed expected for a bus over a specific journey. The distance to travel is divided by the speed and this gives an approximate estimate of the time the bus will arrive. Of course, this does not allow for unpredictable events that may happen during the course of a journey, e.g., accidents, breakdowns, poor weather, etc.</p><br>
+            <h3>ETA Calculation Example</h3>
+            <p>Imagine that you've been on vacation at a spot 600 miles from your hometown. You are expecting to keep up an average speed of 60 mph on your journey home, and you have built five 15 minute rest breaks into your schedule, so 75 minutes (1 hour 15 minutes) in total. You plan to set off on August 30, 2020, at 2 PM. With this information, we can find out your ETA by taking total drive time (total distance divided by average speed plus total time spent on stops) and adding it to your time of departure, thus:</p>
+            <p>600 miles / 60 mph = 10 hours + 1 hour 15 minutes breaks = 11 hours 15 minutes</p>
+            <p>2 PM + 11 hours 15 minutes = 1:15 AM</p>
+            <p>ETA: August 31, 2020, 1:15 AM</p>
+
+        </div>
+
+        
+    
+
+    
+    
+    {% endif %}
+</div>
+
+
+
+<script>
+    
+    {% if id == 1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+        
+    {% if id == 2 %}
+     
+    var scrollDiv = document.getElementById("my_form1").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                document.getElementsByName("D")[0].value = "";
+                document.getElementsByName("S")[0].value = "";
+                // document.getElementsByName("DT")[0].value = "";
+                
+               
+                document.getElementById("clear").innerHTML = "";
+            }
+    </script>
+    <br>
+    
+    
+    {% endblock %}
