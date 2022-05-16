@@ -12311,8 +12311,8 @@ def subtractiontablegeneratorcalculator(request):
 def divisiontablegeneratorcalculator(request):
   return render(request,"divisiontablegeneratorcalculator.html")
 
-def jkl(request):
-  return render(request, "jkl.html")
+def testing(request):
+  return render(request, "testing.html")
 
 
 

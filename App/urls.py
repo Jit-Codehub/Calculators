@@ -50,4 +50,5 @@ path("addition-table-generator-calculator", views.additiontablegeneratorcalculat
 path("multiplication-table-generator-calculator", views.multiplicationtablegeneratorcalculator, name= 'multiply'),
 path("subtraction-table-generator-calculator", views.subtractiontablegeneratorcalculator, name= 'sub'),
 path("division-table-generator-calculator", views.divisiontablegeneratorcalculator, name= 'division'),
+path('testing', views.testing),
 ]
