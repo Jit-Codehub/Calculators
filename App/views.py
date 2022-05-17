@@ -12311,8 +12311,9 @@ def subtractiontablegeneratorcalculator(request):
 def divisiontablegeneratorcalculator(request):
   return render(request,"divisiontablegeneratorcalculator.html")
 
-def testing(request):
-  return render(request, "testing.html")
+def testing(request, a=11):
+  print(a)
+  return render(request, "testing.html",{"a":int(a)})
 
 
 

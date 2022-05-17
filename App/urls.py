@@ -1,4 +1,4 @@
-from django.urls import path,include
+from django.urls import path,include, re_path
 from App import views
 urlpatterns = [
  path('ohms-law-calculator/',views.ohmslawcalculator),
@@ -51,4 +51,9 @@ path("multiplication-table-generator-calculator", views.multiplicationtablegener
 path("subtraction-table-generator-calculator", views.subtractiontablegeneratorcalculator, name= 'sub'),
 path("division-table-generator-calculator", views.divisiontablegeneratorcalculator, name= 'division'),
 path('testing', views.testing),
+# path('testing/divisoion-of-<int:a>', views.testing, name = "testing"),
+re_path(r'^testing/divisoion-of-(?P<a>[0-9][1-9])$', views.testing, name = "testing"),
+
 ]
+#re_path(r'^articles/(?P<year>[0-9]{4})/$', views.year_archive),
+# 'testing/divisoion\\-of\\-(?P<a>[0-9]+)\\Z'

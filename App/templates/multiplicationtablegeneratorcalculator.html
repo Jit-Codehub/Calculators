@@ -196,8 +196,8 @@ Online Calculator Guru Project Style Sheet
 
     function limit(inp){
         
-        if (inp.value > 999 || isNaN(inp.value)){
-            alert("Value must be lower than 1000 and must be a digit.");
+        if (inp.value > 999 || inp.value < 1 || isNaN(inp.value)){
+            alert("Value must be between 1 to 999 and must be a digit.");
             return inp.value = "";
         }
     }

@@ -22,7 +22,7 @@ Online Calculator Guru Project Style Sheet
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
 <!-- Meta Title, Description and Canonical URL Starts --->
-<title>Division Table Generator Calculator</title>
+<title>Testing</title>
 <meta name="description"
     content="Half Life Calculator makes it easy for you to Half Life." />
 <link rel="canonical" href="{{request.build_absolute_uri}}">
@@ -152,9 +152,19 @@ Online Calculator Guru Project Style Sheet
     background-color: #fbfffc;
 }
 
+#links li{
+    display: inline;
+}
+
+#links a:hover{
+    background-color: #3E7E3C;
+    color: #fff;
+}
+
 </style>
 
 <body onload="addFields();">
+    
     
 
     <div class="row" style="height: auto !important;">
@@ -174,7 +184,8 @@ Online Calculator Guru Project Style Sheet
 		
 		</div>
 		
-        <p>I want to generate a division table of <input type="text" style="width:4em" name="inpu" value="7" oninput="limit(this); addFields();"></p>
+        <p>I want to generate a division table of <input type="text" style="width:4em" name="inpu" value="{{a}}" oninput="limit(this); addFields();"></p>
+        <!-- <p>I want to generate a division table of <input type="text" style="width:4em" name="inpu" value="7" oninput="limit(this); addFields();"></p> -->
 
 		<p>Containing <input type="text" name="line" style="width: 4em;" value="10" oninput="limit(this); addFields();"> lines.</p>
 
@@ -190,6 +201,38 @@ Online Calculator Guru Project Style Sheet
 		<div id="container"></div>
 
         </div></div></div>
+        <!-- ******************************************************* -->
+
+        
+            
+        <div style="margin-inline: 10%;" id="links">
+            <li><a href="{% url 'testing' '01'%}">Division of 1 |</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 2 |</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 3 |</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 4 |</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 5 |</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 6 |</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 7 |</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 8 |</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 9 |</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 10|</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 11|</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 12|</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 13|</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 14|</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 15|</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 16|</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 17|</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 18|</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 19|</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 20|</a></li>
+            <li><a href="{% url 'testing' '01'%}">Division of 21|</a></li>
+            <li><a href="{% url 'testing' '02'%}">Division of 22|</a></li>
+            
+        </div>    
+        
+        <!-- ******************************************************* -->
+
 </body> 
 
 <script>
