@@ -12315,11 +12315,11 @@ def divisiontablegeneratorcalculator(request, a=11):
     a = 1
   return render(request,"divisiontablegeneratorcalculator.html",{"a":int(a)})
 
-def testing(request, a=11):
-  if a == "00":
-    a = 1
-    print(a)
-  return render(request, "testing.html",{"a":int(a)})
+# def testing(request, a=11):
+#   if a == "00":
+#     a = 1
+#     print(a)
+#   return render(request, "testing.html",{"a":int(a)})
 
 
 
