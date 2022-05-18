@@ -12299,20 +12299,26 @@ def cashbackorlowinterestcalculator(request):
 
 
 
-def additiontablegeneratorcalculator(request):
-  return render(request,"additiontablegeneratorcalculator.html")
+def additiontablegeneratorcalculator(request, a=7):
+  return render(request,"additiontablegeneratorcalculator.html",{"a":int(a)})
 
-def multiplicationtablegeneratorcalculator(request):
-  return render(request,"multiplicationtablegeneratorcalculator.html")
+def multiplicationtablegeneratorcalculator(request, a=11):
+  if a == "00":
+    a = 1
+  return render(request,"multiplicationtablegeneratorcalculator.html",{"a":int(a)})
 
-def subtractiontablegeneratorcalculator(request):
-  return render(request,"subtractiontablegeneratorcalculator.html")
+def subtractiontablegeneratorcalculator(request, a=7):
+  return render(request,"subtractiontablegeneratorcalculator.html",{"a":int(a)})
 
-def divisiontablegeneratorcalculator(request):
-  return render(request,"divisiontablegeneratorcalculator.html")
+def divisiontablegeneratorcalculator(request, a=11):
+  if a == "00":
+    a = 1
+  return render(request,"divisiontablegeneratorcalculator.html",{"a":int(a)})
 
 def testing(request, a=11):
-  print(a)
+  if a == "00":
+    a = 1
+    print(a)
   return render(request, "testing.html",{"a":int(a)})
 
 

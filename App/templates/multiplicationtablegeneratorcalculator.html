@@ -132,15 +132,22 @@ Online Calculator Guru Project Style Sheet
     margin: -42.4px 0 5px 0;
 }
 
-/* @media only screen and (max-width: 700px){
-.col-1-2, .col-left, .col-right {
+@media only screen and (max-width: 700px){
+    .col-1-2{
     width: 100%;
-}} */
+    }
+}
 
-.col-1-2, .col-1-3, .col-1-4, .col-full, .col-left, .col-right {
+
+.col-1-2{
     padding: 0 0.2rem;
     display: inline-block;
     vertical-align: top;
+}
+
+.col-1-2 a:hover{
+    text-decoration: none;
+    color: darkred;
 }
 
 .calculator {
@@ -174,7 +181,7 @@ Online Calculator Guru Project Style Sheet
 		
 		</div>
 		
-        <p>I want to generate a multiplication table of <input type="text" style="width:4em" name="inpu" value="7" oninput="limit(this); addFields();"></p>
+        <p>I want to generate a multiplication table of <input type="text" style="width:4em" name="inpu" value="{{a}}" oninput="limit(this); addFields();"></p>
 
 		<p>Containing <input type="text" name="line" style="width: 4em;" value="10" oninput="limit(this); addFields();"> lines.</p>
 
@@ -190,6 +197,148 @@ Online Calculator Guru Project Style Sheet
 		<div id="container"></div>
 
         </div></div></div>
+
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '01'%}">Multiplication table of 1</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '02'%}">Multiplication table of 2</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '03'%}">Multiplication table of 3</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '04'%}">Multiplication table of 4</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '05'%}">Multiplication table of 5</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '06'%}">Multiplication table of 6</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '07'%}">Multiplication table of 7</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '08'%}">Multiplication table of 8</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '09'%}">Multiplication table of 9</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '10'%}">Multiplication table of 10</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '11'%}">Multiplication table of 11</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '12'%}">Multiplication table of 12</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '13'%}">Multiplication table of 13</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '14'%}">Multiplication table of 14</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '15'%}">Multiplication table of 15</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '16'%}">Multiplication table of 16</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '17'%}">Multiplication table of 17</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '18'%}">Multiplication table of 18</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '19'%}">Multiplication table of 19</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '20'%}">Multiplication table of 20</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '21'%}">Multiplication table of 21</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '22'%}">Multiplication table of 22</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '23'%}">Multiplication table of 23</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '24'%}">Multiplication table of 24</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '25'%}">Multiplication table of 25</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '26'%}">Multiplication table of 26</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '27'%}">Multiplication table of 27</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '28'%}">Multiplication table of 28</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '29'%}">Multiplication table of 29</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '30'%}">Multiplication table of 30</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '31'%}">Multiplication table of 31</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '32'%}">Multiplication table of 32</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '33'%}">Multiplication table of 33</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '34'%}">Multiplication table of 34</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '35'%}">Multiplication table of 35</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '36'%}">Multiplication table of 36</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '37'%}">Multiplication table of 37</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '38'%}">Multiplication table of 38</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '39'%}">Multiplication table of 39</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '40'%}">Multiplication table of 40</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '41'%}">Multiplication table of 41</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '42'%}">Multiplication table of 42</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '43'%}">Multiplication table of 43</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '44'%}">Multiplication table of 44</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '45'%}">Multiplication table of 45</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '46'%}">Multiplication table of 46</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '47'%}">Multiplication table of 47</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '48'%}">Multiplication table of 48</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '49'%}">Multiplication table of 49</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '50'%}">Multiplication table of 50</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '51'%}">Multiplication table of 51</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '52'%}">Multiplication table of 52</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '53'%}">Multiplication table of 53</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '54'%}">Multiplication table of 54</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '55'%}">Multiplication table of 55</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '56'%}">Multiplication table of 56</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '57'%}">Multiplication table of 57</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '58'%}">Multiplication table of 58</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '59'%}">Multiplication table of 59</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '60'%}">Multiplication table of 60</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '61'%}">Multiplication table of 61</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '62'%}">Multiplication table of 62</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '63'%}">Multiplication table of 63</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '64'%}">Multiplication table of 64</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '65'%}">Multiplication table of 65</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '66'%}">Multiplication table of 66</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '67'%}">Multiplication table of 67</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '68'%}">Multiplication table of 68</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '69'%}">Multiplication table of 69</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '70'%}">Multiplication table of 70</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '71'%}">Multiplication table of 71</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '72'%}">Multiplication table of 72</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '73'%}">Multiplication table of 73</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '74'%}">Multiplication table of 74</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '75'%}">Multiplication table of 75</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '76'%}">Multiplication table of 76</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '77'%}">Multiplication table of 77</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '78'%}">Multiplication table of 78</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '79'%}">Multiplication table of 79</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '80'%}">Multiplication table of 80</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '81'%}">Multiplication table of 81</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '82'%}">Multiplication table of 82</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '83'%}">Multiplication table of 83</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '84'%}">Multiplication table of 84</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '85'%}">Multiplication table of 85</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '86'%}">Multiplication table of 86</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '87'%}">Multiplication table of 87</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '88'%}">Multiplication table of 88</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '89'%}">Multiplication table of 89</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '90'%}">Multiplication table of 90</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'multiplyURL' '91'%}">Multiplication table of 91</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '92'%}">Multiplication table of 92</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '93'%}">Multiplication table of 93</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '94'%}">Multiplication table of 94</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '95'%}">Multiplication table of 95</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '96'%}">Multiplication table of 96</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '97'%}">Multiplication table of 97</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '98'%}">Multiplication table of 98</a></li>
+                <li class="bullet"><a href="{% url 'multiplyURL' '99'%}">Multiplication table of 99</a></li>
+                
+            </ul>
+        </div>
+
 </body> 
 		
 <script>

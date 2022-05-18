@@ -50,9 +50,16 @@ path("addition-table-generator-calculator", views.additiontablegeneratorcalculat
 path("multiplication-table-generator-calculator", views.multiplicationtablegeneratorcalculator, name= 'multiply'),
 path("subtraction-table-generator-calculator", views.subtractiontablegeneratorcalculator, name= 'sub'),
 path("division-table-generator-calculator", views.divisiontablegeneratorcalculator, name= 'division'),
+
+re_path(r'^divisoion-of-(?P<a>[0-9]{2})$', views.divisiontablegeneratorcalculator ,name='divisionURL'),
+re_path(r'^addition-of-(?P<a>[0-9]{2})$', views.additiontablegeneratorcalculator ,name='addURL'),
+re_path(r'^multiplication-of-(?P<a>[0-9]{2})$', views.multiplicationtablegeneratorcalculator, name='multiplyURL'),
+re_path(r'^subtraction-of-(?P<a>[0-9]{2})$', views.subtractiontablegeneratorcalculator, name='subURL'),
+
+
 path('testing', views.testing),
 # path('testing/divisoion-of-<int:a>', views.testing, name = "testing"),
-re_path(r'^testing/divisoion-of-(?P<a>[0-9][1-9])$', views.testing, name = "testing"),
+re_path(r'^testing/divisoion-of-(?P<a>[0-9]{2})$', views.testing, name = "testing"),
 
 ]
 #re_path(r'^articles/(?P<year>[0-9]{4})/$', views.year_archive),

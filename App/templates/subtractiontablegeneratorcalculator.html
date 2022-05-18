@@ -132,15 +132,22 @@ Online Calculator Guru Project Style Sheet
     margin: -42.4px 0 5px 0;
 }
 
-/* @media only screen and (max-width: 700px){
-.col-1-2, .col-left, .col-right {
+@media only screen and (max-width: 700px){
+    .col-1-2{
     width: 100%;
-}} */
+    }
+}
 
-.col-1-2, .col-1-3, .col-1-4, .col-full, .col-left, .col-right {
+
+.col-1-2{
     padding: 0 0.2rem;
     display: inline-block;
     vertical-align: top;
+}
+
+.col-1-2 a:hover{
+    text-decoration: none;
+    color: darkred;
 }
 
 .calculator {
@@ -174,7 +181,7 @@ Online Calculator Guru Project Style Sheet
 		
 		</div>
 		
-        <p>I want to generate a subtraction table of <input type="text" style="width:4em" name="inpu" value="7" oninput="limit(this); addFields();"></p>
+        <p>I want to generate a subtraction table of <input type="text" style="width:4em" name="inpu" value="{{a}}" oninput="limit(this); addFields();"></p>
 
 		<p>Containing <input type="text" name="line" style="width: 4em;" value="10" oninput="limit(this); addFields();"> lines.</p>
 
@@ -190,6 +197,148 @@ Online Calculator Guru Project Style Sheet
 		<div id="container"></div>
 
         </div></div></div>
+
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '01'%}">Subtraction table of 1</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '02'%}">Subtraction table of 2</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '03'%}">Subtraction table of 3</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '04'%}">Subtraction table of 4</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '05'%}">Subtraction table of 5</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '06'%}">Subtraction table of 6</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '07'%}">Subtraction table of 7</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '08'%}">Subtraction table of 8</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '09'%}">Subtraction table of 9</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '10'%}">Subtraction table of 10</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '11'%}">Subtraction table of 11</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '12'%}">Subtraction table of 12</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '13'%}">Subtraction table of 13</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '14'%}">Subtraction table of 14</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '15'%}">Subtraction table of 15</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '16'%}">Subtraction table of 16</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '17'%}">Subtraction table of 17</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '18'%}">Subtraction table of 18</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '19'%}">Subtraction table of 19</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '20'%}">Subtraction table of 20</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '21'%}">Subtraction table of 21</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '22'%}">Subtraction table of 22</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '23'%}">Subtraction table of 23</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '24'%}">Subtraction table of 24</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '25'%}">Subtraction table of 25</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '26'%}">Subtraction table of 26</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '27'%}">Subtraction table of 27</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '28'%}">Subtraction table of 28</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '29'%}">Subtraction table of 29</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '30'%}">Subtraction table of 30</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '31'%}">Subtraction table of 31</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '32'%}">Subtraction table of 32</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '33'%}">Subtraction table of 33</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '34'%}">Subtraction table of 34</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '35'%}">Subtraction table of 35</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '36'%}">Subtraction table of 36</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '37'%}">Subtraction table of 37</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '38'%}">Subtraction table of 38</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '39'%}">Subtraction table of 39</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '40'%}">Subtraction table of 40</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '41'%}">Subtraction table of 41</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '42'%}">Subtraction table of 42</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '43'%}">Subtraction table of 43</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '44'%}">Subtraction table of 44</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '45'%}">Subtraction table of 45</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '46'%}">Subtraction table of 46</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '47'%}">Subtraction table of 47</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '48'%}">Subtraction table of 48</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '49'%}">Subtraction table of 49</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '50'%}">Subtraction table of 50</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '51'%}">Subtraction table of 51</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '52'%}">Subtraction table of 52</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '53'%}">Subtraction table of 53</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '54'%}">Subtraction table of 54</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '55'%}">Subtraction table of 55</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '56'%}">Subtraction table of 56</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '57'%}">Subtraction table of 57</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '58'%}">Subtraction table of 58</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '59'%}">Subtraction table of 59</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '60'%}">Subtraction table of 60</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '61'%}">Subtraction table of 61</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '62'%}">Subtraction table of 62</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '63'%}">Subtraction table of 63</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '64'%}">Subtraction table of 64</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '65'%}">Subtraction table of 65</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '66'%}">Subtraction table of 66</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '67'%}">Subtraction table of 67</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '68'%}">Subtraction table of 68</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '69'%}">Subtraction table of 69</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '70'%}">Subtraction table of 70</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '71'%}">Subtraction table of 71</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '72'%}">Subtraction table of 72</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '73'%}">Subtraction table of 73</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '74'%}">Subtraction table of 74</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '75'%}">Subtraction table of 75</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '76'%}">Subtraction table of 76</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '77'%}">Subtraction table of 77</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '78'%}">Subtraction table of 78</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '79'%}">Subtraction table of 79</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '80'%}">Subtraction table of 80</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '81'%}">Subtraction table of 81</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '82'%}">Subtraction table of 82</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '83'%}">Subtraction table of 83</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '84'%}">Subtraction table of 84</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '85'%}">Subtraction table of 85</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '86'%}">Subtraction table of 86</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '87'%}">Subtraction table of 87</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '88'%}">Subtraction table of 88</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '89'%}">Subtraction table of 89</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '90'%}">Subtraction table of 90</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'subURL' '91'%}">Subtraction table of 91</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '92'%}">Subtraction table of 92</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '93'%}">Subtraction table of 93</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '94'%}">Subtraction table of 94</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '95'%}">Subtraction table of 95</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '96'%}">Subtraction table of 96</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '97'%}">Subtraction table of 97</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '98'%}">Subtraction table of 98</a></li>
+                <li class="bullet"><a href="{% url 'subURL' '99'%}">Subtraction table of 99</a></li>
+                
+            </ul>
+        </div>
+
 </body> 
 
 <script>

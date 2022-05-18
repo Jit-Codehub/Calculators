@@ -132,15 +132,22 @@ Online Calculator Guru Project Style Sheet
     margin: -42.4px 0 5px 0;
 }
 
-/* @media only screen and (max-width: 700px){
-.col-1-2, .col-left, .col-right {
+@media only screen and (max-width: 700px){
+    .col-1-2{
     width: 100%;
-}} */
+    }
+}
 
-.col-1-2, .col-1-3, .col-1-4, .col-full, .col-left, .col-right {
+
+.col-1-2{
     padding: 0 0.2rem;
     display: inline-block;
     vertical-align: top;
+}
+
+.col-1-2 a:hover{
+    text-decoration: none;
+    color: darkred;
 }
 
 .calculator {
@@ -174,7 +181,7 @@ Online Calculator Guru Project Style Sheet
 		
 		</div>
 		
-        <p>I want to generate a division table of <input type="text" style="width:4em" name="inpu" value="7" oninput="limit(this); addFields();"></p>
+        <p>I want to generate a division table of <input type="text" style="width:4em" name="inpu" value="{{a}}" oninput="limit(this); addFields();"></p>
 
 		<p>Containing <input type="text" name="line" style="width: 4em;" value="10" oninput="limit(this); addFields();"> lines.</p>
 
@@ -190,6 +197,148 @@ Online Calculator Guru Project Style Sheet
 		<div id="container"></div>
 
         </div></div></div>
+
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '01'%}">Division table of 1</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '02'%}">Division table of 2</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '03'%}">Division table of 3</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '04'%}">Division table of 4</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '05'%}">Division table of 5</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '06'%}">Division table of 6</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '07'%}">Division table of 7</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '08'%}">Division table of 8</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '09'%}">Division table of 9</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '10'%}">Division table of 10</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '11'%}">Division table of 11</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '12'%}">Division table of 12</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '13'%}">Division table of 13</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '14'%}">Division table of 14</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '15'%}">Division table of 15</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '16'%}">Division table of 16</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '17'%}">Division table of 17</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '18'%}">Division table of 18</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '19'%}">Division table of 19</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '20'%}">Division table of 20</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '21'%}">Division table of 21</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '22'%}">Division table of 22</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '23'%}">Division table of 23</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '24'%}">Division table of 24</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '25'%}">Division table of 25</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '26'%}">Division table of 26</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '27'%}">Division table of 27</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '28'%}">Division table of 28</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '29'%}">Division table of 29</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '30'%}">Division table of 30</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '31'%}">Division table of 31</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '32'%}">Division table of 32</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '33'%}">Division table of 33</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '34'%}">Division table of 34</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '35'%}">Division table of 35</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '36'%}">Division table of 36</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '37'%}">Division table of 37</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '38'%}">Division table of 38</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '39'%}">Division table of 39</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '40'%}">Division table of 40</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '41'%}">Division table of 41</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '42'%}">Division table of 42</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '43'%}">Division table of 43</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '44'%}">Division table of 44</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '45'%}">Division table of 45</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '46'%}">Division table of 46</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '47'%}">Division table of 47</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '48'%}">Division table of 48</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '49'%}">Division table of 49</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '50'%}">Division table of 50</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '51'%}">Division table of 51</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '52'%}">Division table of 52</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '53'%}">Division table of 53</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '54'%}">Division table of 54</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '55'%}">Division table of 55</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '56'%}">Division table of 56</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '57'%}">Division table of 57</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '58'%}">Division table of 58</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '59'%}">Division table of 59</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '60'%}">Division table of 60</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '61'%}">Division table of 61</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '62'%}">Division table of 62</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '63'%}">Division table of 63</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '64'%}">Division table of 64</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '65'%}">Division table of 65</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '66'%}">Division table of 66</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '67'%}">Division table of 67</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '68'%}">Division table of 68</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '69'%}">Division table of 69</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '70'%}">Division table of 70</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '71'%}">Division table of 71</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '72'%}">Division table of 72</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '73'%}">Division table of 73</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '74'%}">Division table of 74</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '75'%}">Division table of 75</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '76'%}">Division table of 76</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '77'%}">Division table of 77</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '78'%}">Division table of 78</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '79'%}">Division table of 79</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '80'%}">Division table of 80</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '81'%}">Division table of 81</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '82'%}">Division table of 82</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '83'%}">Division table of 83</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '84'%}">Division table of 84</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '85'%}">Division table of 85</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '86'%}">Division table of 86</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '87'%}">Division table of 87</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '88'%}">Division table of 88</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '89'%}">Division table of 89</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '90'%}">Division table of 90</a></li>
+            </ul>
+        </div>
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'divisionURL' '91'%}">Division table of 91</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '92'%}">Division table of 92</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '93'%}">Division table of 93</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '94'%}">Division table of 94</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '95'%}">Division table of 95</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '96'%}">Division table of 96</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '97'%}">Division table of 97</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '98'%}">Division table of 98</a></li>
+                <li class="bullet"><a href="{% url 'divisionURL' '99'%}">Division table of 99</a></li>
+                
+            </ul>
+        </div>
+
 </body> 
 
 <script>
