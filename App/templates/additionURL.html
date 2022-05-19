@@ -1,0 +1,364 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+Online Calculator Guru Project Style Sheet
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Addition Table Generator Calculator</title>
+<meta name="description"
+    content="Half Life Calculator makes it easy for you to Half Life." />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta property="og:description" content="Half Life Calculator" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Half Life Calculator | Free Calculator to find Half Life" />
+<meta name="twitter:description"
+    content="Ohm's law Calculator" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+<!-- <tittle> Addition Table Generator Calculator</tittle> -->
+<meta property='og:title' content="Half Life Calculatorr | Half Life" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Half Life Calculator." />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    .calculator-tab button {
+    background-color: #444;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    margin: 6.5px -1px 0 0;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 7px;
+    cursor: pointer;
+    padding: 3px 5px 0 5px;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.calculator-tab button.active {
+    background-color: #fbfffc;
+    color: #444;
+    cursor: default;
+    border: 1px solid #3E7E3C;
+    border-bottom: none;
+}
+
+.calculator-tab button:hover {
+    background-color: #3E7E3C;
+    color: #fff;
+}
+
+	.tabuada {
+    background-color: #fff;
+    padding: 5px;
+    min-height: 250px;
+    border: 2px dashed #48684a;
+    border-radius: 10px;
+}
+
+    .tabuada input, .tabuada td {
+    color: #48684a;
+    font-family: monospace!important;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+    .tabuada input {
+    width: 95px;
+    height: 30px;
+    margin: 0;
+    padding: 0 3px 0 3px;
+}
+
+    .calculator-tabbed {
+    margin: 33px 0;
+}
+
+    .calculator-tab {
+    margin: -42.4px 0 5px 0;
+}
+
+@media only screen and (max-width: 700px){
+    .col-1-2{
+    width: 100%;
+    }
+}
+
+
+.col-1-2{
+    /* width: 19%; */
+    padding: 0 0.2rem;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.col-1-2 a:hover{
+    text-decoration: none;
+    color: darkred;
+}
+
+
+.calculator {
+    padding: 3px;
+    margin: 0 0 3px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #3E7E3C;
+    background-color: #fbfffc;
+}
+
+</style>
+
+<body onload="addFields();">
+    
+
+    <div class="row" style="height: auto !important;">
+        
+        
+    <div class="card c1" style="border: 0px; margin: auto;"> 
+        
+    
+		<div class="calculator calculator-tabbed">
+            
+		<div class="calculator-tab">
+        
+        <a href='{% url "add" %}'><button class="active">Addition</button></a> 
+        <a href='{% url "sub" %}'><button>Subtraction</button></a>
+        <a href='{% url "multiply" %}'><button>Multiplication</button></a>
+        <a href='{% url "division" %}'><button>Division</button></a>
+		
+		</div>
+		
+        <p>I want to generate an addition table of <input type="text" style="width:4em" name="inpu" value="{{a}}" oninput="limit(this); addFields();"></p>
+
+		<p>Containing <input type="text" name="line" style="width: 4em;" value="10" oninput="limit(this); addFields();"> lines.</p>
+
+        <p>Practice with the generated table:<input type="checkbox" style="width: 20px; height: 20px;" checked name="practice" id="practice" value="" onchange="addFields();"></p>
+        
+        
+        <p>Random numbers:<input type="checkbox" style="width: 20px; height: 20px;" name="randomOn" id="randomOn" value="" onchange="addFields();"></p>
+
+    <div id="ranNum">
+		<p>Random numbers start at:<input type="text" style="width: 4em;" name="rannumber" value="10" oninput="limit(this); addFields();"></p>
+    </div>    
+		
+		<div id="container"></div>
+
+        </div></div></div>
+        
+        
+    <div class="center">   
+        {% if b %}
+    
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'addURL' b.0  %}">Addition table of {{b.0|floatformat:"0"}}</a></li>
+                <li class="bullet"><a href="{% url 'addURL' b.1 %}">Addition table of {{b.1|floatformat:"0"}}</a></li>
+            </ul>
+        </div>  
+        
+
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'addURL' b.2 %}">Addition table of {{b.2|floatformat:"0"}}</a></li>
+                <li class="bullet"><a href="{% url 'addURL' b.3 %}">Addition table of {{b.3|floatformat:"0"}}</a></li>
+            </ul>
+        </div>
+
+        
+        <div class="col-1-2">
+            <ul>    
+                <li class="bullet"><a href="{% url 'addURL' b.4 %}">Addition table of {{b.4|floatformat:"0"}}</a></li>
+                <li class="bullet"><a href="{% url 'addURL' b.5 %}">Addition table of {{b.5|floatformat:"0"}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'addURL' b.6 %}">Addition table of {{b.6|floatformat:"0"}}</a></li>
+                <li class="bullet"><a href="{% url 'addURL' b.7 %}">Addition table of {{b.7|floatformat:"0"}}</a></li>
+            </ul>
+        </div>
+
+        <div class="col-1-2">
+            <ul>
+                <li class="bullet"><a href="{% url 'addURL' b.8 %}">Addition table of {{b.8|floatformat:"0"}}</a></li>
+                {% if b.9 != 100 %}
+                <li class="bullet"><a href="{% url 'addURL' b.9 %}">Addition table of {{b.9|floatformat:"0"}}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>      
+        {% endif %}
+            
+
+        
+        
+
+</body> 
+		
+
+<script>
+
+    function limit(inp){
+        
+        if (inp.value > 999 || isNaN(inp.value)){
+            alert("Value must be lower than 1000 and must be a digit.");
+            return inp.value = "";
+        }
+    }
+
+    function chk(evt){
+        var x = evt.target.parentNode.parentNode.firstChild.innerHTML;
+        var y = evt.target.parentNode.parentNode.childNodes[2].innerHTML;
+        var z = Number(x)+Number(y);
+        var j = evt.target.value;
+        
+        if (z == j){
+            var m = evt.target.style = "background-color:rgb(180, 234, 136); width: 60px;"
+            }else{
+            var m = evt.target.style = "background-color: red; color: white; width: 60px;"
+            }
+            
+    }
+
+    function wscroll(event){
+        if (event.target.value){
+            return event.target.value = "";
+        }else{
+        window.scrollBy({top:51, behavior: "smooth"});
+        }
+        
+    }
+
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+
+    function addFields(){
+        
+        var calcInputs = document.querySelectorAll("input");
+        var a = calcInputs[0].value;
+        var line = calcInputs[1].value;
+        var practice = calcInputs[2];
+        var randomOn = calcInputs[3];
+        var ranNum = document.getElementById("ranNum");
+        var raNnumber = calcInputs[4].value;
+        var b = document.getElementById("container");
+
+        while(b.hasChildNodes()){
+            b.removeChild(b.lastChild);
+        }
+    
+        var table = document.createElement("table");
+        table.width = "100%";
+        table.className="tabuada";
+        
+        
+        b.appendChild(table);
+        for (var i=0; i<line; i++){
+            var row = document.createElement("tr");
+            table.appendChild(row);
+            var td1 = document.createElement("td");
+            var d1 = document.createTextNode(a);
+            td1.appendChild(d1);
+            row.appendChild(td1);
+
+            var td2 = document.createElement("td");
+            var d2 = document.createTextNode("+");
+            td2.appendChild(d2);
+            row.appendChild(td2);
+
+            var td3 = document.createElement("td");
+        if (randomOn.checked == true){
+            ranNum.style.display = "block";
+            var d3 = document.createTextNode(getRndInteger(Number(raNnumber), (Number(raNnumber)+25)));
+            td3.appendChild(d3);
+            row.appendChild(td3);
+        }else{
+            ranNum.style.display = "none"; 
+            var d3 = document.createTextNode(i);
+            td3.appendChild(d3);
+            row.appendChild(td3);
+        }
+    
+        var td4 = document.createElement("td");
+        var d4 = document.createTextNode("=");
+        td4.appendChild(d4);
+        row.appendChild(td4);
+        var td5 = document.createElement("td");
+        if (practice.checked == true){
+            var d5 = document.createElement("input");
+            d5.type = "text";
+            d5.value = "";
+            d5.style = "width: 60px;"
+            td5.appendChild(d5);
+            row.appendChild(td5);
+            d5.addEventListener("input", chk);
+            d5.addEventListener("focus", wscroll);
+            
+        }else{
+            var d5 = document.createTextNode(Number(a) + Number(d3.nodeValue));
+            td5.appendChild(d5);
+            row.appendChild(td5);
+        }
+    }
+}
+    
+</script>
+</body>
+{%endblock%}

@@ -1,22 +1,2 @@
-            <li><a href="{% url 'testing' '01'%}">Division of 1 |</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 2 |</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 3 |</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 4 |</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 5 |</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 6 |</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 7 |</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 8 |</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 9 |</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 10|</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 11|</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 12|</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 13|</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 14|</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 15|</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 16|</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 17|</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 18|</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 19|</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 20|</a></li>
-            <li><a href="{% url 'testing' '01'%}">Division of 21|</a></li>
-            <li><a href="{% url 'testing' '02'%}">Division of 22|</a></li>
+#put links in a line using css
+#dictionary changed

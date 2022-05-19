@@ -51,10 +51,10 @@ path("multiplication-table-generator-calculator", views.multiplicationtablegener
 path("subtraction-table-generator-calculator", views.subtractiontablegeneratorcalculator, name= 'sub'),
 path("division-table-generator-calculator", views.divisiontablegeneratorcalculator, name= 'division'),
 
-re_path(r'^divisoion-of-(?P<a>[0-9]{2})$', views.divisiontablegeneratorcalculator ,name='divisionURL'),
-re_path(r'^addition-of-(?P<a>[0-9]{2})$', views.additiontablegeneratorcalculator ,name='addURL'),
-re_path(r'^multiplication-of-(?P<a>[0-9]{2})$', views.multiplicationtablegeneratorcalculator, name='multiplyURL'),
-re_path(r'^subtraction-of-(?P<a>[0-9]{2})$', views.subtractiontablegeneratorcalculator, name='subURL'),
+re_path(r'^divisoion-of-(?P<a>[0-9]{2})/$', views.divisionURL ,name='divisionURL'),
+re_path(r'^\D*0*addition-of-(?P<a>[0-9]{2})/$', views.additionURL ,name='addURL'),
+re_path(r'^multiplication-of-(?P<a>[0-9]{2})/$', views.multiplicationURL, name='multiplyURL'),
+re_path(r'^subtraction-of-(?P<a>[0-9]{2})/$', views.subtractionURL, name='subURL'),
 
 ]
 

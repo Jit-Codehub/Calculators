@@ -12299,27 +12299,66 @@ def cashbackorlowinterestcalculator(request):
 
 
 
-def additiontablegeneratorcalculator(request, a=7):
-  return render(request,"additiontablegeneratorcalculator.html",{"a":int(a)})
+def additiontablegeneratorcalculator(request):
+  return render(request,"additiontablegeneratorcalculator.html")
 
-def multiplicationtablegeneratorcalculator(request, a=11):
-  if a == "00":
-    a = 1
-  return render(request,"multiplicationtablegeneratorcalculator.html",{"a":int(a)})
+def multiplicationtablegeneratorcalculator(request):
+  return render(request,"multiplicationtablegeneratorcalculator.html")
 
-def subtractiontablegeneratorcalculator(request, a=7):
-  return render(request,"subtractiontablegeneratorcalculator.html",{"a":int(a)})
+def subtractiontablegeneratorcalculator(request):
+  return render(request,"subtractiontablegeneratorcalculator.html")
 
-def divisiontablegeneratorcalculator(request, a=11):
-  if a == "00":
-    a = 1
-  return render(request,"divisiontablegeneratorcalculator.html",{"a":int(a)})
+def divisiontablegeneratorcalculator(request):
+  return render(request,"divisiontablegeneratorcalculator.html")
 
 # def testing(request, a=11):
 #   if a == "00":
 #     a = 1
 #     print(a)
 #   return render(request, "testing.html",{"a":int(a)})
+
+def additionURL(request, a=7):
+  a = int(a)
+  if a in range(1,11):
+    l = ['01','02','03','04','05','06','07','08','09',10]
+  elif a in range(11,21):
+    l = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  elif a in range(21,31):
+    l = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+  elif a in range(31,41):
+    l = [31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+  elif a in range(41,51):
+    l = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
+  elif a in range(51,61):
+    l = [51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+  elif a in range(61,71):
+    l = [61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
+  elif a in range(71,81):
+    l = [71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
+  elif a in range(81,91):
+    l = [81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
+  elif a in range(91,100):
+    l = [91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
+  return render(request,"additionURL.html",{"a":a,"b":l})
+
+
+
+
+
+def multiplicationURL(request, a=11):
+  if a == "00":
+    a = 1
+  return render(request,"multiplicationURL.html",{"a":int(a)})
+
+def subtractionURL(request, a=7):
+  return render(request,"subtractionURL.html",{"a":int(a)})
+
+def divisionURL(request, a=11):
+  if a == "00":
+    a = 1
+  return render(request,"divisionURL.html",{"a":int(a)})
+
+
 
 
 
