@@ -46,25 +46,12 @@ path("pleated-skirt-calculator", views.pleatedskirtcalculator),
 path("quilt-binding-calculator", views.quiltbindingcalculator),
 path("quilt-calculator", views.quiltcalculator),
 path("cash-back-or-low-interest-calculator", views.cashbackorlowinterestcalculator),
-# re_path(r"^addition-table(?:-of-(?P<a>[0-9]+))?(?:(?P<b>[0-9]+))?/$", views.additiontablegeneratorcalculator, name='add'),
+
+
 re_path(r"^addition-table(?:-of-(?P<a>[0-9]+))?/$", views.additiontablegeneratorcalculator, name='add'),
 re_path(r"^subtraction-table(?:-of-(?P<a>[0-9]+))?/$", views.subtractiontablegeneratorcalculator, name= 'sub'),
 re_path(r"^multiplication-table(?:-of-(?P<a>[0-9]+))?/$", views.multiplicationtablegeneratorcalculator, name= 'multiply'),
 re_path(r"^division-table(?:-of-(?P<a>[0-9]+))?/$", views.divisiontablegeneratorcalculator, name= 'division'),
-# path("subtraction-table-generator-calculator", views.subtractiontablegeneratorcalculator, name= 'sub'),
-
-
-# re_path(r'^divisoion-of-(?P<a>[0-9]{2})/$', views.divisionURL ,name='divisionURL'),
-# re_path(r'^addition-of-(?P<a>[0-9]{2})/$', views.additionURL ,name='addURL'),
-# re_path(r'^multiplication-of-(?P<a>[0-9]{2})/$', views.multiplicationURL, name='multiplyURL'),
-# re_path(r'^subtraction-of-(?P<a>[0-9]{2})/$', views.subtractionURL, name='subURL'),
-
 ]
 
-# path('testing', views.testing),
-# path('testing/divisoion-of-<int:a>', views.testing, name = "testing"),
-# re_path(r'^testing/divisoion-of-(?P<a>[0-9]{2})$', views.testing, name = "testing"),
 
-# ]
-#re_path(r'^articles/(?P<year>[0-9]{4})/$', views.year_archive),
-# 'testing/divisoion\\-of\\-(?P<a>[0-9]+)\\Z'
