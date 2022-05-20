@@ -12316,7 +12316,7 @@ def divisiontablegeneratorcalculator(request,a=None):
   print(type(a))
   if a == None:
     print("I am none")
-    return render(request,"divisiontablegeneratorcalculator.html",{"a":11})
+    return render(request,"divisiontablegeneratorcalculator.html",{"a":5})
   elif a != None:
     try:
       print("I am not none = ",a)
@@ -12346,7 +12346,7 @@ def divisiontablegeneratorcalculator(request,a=None):
       print(l)
       return render(request,"divisiontablegeneratorcalculator.html",{"a":a,"b":l})
     except:
-      return render(request,"divisiontablegeneratorcalculator.html",{"a":11})
+      return render(request,"divisiontablegeneratorcalculator.html",{"a":5})
 
 
 # def subtractiontablegeneratorcalculator(request):

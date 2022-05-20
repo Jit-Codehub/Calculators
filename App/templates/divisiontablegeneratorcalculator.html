@@ -181,14 +181,14 @@ Online Calculator Guru Project Style Sheet
 		
 		</div>
 		
-        <p>I want to generate a division table of <input type="text" style="width:4em" name="inpu" value="{{a}}" oninput="limit(this); addFields();"></p>
+        <p>Generate a division table of <input type="text" style="width:4em" name="inpu" value="{{a}}" oninput="limit(this); addFields();"></p>
 
 		<p>Containing <input type="text" name="line" style="width: 4em;" value="10" oninput="limit(this); addFields();"> lines.</p>
 
         <p>Practice with the generated table:<input type="checkbox" style="width: 20px; height: 20px;" checked name="practice" id="practice" value="" onchange="addFields();"></p>
         
         
-        <p>Random numbers:<input type="checkbox" style="width: 20px; height: 20px;" name="randomOn" id="randomOn" value="" onchange="addFields();"></p>
+        <p>Random numbers:<input type="checkbox" style="width: 20px; height: 20px;" checked name="randomOn" id="randomOn" value="" onchange="addFields();"></p>
 
     <div id="ranNum">
 		<p>Random numbers start at:<input type="text" style="width: 4em;" name="rannumber" value="10" oninput="limit(this); addFields();"></p>
@@ -386,7 +386,7 @@ Online Calculator Guru Project Style Sheet
         {% endif %}
     </div>
 
-</body> 
+ 
 
 <script>
 
@@ -457,7 +457,7 @@ Online Calculator Guru Project Style Sheet
              
 
             var d1 = document.createTextNode(a * getRndInteger(Number(raNnumber), (Number(raNnumber)+30)));
-            console.log(d1)
+            
             td1.appendChild(d1);
             row.appendChild(td1);
             }else{
