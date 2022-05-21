@@ -403,15 +403,15 @@ Online Calculator Guru Project Style Sheet
     }
 
     function chk(evt){
-        var x = evt.target.parentNode.parentNode.firstChild.innerHTML;
-        var y = evt.target.parentNode.parentNode.childNodes[2].innerHTML;
-        var z = Number(x)+Number(y);
-        var j = evt.target.value;
+        let x = evt.target.parentNode.parentNode.firstChild.innerHTML;
+        let y = evt.target.parentNode.parentNode.childNodes[2].innerHTML;
+        let z = Number(x)+Number(y);
+        let j = evt.target.value;
         
         if (z == j){
-            var m = evt.target.style = "background-color:rgb(180, 234, 136); width: 60px;"
+            evt.target.style = "background-color:rgb(180, 234, 136); width: 60px;"
             }else{
-            var m = evt.target.style = "background-color: red; color: white; width: 60px;"
+            evt.target.style = "background-color: red; color: white; width: 60px;"
             }
             
     }
@@ -431,58 +431,55 @@ Online Calculator Guru Project Style Sheet
 
     function addFields(){
         
-        var calcInputs = document.querySelectorAll("input");
-        var a = calcInputs[0].value;
-        var line = calcInputs[1].value;
-        var practice = calcInputs[2];
-        var randomOn = calcInputs[3];
-        var ranNum = document.getElementById("ranNum");
-        var raNnumber = calcInputs[4].value;
-        var b = document.getElementById("container");
+        const calcInputs = document.querySelectorAll("input");
+        const a = calcInputs[0].value;
+        const line = calcInputs[1].value;
+        const practice = calcInputs[2];
+        const randomOn = calcInputs[3];
+        const ranNum = document.getElementById("ranNum");
+        const raNnumber = calcInputs[4].value;
+        const b = document.getElementById("container");
 
         while(b.hasChildNodes()){
             b.removeChild(b.lastChild);
         }
+
+
+        function tableRowData(a){
+            const td1 = document.createElement("td");
+            const d1 = document.createTextNode(a);
+            td1.appendChild(d1);
+            return td1;
+        };
     
-        var table = document.createElement("table");
+        const table = document.createElement("table");
         table.width = "100%";
         table.className="tabuada";
-        
-        
         b.appendChild(table);
-        for (var i=0; i<line; i++){
-            var row = document.createElement("tr");
+
+        for (let i=0; i<line; i++){
+            const row = document.createElement("tr");
             table.appendChild(row);
-            var td1 = document.createElement("td");
-            var d1 = document.createTextNode(a);
-            td1.appendChild(d1);
-            row.appendChild(td1);
 
-            var td2 = document.createElement("td");
-            var d2 = document.createTextNode("+");
-            td2.appendChild(d2);
-            row.appendChild(td2);
-
-            var td3 = document.createElement("td");
+            row.appendChild(tableRowData(a));
+            row.appendChild(tableRowData('+'));
+            
+            
         if (randomOn.checked == true){
             ranNum.style.display = "block";
-            var d3 = document.createTextNode(getRndInteger(Number(raNnumber), (Number(raNnumber)+25)));
-            td3.appendChild(d3);
-            row.appendChild(td3);
+            const rdm = getRndInteger(Number(raNnumber), (Number(raNnumber)+25));
+            row.appendChild(tableRowData(rdm));
         }else{
             ranNum.style.display = "none"; 
-            var d3 = document.createTextNode(i);
-            td3.appendChild(d3);
-            row.appendChild(td3);
+            row.appendChild(tableRowData(i));
         }
     
-        var td4 = document.createElement("td");
-        var d4 = document.createTextNode("=");
-        td4.appendChild(d4);
-        row.appendChild(td4);
-        var td5 = document.createElement("td");
+        row.appendChild(tableRowData('=')); 
+
+        
         if (practice.checked == true){
-            var d5 = document.createElement("input");
+            const td5 = document.createElement("td");
+            const d5 = document.createElement("input");
             d5.type = "text";
             d5.value = "";
             d5.style = "width: 60px;"
@@ -492,9 +489,8 @@ Online Calculator Guru Project Style Sheet
             d5.addEventListener("focus", wscroll);
             
         }else{
-            var d5 = document.createTextNode(Number(a) + Number(d3.nodeValue));
-            td5.appendChild(d5);
-            row.appendChild(td5);
+            const out = (Number(a) + Number(row.childNodes[2].textContent));
+            row.appendChild(tableRowData(out));
         }
     }
 }
