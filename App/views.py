@@ -12299,7 +12299,7 @@ def cashbackorlowinterestcalculator(request):
 
 
 
-def divisiontablegeneratorcalculator(request,a=None):
+def divisiontablegeneratorcalculator(request, title=None, a=None):
   if a == None:
     return render(request,"divisiontablegeneratorcalculator.html",{"a":5})
   elif a != None:
@@ -12333,7 +12333,7 @@ def divisiontablegeneratorcalculator(request,a=None):
 
 
 
-def subtractiontablegeneratorcalculator(request,a=None):
+def subtractiontablegeneratorcalculator(request, title=None, a=None):
   if a == None:
     return render(request,"subtractiontablegeneratorcalculator.html",{"a":7})
   elif a != None:
@@ -12365,7 +12365,7 @@ def subtractiontablegeneratorcalculator(request,a=None):
 
 
 
-def multiplicationtablegeneratorcalculator(request,a=None):
+def multiplicationtablegeneratorcalculator(request, title=None, a=None):
   if a == None:
     return render(request,"multiplicationtablegeneratorcalculator.html",{"a":11})
   elif a != None:
@@ -12401,7 +12401,7 @@ def multiplicationtablegeneratorcalculator(request,a=None):
 
 
 
-def additiontablegeneratorcalculator(request,a=None):
+def additiontablegeneratorcalculator(request, title=None, a=None):
   if a == None:
     return render(request,"additiontablegeneratorcalculator.html",{"a":7})
   elif a != None:

@@ -48,10 +48,14 @@ path("quilt-calculator", views.quiltcalculator),
 path("cash-back-or-low-interest-calculator", views.cashbackorlowinterestcalculator),
 
 
-re_path(r"^addition-table(?:-of-(?P<a>[0-9]+))?/$", views.additiontablegeneratorcalculator, name='add'),
-re_path(r"^subtraction-table(?:-of-(?P<a>[0-9]+))?/$", views.subtractiontablegeneratorcalculator, name= 'sub'),
-re_path(r"^multiplication-table(?:-of-(?P<a>[0-9]+))?/$", views.multiplicationtablegeneratorcalculator, name= 'multiply'),
-re_path(r"^division-table(?:-of-(?P<a>[0-9]+))?/$", views.divisiontablegeneratorcalculator, name= 'division'),
+# re_path(r"^addition-table(?:-of-(?P<a>[0-9]+))?/$", views.additiontablegeneratorcalculator, name='add'),
+
+re_path(r"^addition-table(?:-(?P<title>[a-z]+))?(?:-of-(?P<a>[0-9]+))?/$", views.additiontablegeneratorcalculator, name='add'),
+
+re_path(r"^subtraction-table(?:-(?P<title>[a-z]+))?(?:-of-(?P<a>[0-9]+))?/$", views.subtractiontablegeneratorcalculator, name= 'sub'),
+
+re_path(r"^multiplication-table(?:-(?P<title>[a-z]+))?(?:-of-(?P<a>[0-9]+))?/$", views.multiplicationtablegeneratorcalculator, name= 'multiply'),
+re_path(r"^division-table(?:-(?P<title>[a-z]+))?(?:-of-(?P<a>[0-9]+))?/$", views.divisiontablegeneratorcalculator, name= 'division'),
 ]
 
 
