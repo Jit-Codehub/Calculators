@@ -421,11 +421,22 @@ Online Calculator Guru Project Style Sheet
         
     }
 
-    function getRndInteger(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) ) + min;
-    }
+    
 
     function addFields(){
+
+        var arr = [];
+    function getRndInteger(min, max) {
+        let zx = Math.floor(Math.random() * (max - min + 1) ) + min;
+        if (arr.includes(zx)){
+            return getRndInteger(min, max);
+            }
+        else{
+            arr.push(zx);
+            return zx;
+        } 
+    }
+     
         
         var calcInputs = document.querySelectorAll("input");
         var a = calcInputs[0].value;
@@ -456,7 +467,7 @@ Online Calculator Guru Project Style Sheet
 
              
 
-            var d1 = document.createTextNode(a * getRndInteger(Number(raNnumber), (Number(raNnumber)+30)));
+            var d1 = document.createTextNode(a * getRndInteger(Number(raNnumber), (Number(raNnumber)+(1.5*Number(line)))));
             
             td1.appendChild(d1);
             row.appendChild(td1);
