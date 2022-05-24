@@ -22,7 +22,11 @@ Online Calculator Guru Project Style Sheet
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     
 <!-- Meta Title, Description and Canonical URL Starts --->
+{% if a and b %}
+<title>Division Table of {{a}}</title>
+{% else %}
 <title>Division Table Generator Calculator</title>
+{% endif %}
 <meta name="description"
     content="Half Life Calculator makes it easy for you to Half Life." />
 <link rel="canonical" href="{{request.build_absolute_uri}}">
