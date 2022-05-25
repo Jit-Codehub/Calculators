@@ -1,6 +1,14 @@
 from django.urls import path,include, re_path
-from App import views
+from App import sitemaps, views
+from django.contrib.sitemaps.views import sitemap
+from App.sitemaps import StaticStie, DynamicSite
+
+sitemaps = {
+    'sitemap':StaticStie,
+    'DynamicSite':DynamicSite
+}
 urlpatterns = [
+path('sitemap.xml',sitemap, {'sitemaps':sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
  path('ohms-law-calculator/',views.ohmslawcalculator),
  path('acceleration-of-particle-in-electric-field-calculator/',views.accelerationofparticleinelectricfield), 
  path('momentum-with-time-calculator/',views.momentumwithtimecalculator),
@@ -58,6 +66,8 @@ path("addition-table-of-<int:a>/", views.additiontablegeneratorcalculator, name=
 path("subtraction-table-of-<int:a>/", views.subtractiontablegeneratorcalculator, name= 'sub'),
 path("multiplication-table-of-<int:a>/", views.multiplicationtablegeneratorcalculator, name= 'multiply'),
 path("division-table-of-<int:a>/", views.divisiontablegeneratorcalculator, name= 'division'),
+
+
 ]
 
 

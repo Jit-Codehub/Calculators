@@ -12430,6 +12430,8 @@ def additiontablegeneratorcalculator(request, a=None):
       return render(request,"additiontablegeneratorcalculator.html",{"a":a,"b":l})
     except:
       return render(request,"additiontablegeneratorcalculator.html",{"a":7})
+
+
     
     
 
