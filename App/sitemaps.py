@@ -6,9 +6,8 @@ class StaticStie(Sitemap):
     changefreq = "daily"
     priority = 0.9
     lastmod = datetime.date.today()
+    protocol = "https"
     
-    
-
     def items(self):
         return ['addG', 'subG', 'mulG', 'divG']
 
@@ -16,7 +15,10 @@ class StaticStie(Sitemap):
         return reverse(item)
 
 class DynamicSite(Sitemap):
+    changefreq = "daily"
     priority = 0.9
+    lastmod = datetime.date.today()
+    protocol = "https"
     
     def items(self):
         return [i for i in range(1,101)]
