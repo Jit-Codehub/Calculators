@@ -1,11 +1,14 @@
 from django.urls import path,include, re_path
 from App import sitemaps, views
 from django.contrib.sitemaps.views import sitemap
-from App.sitemaps import StaticStie, DynamicSite
+from App.sitemaps import StaticStie, AddSite, SubSite, MultiplySite, DivisionSite
 
 sitemaps = {
     'sitemap':StaticStie,
-    'DynamicSite':DynamicSite
+    'AddSite':AddSite,
+    'SubSite':SubSite,
+    'MultiplySite':MultiplySite,
+    'DivisionSite':DivisionSite
 }
 urlpatterns = [
 path('sitemap.xml',sitemap, {'sitemaps':sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
