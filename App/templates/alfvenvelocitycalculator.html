@@ -94,23 +94,28 @@
                     
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <div class="input-group-text"><strong>Magnetic Flux Density</strong></div>
+                            <div class="input-group-text"><strong>Magnetic Field Strength (B)</strong></div>
                         </div>
                         <input type="text" min="0" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Magnetic Flux Density"  class="form-control" name="MFD" id="MFD" {% if MFD or MFD == 0 %} value="{{MFD}}" {% else %} value="2" {% endif %}>
+                        <div class="input-group-text"><strong>T</strong></div>
+
                     </div>
+
 
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <div class="input-group-text"><strong>Permeability Of Free Space</strong></div>
+                            <div class="input-group-text"><strong>Permeability Of Free Space (μ<sub>0</sub>)</strong></div>
                         </div>
-                        <input type="number" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" readonly placeholder="Permeability Of Free Space"  class="form-control" name="PFS" id="PFS" value="8.854187817e-12" >
+                        <input type="number" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" readonly placeholder="Permeability Of Free Space"  class="form-control" name="PFS" id="PFS" value="1.2566370614359173e-06" >
+                        <div class="input-group-text"><strong>N/A<sup>2</sup></strong></div>
                     </div>
 
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                            <div class="input-group-text"><strong>Plasma Mass Density</strong></div>
+                            <div class="input-group-text"><strong>Plasma Mass Density (ρ)</strong></div>
                         </div>
                         <input type="text" min="0" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Plasma Mass Density"  class="form-control" name="PMD" id="PMD" {% if PMD or PMD == 0 %} value="{{PMD}}" {% else %} value="2" {% endif %}>
+                        <div class="input-group-text"><strong>kg/m<sup>3</sup></strong></div>
                     </div>
 
                         
@@ -144,18 +149,18 @@
         
         <div class="card-body"> <span> 
             
-            <p><strong><span style="color: blue;">Growth length:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{result|floatformat:"-3"}}</span></strong>
+            <p><strong><span style="color: blue;">Alfven velocity:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{result}}</span></strong>
                 <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
-                    <option value="1" selected="">mm</option>
-                    <option value="0.1">cm</option>
-                    <option value="0.0393701">inches</option>
+                    <option value="1" selected="">m/s</option>
+                    <option value="3.6">km/h</option>
+                    <option value="0.001">km/s</option>
+                    <option value="0.0006214">mi/s</option>
                     
                     
                 </select>
             
             </p><br>
-            <h3>How fast does hair grow? The formula behind hair growth calculator</h3>
-            <p>The average hair growth rate is 0.5 inches per month, so growth in inches per month can be calculated according to the following equation:&nbsp; &nbsp;L = 0.5 * t, where L represents the length in inches, and t represents the amount of time in months. For the average hair growth rate in centimeters or millimeters per month, 0.5 can be converted and substituted into the equation.</p>
+            
             
             
         </div>
@@ -164,25 +169,14 @@
     {% endif %}
 </div>
 
-
-
+{% if f1 %}
 <script>
-    
-    {% if id == 1 %}
-     
     var scrollDiv = document.getElementById("clear").offsetTop;
     window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
-    
-    {%endif%}
-    
-        
-    {% if id == 2 %}
-     
-    var scrollDiv = document.getElementById("my_form1").offsetTop;
-    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
-    
-    {%endif%}
-    
+</script>
+{% endif %}
+
+<script>
     
         var validNumber = new RegExp(/^\d*\.?-?\d*$/);
         var fist_input = document.getElementById("inlineFormInputGroup").value;
@@ -199,7 +193,7 @@
         function modifyres1(){
             
             var sus  = document.getElementById("myunt1")
-            document.getElementById("span1").innerHTML = +(Number(result) * sus.value).toFixed(4)
+            document.getElementById("span1").innerHTML = +(Number(result) * sus.value)
         }
 
     </script>
@@ -207,7 +201,7 @@
     <script>
         function myFunction() {
 
-                document.getElementsByName("GT")[0].value = "";
+                // document.getElementsByName("GT")[0].value = "";
                 document.getElementById("clear").innerHTML = "";
             }
         </script>

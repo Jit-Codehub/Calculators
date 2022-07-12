@@ -12440,21 +12440,15 @@ def alfvenvelocitycalculator(request):
     MFD = request.POST.get('MFD')
     PMD = request.POST.get('PMD')
     # print(5/math.sqrt(1.2566370614359173e-06 * 3))
-    # result = int(MFD) / ((8.854187817e-12 * int(PMD))**1/2)
     result = float(MFD)/math.sqrt(1.2566370614359173e-06 * float(PMD))
-    result1 = int(MFD) / ((0.0000000000088541878 * int(PMD))**1/2)
-    print(int(MFD),int(PMD))
-    print(8.854187817e-12)
-    # vA = B / (μo * ρ)1/2
-    # vA = Alfven Speed
-    # B = Magnetic Flux Density
-    # μo = Permeability Of Free Space
-    # ρ = Plasma Mass Density
+    # result1 = int(MFD) / ((0.0000000000088541878 * int(PMD))**1/2)
+    
+    
     context = {
       "MFD":MFD,
       "PMD":PMD,
       "result":result,
-      "result1":result1,
+      "f1":"f1",
     }
     print(context)
     return render(request,"alfvenvelocitycalculator.html", context)
