@@ -10,6 +10,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- Mathjax library script -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+<!-- End of Mathjax library script -->
+
 <!-- Online Calculator Guru Site Fevicon -->
 <link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
     type="icon">
@@ -77,7 +84,7 @@
 <div class="container" style="height: auto !important;">
     <div class="card c1">
         <div class="card-header">
-            <p class="center"><strong> Alfven Velocity Calculator</strong></p>
+            <p class="center"><strong> Alfvén Velocity Calculator</strong></p>
         </div>
         <div class="card-body">
             <ul class="messages">
@@ -143,23 +150,32 @@
     
     <div class="card" id="Results">
         <div class="card-header">
-            <h2 class="h2">Results</h2>
+            <p><strong>Results</strong> </p>
         </div>
         
         
         <div class="card-body"> <span> 
             
-            <p><strong><span style="color: blue;">Alfven velocity:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{result}}</span></strong>
+            <p><strong><span style="color: blue;">Alfvén Velocity (v<sub>a</sub>):&nbsp;&nbsp;&nbsp;</span><span id="span1">{{result}}</span></strong>
                 <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
                     <option value="1" selected="">m/s</option>
                     <option value="3.6">km/h</option>
                     <option value="0.001">km/s</option>
                     <option value="0.0006214">mi/s</option>
-                    
-                    
                 </select>
-            
-            </p><br>
+            </p>
+
+            <p><strong>Formulas Used:</strong></p>
+            <p class="btn btn-outline-secondary active">v = B / √ (μ<sub>0</sub> * ρ)</p>
+            <p>where</p>
+            <ul>
+                <li>v<sub>a</sub> =	Alfvén Velocity (m/s)</li>
+                <li>B = Magnetic Field Strength (T)</li>
+                <li>μ<sub>0</sub> = Vacuum Permeability (permeability of free space, permeability of vacuum or magnetic constant)</li>
+                <li>ρ = Total mass density of the charged plasma particles (kg/m<sup>3</sup>)</li>
+
+            </ul>
+                
             
             
             
