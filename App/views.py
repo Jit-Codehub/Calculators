@@ -12432,6 +12432,22 @@ def additiontablegeneratorcalculator(request, a=None):
       return render(request,"additiontablegeneratorcalculator.html",{"a":7})
 
 
+
+
+def alfvenvelocitycalculator(request):
+  print(request.POST)
+  if request.POST:
+    MFD = request.POST.get('MFD')
+    PMD = request.POST.get('PMD')
+    
+    print("I am post")
+    return render(request,"alfvenvelocitycalculator.html")
+  else:
+    print("I am get")
+    return render(request,"alfvenvelocitycalculator.html")
+
+
+
     
     
 

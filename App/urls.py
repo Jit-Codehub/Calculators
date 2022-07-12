@@ -70,6 +70,8 @@ path("subtraction-table-of-<int:a>/", views.subtractiontablegeneratorcalculator,
 path("multiplication-table-of-<int:a>/", views.multiplicationtablegeneratorcalculator, name= 'multiply'),
 path("division-table-of-<int:a>/", views.divisiontablegeneratorcalculator, name= 'division'),
 
+path("alfven-velocity-calculator/",views.alfvenvelocitycalculator, name= 'alfven'),
+
 
 ]
 
