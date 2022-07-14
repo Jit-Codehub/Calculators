@@ -12435,26 +12435,45 @@ def additiontablegeneratorcalculator(request, a=None):
 
 
 def alfvenvelocitycalculator(request):
-  print(request.POST)
-  if request.POST:
-    MFD = request.POST.get('MFD')
-    PMD = request.POST.get('PMD')
-    # print(5/math.sqrt(1.2566370614359173e-06 * 3))
-    result = float(MFD)/math.sqrt(1.2566370614359173e-06 * float(PMD))
-    # result1 = int(MFD) / ((0.0000000000088541878 * int(PMD))**1/2)
-    
-    
-    context = {
-      "MFD":MFD,
-      "PMD":PMD,
-      "result":result,
-      "f1":"f1",
-    }
-    print(context)
-    return render(request,"alfvenvelocitycalculator.html", context)
-  else:
-    print("I am get")
-    return render(request,"alfvenvelocitycalculator.html")
+  try:
+    if request.POST:
+      MFD = request.POST.get('MFD')
+      PMD = request.POST.get('PMD')
+      
+      if float(PMD) == 0 and float(MFD) == 0:
+        context = {
+        "MFD":MFD,
+        "PMD":PMD,
+        "result":float('NaN'),
+        "f1":"f1",
+        }
+        print(context)
+        return render(request,"alfvenvelocitycalculator.html", context)
+
+      if float(PMD) == 0:
+        context = {
+        "MFD":MFD,
+        "PMD":PMD,
+        "result":float('inf'),
+        "f1":"f1",
+        }
+        print(context)
+        return render(request,"alfvenvelocitycalculator.html", context)
+      
+      result = float(MFD)/math.sqrt(1.2566370614359173e-06 * float(PMD))
+      context = {
+        "MFD":MFD,
+        "PMD":PMD,
+        "result":result,
+        "f1":"f1",
+      }
+      print(context)
+      return render(request,"alfvenvelocitycalculator.html", context)
+    else:
+      return render(request,"alfvenvelocitycalculator.html")
+  except:
+    return render(request,"alfvenvelocitycalculator.html",{'message':"Invalid Inputs"})
+
 
 
 

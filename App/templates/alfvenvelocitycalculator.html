@@ -103,7 +103,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Magnetic Field Strength (B)</strong></div>
                         </div>
-                        <input type="text" min="0" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Magnetic Flux Density"  class="form-control" name="MFD" id="MFD" {% if MFD or MFD == 0 %} value="{{MFD}}" {% else %} value="2" {% endif %}>
+                        <input type="number" min="0" step="0.000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Magnetic Field Strength"  class="form-control" name="MFD" id="MFD" {% if MFD or MFD == 0 %} value="{{MFD}}" {% else %} value="2" {% endif %}>
                         <div class="input-group-text"><strong>T</strong></div>
 
                     </div>
@@ -113,7 +113,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Permeability Of Free Space (μ<sub>0</sub>)</strong></div>
                         </div>
-                        <input type="number" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" readonly placeholder="Permeability Of Free Space"  class="form-control" name="PFS" id="PFS" value="1.2566370614359173e-06" >
+                        <input id="inlineFormInputGroup" readonly class="form-control" name="PFS" id="PFS" value="1.2566370614359173e-06" >
                         <div class="input-group-text"><strong>N/A<sup>2</sup></strong></div>
                     </div>
 
@@ -121,7 +121,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Plasma Mass Density (ρ)</strong></div>
                         </div>
-                        <input type="text" min="0" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Plasma Mass Density"  class="form-control" name="PMD" id="PMD" {% if PMD or PMD == 0 %} value="{{PMD}}" {% else %} value="2" {% endif %}>
+                        <input type="number" min="0" step="0.000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Plasma Mass Density"  class="form-control" name="PMD" id="PMD" {% if PMD or PMD == 0 %} value="{{PMD}}" {% else %} value="2" {% endif %}>
                         <div class="input-group-text"><strong>kg/m<sup>3</sup></strong></div>
                     </div>
 
