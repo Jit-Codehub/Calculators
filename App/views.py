@@ -12477,6 +12477,18 @@ def alfvenvelocitycalculator(request):
 
 
 
+
+def terminalvelocitycalculator(request):
+  if request.POST:
+    print("I am Post")
+    return render(request,"terminalvelocitycalculator.html")
+  else:
+    print("I am Get")
+    return render(request,"terminalvelocitycalculator.html")
+
+
+
+
     
     
 

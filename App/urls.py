@@ -71,6 +71,7 @@ path("multiplication-table-of-<int:a>/", views.multiplicationtablegeneratorcalcu
 path("division-table-of-<int:a>/", views.divisiontablegeneratorcalculator, name= 'division'),
 
 path("alfven-velocity-calculator/",views.alfvenvelocitycalculator, name= 'alfven'),
+path("terminal-velocity-calculator/",views.terminalvelocitycalculator, name= 'terminal'),
 
 
 ]
