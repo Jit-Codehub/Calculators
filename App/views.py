@@ -12479,114 +12479,116 @@ def alfvenvelocitycalculator(request):
 
 
 def terminalvelocitycalculator(request):
-  
-  if request.POST:
-    print(request.POST)
-    # for returning exact values to the user
-    Umass = request.POST.get('Mass')
-    Uarea = request.POST.get('Area')
-    Udrag = request.POST.get('Drag')
-    Udensity = request.POST.get('Density')
-    Ugravity = request.POST.get('Gravity')
-    mass_op = request.POST.get('Mass_op')
-    area_op = request.POST.get('Area_op')
-    density_op = request.POST.get('Density_op')
-    gravity_op = request.POST.get('Gravity_op')
+  try:
+    if request.POST:
+      print(request.POST)
+      # for returning exact values to the user
+      Umass = request.POST.get('Mass')
+      Uarea = request.POST.get('Area')
+      Udrag = request.POST.get('Drag')
+      Udensity = request.POST.get('Density')
+      Ugravity = request.POST.get('Gravity')
+      mass_op = request.POST.get('Mass_op')
+      area_op = request.POST.get('Area_op')
+      density_op = request.POST.get('Density_op')
+      gravity_op = request.POST.get('Gravity_op')
 
-    # for calculation
-    mass = float(request.POST.get('Mass'))
-    area = float(request.POST.get('Area'))
-    drag = float(request.POST.get('Drag'))
-    density = float(request.POST.get('Density'))
-    gravity = float(request.POST.get('Gravity'))
-    
+      # for calculation
+      mass = float(request.POST.get('Mass'))
+      area = float(request.POST.get('Area'))
+      drag = float(request.POST.get('Drag'))
+      density = float(request.POST.get('Density'))
+      gravity = float(request.POST.get('Gravity'))
+      
 
-    if mass_op == "mg":
-      mass = mass / 1000000
-    elif mass_op == "g":
-      mass = mass / 1000
-    elif mass_op == "kg":
-      mass = mass 
-    elif mass_op == "tonne":
-      mass = mass * 1000
-    elif mass_op == "oz":
-      mass = mass / 35.274
-    elif mass_op == "lb":
-      mass = mass / 2.205
-    elif mass_op == "ton":
-      mass = mass *  907.2
+      if mass_op == "mg":
+        mass = mass / 1000000
+      elif mass_op == "g":
+        mass = mass / 1000
+      elif mass_op == "kg":
+        mass = mass 
+      elif mass_op == "tonne":
+        mass = mass * 1000
+      elif mass_op == "oz":
+        mass = mass / 35.274
+      elif mass_op == "lb":
+        mass = mass / 2.205
+      elif mass_op == "ton":
+        mass = mass *  907.2
 
-    if area_op == "mm2":
-      area = area / 1000000
-    elif area_op == "cm2":
-      area = area / 10000
-    elif area_op == "m2":
-      area = area 
-    elif area_op == "in2":
-      area = area / 1550
-    elif area_op == "ft2":
-      area = area / 10.764
-    elif area_op == "yd2":
-      area = area / 1.196
+      if area_op == "mm2":
+        area = area / 1000000
+      elif area_op == "cm2":
+        area = area / 10000
+      elif area_op == "m2":
+        area = area 
+      elif area_op == "in2":
+        area = area / 1550
+      elif area_op == "ft2":
+        area = area / 10.764
+      elif area_op == "yd2":
+        area = area / 1.196
 
-    if density_op == "g/m3":
-      density = density / 1000
-    elif density_op == "g/cm3":
-      density = density * 1000
-    elif density_op == "kg/m3":
-      density = density 
-    elif density_op == "kg/cm3":
-      density = density * 1000000
-    elif density_op == "oz/cu in":
-      density = density * 1730
-    elif density_op == "lb/cu ft":
-      density = density * 16.018
-    elif density_op == "lb/cu yd":
-      density = density * 0.59327642
-    elif density_op == "g/litre":
-      density = density * 1
+      if density_op == "g/m3":
+        density = density / 1000
+      elif density_op == "g/cm3":
+        density = density * 1000
+      elif density_op == "kg/m3":
+        density = density 
+      elif density_op == "kg/cm3":
+        density = density * 1000000
+      elif density_op == "oz/cu in":
+        density = density * 1730
+      elif density_op == "lb/cu ft":
+        density = density * 16.018
+      elif density_op == "lb/cu yd":
+        density = density * 0.59327642
+      elif density_op == "g/litre":
+        density = density * 1
 
-    if gravity_op == "g":
-      gravity = gravity * 9.80665
-    elif gravity_op == "m/s2":
-      gravity = gravity
-    
-    print(mass, area, drag, density, gravity)
+      if gravity_op == "g":
+        gravity = gravity * 9.80665
+      elif gravity_op == "m/s2":
+        gravity = gravity
+      
+      print(mass, area, drag, density, gravity)
 
-    velocity = math.sqrt((2 * mass * gravity)/(area * drag * density))
-    km_velocity = velocity * 3.6
-    ft_velocity = velocity * 3.281
-    mph_velocity = velocity * 2.237
-    
+      velocity = math.sqrt((2 * mass * gravity)/(area * drag * density))
+      km_velocity = velocity * 3.6
+      ft_velocity = velocity * 3.281
+      mph_velocity = velocity * 2.237
+      
 
-    context = {
-      "Mass":Umass,
-      "Area":Uarea,
-      "Drag":Udrag,
-      "Density":Udensity,
-      "Gravity":Ugravity,
-      "Mass_op":mass_op,
-      "Area_op":area_op,
-      "Density_op":density_op,
-      "Gravity_op":gravity_op,
+      context = {
+        "Mass":Umass,
+        "Area":Uarea,
+        "Drag":Udrag,
+        "Density":Udensity,
+        "Gravity":Ugravity,
+        "Mass_op":mass_op,
+        "Area_op":area_op,
+        "Density_op":density_op,
+        "Gravity_op":gravity_op,
 
-      "mass":mass,
-      "area":area,
-      "drag":drag,
-      "density":density,
-      "gravity":gravity,
-      "velocity":velocity,
-      "km_velocity":km_velocity,
-      "ft_velocity":ft_velocity,
-      "mph_velocity":mph_velocity,
-      "f1":"f1",
-    }
+        "mass":mass,
+        "area":area,
+        "drag":drag,
+        "density":density,
+        "gravity":gravity,
+        "velocity":velocity,
+        "km_velocity":km_velocity,
+        "ft_velocity":ft_velocity,
+        "mph_velocity":mph_velocity,
+        "f1":"f1",
+      }
 
-    print(context)
-    return render(request,"terminalvelocitycalculator.html",context)
-  else:
-    print("I am Get")
-    return render(request,"terminalvelocitycalculator.html")
+      print(context)
+      return render(request,"terminalvelocitycalculator.html",context)
+    else:
+      print("I am Get")
+      return render(request,"terminalvelocitycalculator.html")
+  except:
+    return render(request,"terminalvelocitycalculator.html",{"message":"Invalid Inputs"})
 
 
 

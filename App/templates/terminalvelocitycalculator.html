@@ -102,6 +102,12 @@
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Mass_op" id="Mass_op">
 
+                            {% if Mass_op == 'kg' %}
+                            <option value="kg" selected="selected">kg</option>
+                            {% else %}
+                            <option value="kg">kg</option>
+                            {% endif %}
+
                             {% if Mass_op == 'mg' %}
                             <option value="mg" selected="selected">mg</option>
                             {% else %}
@@ -115,11 +121,7 @@
                             {% endif %}
 
 
-                            {% if Mass_op == 'kg' %}
-                            <option value="kg" selected="selected">kg</option>
-                            {% else %}
-                            <option value="kg">kg</option>
-                            {% endif %}
+                            
 
                             {% if Mass_op == 'tonne' %}
                             <option value="tonne" selected="selected">tonne</option>
@@ -157,6 +159,12 @@
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Area_op" id="Area_op">
 
+                            {% if Area_op == 'm2' %}
+                            <option value="m2" selected="selected">m²</option>
+                            {% else %}
+                            <option value="m2">m²</option>
+                            {% endif %}
+
                             {% if Area_op == 'mm2' %}
                             <option value="mm2" selected="selected">mm²</option>
                             {% else %}
@@ -170,11 +178,7 @@
                             {% endif %}
 
 
-                            {% if Area_op == 'm2' %}
-                            <option value="m2" selected="selected">m²</option>
-                            {% else %}
-                            <option value="m2">m²</option>
-                            {% endif %}
+                            
 
                             {% if Area_op == 'in2' %}
                             <option value="in2" selected="selected">in²</option>
@@ -214,6 +218,12 @@
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Density_op" id="Density_op">
 
+                            {% if Density_op == 'kg/m3' %}
+                            <option value="kg/m3" selected="selected">kg/m&#179;</option>
+                            {% else %}
+                            <option value="kg/m3">kg/m&#179;</option>
+                            {% endif %}
+
                             {% if Density_op == 'g/m3' %}
                             <option value="g/m3" selected="selected">g/m&#179;</option>
                             {% else %}
@@ -227,11 +237,7 @@
                             {% endif %}
 
 
-                            {% if Density_op == 'kg/m3' %}
-                            <option value="kg/m3" selected="selected">kg/m&#179;</option>
-                            {% else %}
-                            <option value="kg/m3">kg/m&#179;</option>
-                            {% endif %}
+                            
 
                             {% if Density_op == 'kg/cm3' %}
                             <option value="kg/cm3" selected="selected">kg/cm&#179;</option>
@@ -409,7 +415,7 @@
     <script>
         function myFunction() {
 
-                document.getElementsByName("GT")[0].value = "";
+                // document.getElementsByName("GT")[0].value = "";
                 document.getElementById("clear").innerHTML = "";
             }
     </script>
