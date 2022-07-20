@@ -12593,6 +12593,115 @@ def terminalvelocitycalculator(request):
 
 
 
+
+def pendulumkineticenergy(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      # for returning exact values to the user
+      Umass = request.POST.get('Mass')
+      Ulength = request.POST.get('Length')
+      Uheight = request.POST.get('Height')
+      mass_op = request.POST.get('Mass_op')
+      length_op = request.POST.get('Length_op')
+      height_op = request.POST.get('Height_op')
+
+      #for calculation
+      mass = float(request.POST.get('Mass'))
+      length = float(request.POST.get('Length'))
+      height = float(request.POST.get('Height'))
+
+      if length_op == "m":
+        length = length
+      elif length_op == "mm":
+        length = length / 1000
+      elif length_op == "cm":
+        length = length / 100
+      elif length_op == "in":
+        length = length / 39.37
+      elif length_op == "ft":
+        length = length / 3.281
+      elif length_op == "yd":
+        length = length / 1.094
+
+      if height_op == "m":
+        height = height
+      elif height_op == "mm":
+        height = height / 1000
+      elif height_op == "cm":
+        height = height / 100
+      elif height_op == "in":
+        height = height / 39.37
+      elif height_op == "ft":
+        height = height / 3.281
+      elif height_op == "yd":
+        height = height / 1.094
+
+      if height > length:
+        context = {
+        "Mass":Umass,
+        "Length":Ulength,
+        "Height":Uheight,
+        "Mass_op":mass_op,
+        "Length_op":length_op,
+        "Height_op":height_op,
+        "message":"Height cannot be bigger than Length",
+        }
+        
+        print("I am Error")
+        return render(request,"pendulumkineticenergy.html",context)
+
+
+      if mass_op == "mg":
+        mass = mass / 1000000
+      elif mass_op == "g":
+        mass = mass / 1000
+      elif mass_op == "kg":
+        mass = mass 
+      elif mass_op == "tonne":
+        mass = mass * 1000
+      elif mass_op == "oz":
+        mass = mass / 35.274
+      elif mass_op == "lb":
+        mass = mass / 2.205
+      elif mass_op == "ton":
+        mass = mass *  907.185
+
+
+      period = 2*math.pi*math.sqrt(length/9.8)
+      frequency = 1/period
+      energy = mass * height * 9.8 + 1/2 * mass * (frequency**2)
+      speed = math.sqrt(2*9.8*height)
+      
+
+      context = {
+        "Mass":Umass,
+        "Length":Ulength,
+        "Height":Uheight,
+        "Mass_op":mass_op,
+        "Length_op":length_op,
+        "Height_op":height_op,
+        #results
+        "period":period,
+        "frequency":frequency,
+        "energy":energy,
+        "speed":speed,
+
+        "f1":"f1",
+
+      }
+        
+      print(context)
+      return render(request,"pendulumkineticenergy.html",context)
+    else:
+      print("I am GET")
+      return render(request,"pendulumkineticenergy.html")
+  except:
+    return render(request,"pendulumkineticenergy.html",{"message":"Invalid Inputs"})
+
+
+
+
     
     
 

@@ -72,6 +72,7 @@ path("division-table-of-<int:a>/", views.divisiontablegeneratorcalculator, name=
 
 path("alfven-velocity-calculator/",views.alfvenvelocitycalculator, name= 'alfven'),
 path("terminal-velocity-calculator/",views.terminalvelocitycalculator, name= 'terminal'),
+path("pendulum-kinetic-energy-calculator/",views.pendulumkineticenergy, name= 'Pkinetic')
 
 
 ]
