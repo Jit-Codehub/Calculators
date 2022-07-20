@@ -1,0 +1,419 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Terminal Velocity Calculator</title>
+<meta name="description" content="Terminal Velocity Calculator| Free Calculator to find Terminal Velocity" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Terminal Velocity Calculator" />
+<meta property="og:description" content="Terminal Velocity Calculator| Free Calculator to find Terminal Velocity" />
+<meta content="" property="og:site_name" />
+<meta content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg"
+    property="og:image" />
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Terminal Velocity Calculator" />
+<meta name="twitter:description" content="Terminal Velocity Calculator| Free Calculator to find Terminal Velocity" />
+<meta name="twitter:image:src"
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+
+<meta property='og:title' content="Terminal Velocity Calculator" />
+<meta property='og:image'
+    content="https://onlinecalculator.guru/static/images/Chemistry/Half-Life-Calculator
+.jpeg" />
+<meta property='og:description' content="Terminal Velocity Calculator| Free Calculator to find Terminal Velocity"/>
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <p class="center"><strong> Terminal Velocity Calculator</strong></p>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}  
+                <p  id="error" class="alert alert-danger text-center" style="color:red; display: none;"></p> 
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Mass</strong></div>
+                        </div>
+                        <input type="number" min = "0.0000001" step="0.0000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Mass"  class="form-control" name="Mass" id="Mass" {% if Mass or Mass == 0 %} value="{{Mass}}" {% else %} value="2" {% endif %}>
+
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="Mass_op" id="Mass_op">
+
+                            {% if Mass_op == 'mg' %}
+                            <option value="mg" selected="selected">mg</option>
+                            {% else %}
+                            <option value="mg">mg</option>
+                            {% endif %}
+
+                            {% if Mass_op == 'g' %}
+                            <option value="g" selected="selected">g</option>
+                            {% else %}
+                            <option value="g">g</option>
+                            {% endif %}
+
+
+                            {% if Mass_op == 'kg' %}
+                            <option value="kg" selected="selected">kg</option>
+                            {% else %}
+                            <option value="kg">kg</option>
+                            {% endif %}
+
+                            {% if Mass_op == 'tonne' %}
+                            <option value="tonne" selected="selected">tonne</option>
+                            {% else %}
+                            <option value="tonne">tonne</option>
+                            {% endif %}
+
+                            {% if Mass_op == 'oz' %}
+                            <option value="oz" selected="selected">oz</option>
+                            {% else %}
+                            <option value="oz">oz</option>
+                            {% endif %}
+
+                            {% if Mass_op == 'lb' %}
+                            <option value="lb" selected="selected">lb</option>
+                            {% else %}
+                            <option value="lb">lb</option>
+                            {% endif %}
+
+                            {% if Mass_op == 'ton' %}
+                            <option value="ton" selected="selected">ton</option>
+                            {% else %}
+                            <option value="ton">ton</option>
+                            {% endif %}
+
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Cross-section area</strong></div>
+                        </div>
+                        <input type="number" min = "0.000000000001" step="0.000000000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Cross-section area"  class="form-control" name="Area" id="Area" {% if Area or Area == 0 %} value="{{Area}}" {% else %} value="2" {% endif %}>
+
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="Area_op" id="Area_op">
+
+                            {% if Area_op == 'mm2' %}
+                            <option value="mm2" selected="selected">mm²</option>
+                            {% else %}
+                            <option value="mm2">mm²</option>
+                            {% endif %}
+
+                            {% if Area_op == 'cm2' %}
+                            <option value="cm2" selected="selected">cm²</option>
+                            {% else %}
+                            <option value="cm2">cm²</option>
+                            {% endif %}
+
+
+                            {% if Area_op == 'm2' %}
+                            <option value="m2" selected="selected">m²</option>
+                            {% else %}
+                            <option value="m2">m²</option>
+                            {% endif %}
+
+                            {% if Area_op == 'in2' %}
+                            <option value="in2" selected="selected">in²</option>
+                            {% else %}
+                            <option value="in2">in²</option>
+                            {% endif %}
+
+                            {% if Area_op == 'ft2' %}
+                            <option value="ft2" selected="selected">ft²</option>
+                            {% else %}
+                            <option value="ft2">ft²</option>
+                            {% endif %}
+
+                            {% if Area_op == 'yd2' %}
+                            <option value="yd2" selected="selected">yd²</option>
+                            {% else %}
+                            <option value="yd2">yd²</option>
+                            {% endif %}
+
+                            </select>
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Drag Coefficient</strong></div>
+                        </div>
+                        <input type="number" min = "0.000000000001" step="0.000000000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Drag Coefficient"  class="form-control" name="Drag" id="Drag" {% if Drag or Drag == 0 %} value="{{Drag}}" {% else %} value="0.294" {% endif %}>
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Air density</strong></div>
+                        </div>
+                        <input type="number" min = "0.00000001" step="0.00000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Air density"  class="form-control" name="Density" id="Density" {% if Density or Density == 0 %} value="{{Density}}" {% else %} value="1.225" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="Density_op" id="Density_op">
+
+                            {% if Density_op == 'g/m3' %}
+                            <option value="g/m3" selected="selected">g/m&#179;</option>
+                            {% else %}
+                            <option value="g/m3">g/m&#179;</option>
+                            {% endif %}
+
+                            {% if Density_op == 'g/cm3' %}
+                            <option value="g/cm3" selected="selected">g/cm&#179;</option>
+                            {% else %}
+                            <option value="g/cm3">g/cm&#179;</option>
+                            {% endif %}
+
+
+                            {% if Density_op == 'kg/m3' %}
+                            <option value="kg/m3" selected="selected">kg/m&#179;</option>
+                            {% else %}
+                            <option value="kg/m3">kg/m&#179;</option>
+                            {% endif %}
+
+                            {% if Density_op == 'kg/cm3' %}
+                            <option value="kg/cm3" selected="selected">kg/cm&#179;</option>
+                            {% else %}
+                            <option value="kg/cm3">kg/cm&#179;</option>
+                            {% endif %}
+
+                            {% if Density_op == 'oz/cu in' %}
+                            <option value="oz/cu in" selected="selected">oz/cu in</option>
+                            {% else %}
+                            <option value="oz/cu in">oz/cu in</option>
+                            {% endif %}
+
+                            {% if Density_op == 'lb/cu ft' %}
+                            <option value="lb/cu ft" selected="selected">lb/cu ft</option>
+                            {% else %}
+                            <option value="lb/cu ft">lb/cu ft</option>
+                            {% endif %}
+
+                            {% if Density_op == 'lb/cu yd' %}
+                            <option value="lb/cu yd" selected="selected">lb/cu yd</option>
+                            {% else %}
+                            <option value="lb/cu yd">lb/cu yd</option>
+                            {% endif %}
+
+                            {% if Density_op == 'g/litre' %}
+                            <option value="g/litre" selected="selected">g/litre</option>
+                            {% else %}
+                            <option value="g/litre">g/litre</option>
+                            {% endif %}
+
+                            </select>
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Gravity</strong></div>
+                        </div>
+                        <input type="number" min = "0.00000001" step="0.00000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Gravity"  class="form-control" name="Gravity" id="Gravity" {% if Gravity or Gravity == 0 %} value="{{Gravity}}" {% else %} value="9.81" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="Gravity_op" id="Gravity_op">
+
+                            {% if Gravity_op == 'm/s2' %}
+                            <option value="m/s2" selected="selected">m/s²</option>
+                            {% else %}
+                            <option value="m/s2">m/s²</option>
+                            {% endif %}
+
+                            {% if Gravity_op == 'g' %}
+                            <option value="g" selected="selected">g</option>
+                            {% else %}
+                            <option value="g">g</option>
+                            {% endif %}
+
+                            
+
+                        </select>
+                    </div>
+
+
+
+
+                        
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="data">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <h2 class="h2">Results</h2>
+        </div>
+        
+        
+        <div class="card-body"> <span> 
+            
+            <p><strong><span style="color: blue;">Terminal Velocity (V<sub>t</sub>):&nbsp;&nbsp;&nbsp;</span>{{velocity|floatformat:"-3"}} m/s ({{km_velocity|floatformat:"-3"}} km/h) ({{ft_velocity|floatformat:"-3"}} ft/s) ({{mph_velocity|floatformat:"-3"}} mph)</strong>
+                <!-- <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
+                    <option value="1" selected="">mm</option>
+                    <option value="0.1">cm</option>
+                    <option value="0.0393701">inches</option>
+                    
+                    
+                </select> -->
+            
+            </p><br>
+
+            <p><strong>Formulas Used:</strong></p>
+            <p class="btn btn-outline-secondary active">v_t = √((2 × m × g)/(ρ × A × Cd))
+
+            </p>
+            <p>where</p>
+            <ul>
+                <li>m - Body mass in kg</li>
+                <li>g – Gravitational acceleration in m/s<sup>2</sup>;</li>
+                <li>ρ – Density of fluid in kg/m<sup>3</sup></li>
+                <li>A – Cross-sectional area in m<sup>2</sup></li>
+                <li>Cd – Coefficient of drag</li>
+
+            </ul>
+
+            <p>Terminal velocity is defined as the <strong>maximum velocity</strong> an object can achieve when falling through a fluid, such as air or water. That happens when the gravitational force working on the object in downward direction equals the sum of upward forces (drag and buoyancy) impeding it's fall. An object moving at terminal velocity has zero acceleration and constant speed as the net force on it is zero by definition.</p>
+
+            <p><strong> Terminal Velocity of a Human</strong><br>
+                The terminal velocity of an average 80 kg human body is about 66 meters per second (= 240 km/h = 216 ft/s = 148 mph). Terminal velocity can be achieved by an object provided it has enough distance to fall through so if you want to experience it, you need to jump from a high enough place (do not forget your parachute!). For example, a human body generally needs to fall about 450 meters (1,500 feet) of height before it reaches terminal velocity. Such a fall takes roughly 12 seconds.</p>
+
+          
+           
+            
+            
+        </div>
+
+    </div>
+    {% endif %}
+</div>
+
+
+
+<script>
+    
+    {% if f1 %}
+     
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    
+    {%endif%}
+    
+    
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        function validateMin(elem){
+            const num = Number(elem.value);
+            if (num < elem.dataset.min){
+                document.getElementById('error').innerHTML = `${elem.placeholder.slice(6)} value must be greater than or equal to 1e-7`
+                document.getElementById('error').style.display = "block";
+                elem.value = ''
+            }
+        }
+
+        const result = document.getElementById("span1").innerHTML
+        function modifyres1(){
+            
+            var sus  = document.getElementById("myunt1")
+            document.getElementById("span1").innerHTML = +(Number(result) * sus.value).toFixed(4)
+        }
+
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                document.getElementsByName("GT")[0].value = "";
+                document.getElementById("clear").innerHTML = "";
+            }
+    </script>
+    
+    
+    
+    {% endblock %}
