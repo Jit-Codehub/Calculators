@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- Mathjax library script -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+<!-- End of Mathjax library script -->
+
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Atoms to Moles Calculator</title>
+<meta name="description" content="Atoms to Moles Calculator | Free Calculator to convert Atoms to Moles" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Atoms to Moles Calculator" />
+<meta property="og:description" content="Atoms to Moles Calculator | Free Calculator to convert Atoms to Moles" />
+<meta content="" property="og:site_name" />
+
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Atoms to Moles Calculator" />
+<meta name="twitter:description" content="Atoms to Moles Calculator | Free Calculator to convert Atoms to Moles" />
+
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+
+<meta property='og:title' content="Atoms to Moles Calculator" />
+
+<meta property='og:description' content="Atoms to Moles Calculator | Free Calculator to convert Atoms to Moles" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <p class="center"><strong>Atoms to Moles Calculator</strong></p>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Atoms:</strong></div>
+                        </div>
+                        <input type="number" min="0.000000000001" step="0.000000000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Atoms"  class="form-control" name="Atom" id="Atom" {% if Atom or Atom == 0 %} value="{{Atom}}" {% else %} value="2" {% endif %}>
+                        
+                    </div>
+
+
+                    
+
+                        
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <p><strong>Results</strong> </p>
+        </div>
+        
+        
+        <div class="card-body"> <span> 
+            
+            <p><strong><span style="color: blue;">Moles:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{moles}}</span></strong>
+                
+            </p>
+
+            <p><strong>Formulas Used:</strong></p>
+            <p class="btn btn-outline-secondary active">moles = atoms / (6.02214076 * (10<sup>23</sup> ))</p><br><br>
+            
+            <p><strong>How to Convert Atoms to Moles</strong></p>
+            <p>The SI base unit for the quantity of substance is the mole, which is abbreviated mol. To convert atoms to the quantity of substance in moles, you’ll need to use a conversion formula.</p>
+
+            <p><strong>Atoms to Moles Formula</strong></p>
+            <p>Unlike the process for converting the mass in grams to moles, the atoms to moles conversion formula is based around Avogadro’s number, which is a numerical constant. Then, using the constant, you can use the atom to mole conversion formula to calculate the amount of substance.</p>
+            <p><strong>Avogadro Constant</strong></p>
+            <p>The Avogadro constant defines the conversion ratio for the amount of substance to the number of particles such as atoms, molecules, or ions in a sample. The Avogadro constant is equal to 6.02214076 × 10<sup>23</sup>.</p>
+
+            <p>Note that the Avogadro constant is so large that it’s almost always referred to using scientific notation. It is named for Amedeo Avogadro, who defined the value in the early 19th century and stated that the volume of any gas is proportional to the number of atoms and molecules within.</p>
+            <p>Using the Avogadro constant, the formula to convert atoms to moles is:</p>
+            <p><strong>moles = atoms / (6.02214076 * (10<sup>23</sup> ))</strong></p>
+
+            <p>Thus, the amount of substance in moles is equal to the number of atoms divided by the Avogadro constant, or 6.02214076 × 10<sup>23</sup>.</p>
+
+           
+        </div>
+
+    </div>
+    {% endif %}
+</div>
+
+{% if f1 %}
+<script>
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+</script>
+{% endif %}
+
+<script>
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        const result = document.getElementById("span1").innerHTML
+        function modifyres1(){
+            
+            var sus  = document.getElementById("myunt1")
+            document.getElementById("span1").innerHTML = +(Number(result) * sus.value)
+        }
+
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                // document.getElementsByName("GT")[0].value = "";
+                document.getElementById("clear").innerHTML = "";
+            }
+        </script>
+    <br>
+    
+    
+    {% endblock %}

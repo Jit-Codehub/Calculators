@@ -12702,6 +12702,30 @@ def pendulumkineticenergy(request):
 
 
 
+def atomstomolescalculator(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      Uatom = request.POST.get('Atom')
+      atom = float(request.POST.get('Atom'))
+
+      moles = atom / (6.02214076 * (10**23))
+
+      context = {
+        'Atom':Uatom,
+        "moles":str(moles),
+        "f1":"f1",
+      }
+      print(context)
+      return render(request,"atomstomolescalculator.html",context)
+    else:
+      print("I am GET")
+      return render(request,"atomstomolescalculator.html")
+  except:
+    return render(request,"atomstomolescalculator.html",{"message":"Invalid Inputs"})
+
+
+
     
     
 
