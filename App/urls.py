@@ -74,6 +74,7 @@ path("alfven-velocity-calculator/",views.alfvenvelocitycalculator, name= 'alfven
 path("terminal-velocity-calculator/",views.terminalvelocitycalculator, name= 'terminal'),
 path("pendulum-kinetic-energy-calculator/",views.pendulumkineticenergy, name= 'Pkinetic'),
 path("atoms-to-moles-calculator/",views.atomstomolescalculator, name = "atoms"),
+path("equivalent-mass-of-acid-calculator/",views.equivalentmassofacidcalculator, name = "acid"),
 
 
 ]

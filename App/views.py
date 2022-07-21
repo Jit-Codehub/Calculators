@@ -12726,6 +12726,44 @@ def atomstomolescalculator(request):
 
 
 
+
+def equivalentmassofacidcalculator(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      Umass = request.POST.get("Mass")
+      Uhydro = request.POST.get("Hydro")
+      mass = float(request.POST.get("Mass"))
+      hydro = float(request.POST.get("Hydro"))
+
+      acid = mass / hydro
+
+      context = {
+        "Mass":Umass,
+        "Hydro":Uhydro,
+        "acid":acid,
+        "f1":"f1",
+
+      }
+      print(context)
+      return render(request,"equivalentmassofacidcalculator.html",context)
+    else:
+      print("I am GET")
+      return render(request,"equivalentmassofacidcalculator.html")
+  except ZeroDivisionError:
+    context = {
+        "Mass":Umass,
+        "Hydro":Uhydro,
+        "acid":"Infinity",
+        "f1":"f1",
+    }
+    return render(request,"equivalentmassofacidcalculator.html",context)
+  except:
+    return render(request,"equivalentmassofacidcalculator.html",{"message":"Invalid Inputs"})
+
+
+
+
     
     
 
