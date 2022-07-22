@@ -12764,6 +12764,31 @@ def equivalentmassofacidcalculator(request):
 
 
 
+def mgmlmolarity(request):
+  if request.POST:
+    print(request.POST)
+    Uconcent = request.POST.get('Concent')
+    Uweight = request.POST.get('Weight')
+    concent = float(request.POST.get('Concent'))
+    weight = float(request.POST.get('Weight'))
+
+    Molarity = concent / weight
+
+    context = {
+      "Concent":Uconcent,
+      "Weight":Uweight,
+      "molarity":Molarity,
+      "f1":"f1",
+    }
+    print(context)
+    return render(request, "mgmlmolarity.html",context)
+  else:
+    print("I am GET")
+    return render(request, "mgmlmolarity.html")
+
+
+
+
     
     
 
