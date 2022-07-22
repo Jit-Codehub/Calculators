@@ -12765,27 +12765,37 @@ def equivalentmassofacidcalculator(request):
 
 
 def mgmlmolarity(request):
-  if request.POST:
-    print(request.POST)
-    Uconcent = request.POST.get('Concent')
-    Uweight = request.POST.get('Weight')
-    concent = float(request.POST.get('Concent'))
-    weight = float(request.POST.get('Weight'))
+  try:
+    if request.POST:
+      print(request.POST)
+      Uconcent = request.POST.get('Concent')
+      Uweight = request.POST.get('Weight')
+      concent = float(request.POST.get('Concent'))
+      weight = float(request.POST.get('Weight'))
 
-    Molarity = concent / weight
+      Molarity = concent / weight
 
+      context = {
+        "Concent":Uconcent,
+        "Weight":Uweight,
+        "molarity":Molarity,
+        "f1":"f1",
+      }
+      print(context)
+      return render(request, "mgmlmolarity.html",context)
+    else:
+      print("I am GET")
+      return render(request, "mgmlmolarity.html")
+  except ZeroDivisionError:
     context = {
-      "Concent":Uconcent,
-      "Weight":Uweight,
-      "molarity":Molarity,
-      "f1":"f1",
-    }
-    print(context)
+        "Concent":Uconcent,
+        "Weight":Uweight,
+        "molarity":"Infinity",
+        "f1":"f1",
+      }
     return render(request, "mgmlmolarity.html",context)
-  else:
-    print("I am GET")
-    return render(request, "mgmlmolarity.html")
-
+  except:
+    return render(request, "mgmlmolarity.html",{"message":"Invalid Inputs"})
 
 
 
