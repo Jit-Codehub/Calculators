@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- Mathjax library script -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+<!-- End of Mathjax library script -->
+
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Molar Ratio Calculator</title>
+<meta name="description" content="Molar Ratio Calculator | Free Calculator to find Molar Ratio" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Molar Ratio Calculator" />
+<meta property="og:description" content="Molar Ratio Calculator | Free Calculator to find Molar Ratio" />
+<meta content="" property="og:site_name" />
+
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Molar Ratio Calculator" />
+<meta name="twitter:description" content="Molar Ratio Calculator | Free Calculator to find Molar Ratio" />
+
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+
+<meta property='og:title' content="Molar Ratio Calculator" />
+
+<meta property='og:description' content="Molar Ratio Calculator | Free Calculator to find Molar Ratio" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <p class="center"><strong>Molar Ratio Calculator</strong></p>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>First Element ( Ex. I for Iodine )</strong></div>
+                        </div>
+                        <input type="text" maxlength="2" id="inlineFormInputGroup" required="" placeholder="Enter First Element"  class="form-control" name="First" id="First" {% if First or First == 0 %} value="{{First}}" {% else %} value="N" {% endif %}>
+                        <div class="input-group-text"><strong>g/mol</strong></div>
+                        
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Combustion of the First Element</strong></div>
+                        </div>
+                        <input type="number" min="0" step="0.000000000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Combustion of the First Element"  class="form-control" name="ComFirst" id="ComFirst" {% if ComFirst or ComFirst == 0 %} value="{{ComFirst}}" {% else %} value="1.8" {% endif %}>
+                        <div class="input-group-text"><strong>g</strong></div>
+                        
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Second Element ( Ex. I for Iodine )</strong></div>
+                        </div>
+                        <input type="text" maxlength="2" id="inlineFormInputGroup" required="" placeholder="Enter Second Element"  class="form-control" name="Second" id="Second" {% if Second or Second == 0 %} value="{{Second}}" {% else %} value="H" {% endif %}>
+                        <div class="input-group-text"><strong>g/mol</strong></div>
+                        
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Combustion of the Second Element</strong></div>
+                        </div>
+                        <input type="number" min="0" step="0.000000000001" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Combustion of the Second Element"  class="form-control" name="ComSecond" id="ComSecond" {% if ComSecond or ComSecond == 0 %} value="{{ComSecond}}" {% else %} value="3.2" {% endif %}>
+                        <div class="input-group-text"><strong>g</strong></div>
+                        
+                    </div>
+
+
+                    
+
+                        
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <p><strong>Results</strong> </p>
+        </div>
+        
+        
+        <div class="card-body"> <span> 
+            
+            <p><strong><span style="color: blue;">Molar Ratio:&nbsp;&nbsp;&nbsp;</span><span id="span1" style="color: red;">1 : {{ratio}}</span></strong>
+                
+            </p>
+
+            <p><strong>Formulas Used:</strong></p>
+            <p class="btn btn-outline-secondary active">Molar Ratio = ( Combustion amount of 2nd element / Molar mass of 2nd element ) / ( Combustion amount of 1st element / Molar mass of 1st element )</p><br><br>
+            
+          <p>In a chemical reaction, mole ratio is defined as the ratio of amounts of mole of one substance to the mole of another substance. Use this free online molar ratio calculator to do mole ratio calculation in a reactant.</p>
+
+          <p>A mole is the amount of any chemical element, also known as the coefficient of the elements in a balanced equation. Mole ratio is defined as the amount of moles of two compounds that involved in a chemical reaction. Molar ratio is determined through finding the relation between moles of one substance to another substance. The ratio is used as conversation factors between a reactant and product in solving the stoichiometry problems. Molar ratio can also be referred as mole-to-mole ratio. You can use this online molar ratio calculator to do the mole ratio calculation from the known value of first element, second element and combustion of both the elements.</p>
+
+          <p><strong>Example:</strong></p>
+          <strong>Consider a chemical equation , N<sub>2</sub> + 3H<sub>2</sub> = 2NH<sub>3</sub>. Find the mole ratio of N<sub>2</sub> H<sub>2</sub> if it has the combustion of 1.8g of N and 3.2 g of H<sub>2</sub>?</strong><br>
+
+          <p>Molar Mass of the N =14.0067</p>
+          <p>Hence Molar mass of N<sub>2</sub> = 14.0067 x 2 = 28.013</p>
+          <p>Molar Mass of H =1.008</p>
+          <p>Hence Molar mass of H<sub>2</sub> = 1.008 x 2 =2.016</p>
+          <p>Substituting the values in the formula,</p>
+          <p>= [ ( 3.2 / 2.016 ) / ( 1.8 / 28.013 ) ]</p>
+          <p>= [ 1.5873 / 0.064255 ]</p>
+          <p>=24.703</p>
+          <p>Hence the molar ratio is1 : 24.708</p>
+           
+        </div>
+
+    </div>
+    {% endif %}
+</div>
+
+{% if f1 %}
+<script>
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+</script>
+{% endif %}
+
+<script>
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        const result = document.getElementById("span1").innerHTML
+        function modifyres1(){
+            
+            var sus  = document.getElementById("myunt1")
+            document.getElementById("span1").innerHTML = +(Number(result) * sus.value)
+        }
+
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                // document.getElementsByName("GT")[0].value = "";
+                document.getElementById("clear").innerHTML = "";
+            }
+        </script>
+    <br>
+    
+    
+    {% endblock %}
