@@ -77,6 +77,7 @@ path("atoms-to-moles-calculator/",views.atomstomolescalculator, name = "atoms"),
 path("equivalent-mass-of-acid-calculator/",views.equivalentmassofacidcalculator, name = "acid"),
 path("mg-per-ml-to-molarity-calculator/",views.mgmlmolarity, name="mg"),
 path("molar-ratio-calculator/",views.molarratiocalculator, name="molar"),
+path("mass-from-volume-and-concentration/",views.massfromvolume),
 
 
 ]

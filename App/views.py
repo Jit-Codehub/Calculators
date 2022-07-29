@@ -12980,6 +12980,81 @@ def molarratiocalculator(request):
 
 
 
+
+
+def massfromvolume(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      UConcentration = request.POST.get("Concentration")
+      UWeight = request.POST.get("Weight")
+      UVolume = request.POST.get("Volume")
+      Concentration_op = request.POST.get("Concentration_op")
+      Volume_op = request.POST.get("Volume_op")
+      #for calculations
+      concentration = float(request.POST.get("Concentration"))
+      weight = float(request.POST.get("Weight"))
+      volume = float(request.POST.get("Volume"))
+
+      if Concentration_op == "milli":
+        concentration = concentration
+        c = 1
+      elif Concentration_op == "femt":
+        concentration = concentration * 0.000000000001
+        c = 0.000000000001
+      elif Concentration_op == "pico":
+        concentration = concentration * 0.000000001
+        c = 0.000000001
+      elif Concentration_op == "nano":
+        concentration = concentration * 0.000001
+        c = 0.000001
+      elif Concentration_op == "micro":
+        concentration = concentration * 0.001
+        c = 0.001
+      elif Concentration_op == "molar":
+        concentration = concentration * 1000
+        c = 1000
+
+      if Volume_op == "milli":
+        volume = volume
+        v = 1
+      elif Volume_op == "micro":
+        volume = volume * 0.001
+        v = 0.001
+      elif Volume_op == "liter":
+        volume = volume * 1000
+        v = 1000
+
+      mass =  concentration * weight * volume
+
+      context = {
+        "Concentration":UConcentration,
+        "Weight":UWeight,
+        "Volume":UVolume,
+        "Concentration_op":Concentration_op,
+        "Volume_op":Volume_op,
+        "mass":mass,
+        #for frontend calculations
+        "concentration":concentration,
+        "volume":volume,
+        "weight":weight,
+        "f1":"f1",
+        "c":c,
+        "v":v,
+      }
+    
+      print(context)
+      return render(request, "massfromvolume.html", context)
+    else:
+      print("I am GET")
+      return render(request, "massfromvolume.html")
+  except:
+    return render(request, "massfromvolume.html",{"message":"Invalid Inputs"})
+
+
+
+
+
     
     
 
