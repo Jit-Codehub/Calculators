@@ -99,7 +99,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Mass</strong></div>
                         </div>
-                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Mass"  class="form-control" name="Mass" id="Mass" {% if Mass or Mass == 0 %} value="{{Mass}}" {% else %} value="1.8" {% endif %}>
+                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Mass"  class="form-control" name="Mass" id="Mass" {% if Mass or Mass == 0 %} value="{{Mass}}" {% else %} value="500" {% endif %}>
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Mass_op" id="Mass_op">
 
@@ -138,7 +138,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Formula Weight (daltons)</strong></div>
                         </div>
-                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Formula Weight (daltons)"  class="form-control" name="Weight" id="Weight" {% if Weight or Weight == 0 %} value="{{Weight}}" {% else %} value="931.49410242" {% endif %}>
+                        <input type="number" min="0.00000000001" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Formula Weight (daltons)"  class="form-control" name="Weight" id="Weight" {% if Weight or Weight == 0 %} value="{{Weight}}" {% else %} value="931.49410242" {% endif %}>
                     </div>
 
 
@@ -147,7 +147,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Concentration</strong></div>
                         </div>
-                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Concentration"  class="form-control" name="Concentration" id="Concentration" {% if Concentration or Concentration == 0 %} value="{{Concentration}}" {% else %} value="3.2" {% endif %}>
+                        <input type="number" min="0.00000000001" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Concentration"  class="form-control" name="Concentration" id="Concentration" {% if Concentration or Concentration == 0 %} value="{{Concentration}}" {% else %} value="500" {% endif %}>
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Concentration_op" id="Concentration_op">
 
@@ -232,30 +232,31 @@
             
             <p><strong><span style="color: blue;">Volume:&nbsp;&nbsp;&nbsp;</span><span id="span1" style="color: red;">{{volume}}</span></strong>
                 <select style="margin-left:5px" id="myunt1" onchange="modifyres1()">
-                    <option value="1" selected="">micrograms</option>
-                    <option value="0.001">milligrams</option>
-                    <option value="0.000001">grams</option>
-                    <option value="0.000000001">kilograms</option>
+                    <option value="1" selected="">milliliter</option>
+                    <option value="1000">microliter</option>
+                    <option value="0.001">liter</option>
+                    
                 </select>
                 
             </p>
 
             <p><strong>Formulas Used:</strong></p>
-            <p class="btn btn-outline-secondary active">Mass = Concentration (millimolar) * Formula Weight (daltons) * Volume (milliliter)</p><br><br>
+            <p class="btn btn-outline-secondary active">Volume = Mass (micrograms) / (Concentration (millimolar) * Formula Weight (daltons))</p><br><br>
 
             <strong>Input values are:-</strong>
-            <p>Concentration = {{Concentration}} </p>
+            <p>Mass = {{Mass}}</p>
             <p>Formula Weight (daltons) = {{Weight}}</p>
-            <p>Volume = {{Volume}}</p>
+            <p>Concentration = {{Concentration}} </p>
+            
 
-            <strong>Convert Concentration into millimolar and Volume into milliliter</strong><br>
+            <strong>Convert Concentration into millimolar and Mass into micrograms</strong><br>
             <p>Concentration = {{Concentration}} * {{c}}</p>
             <p>Concentration = {{concentration}} millimolar</p>
-            <p>Volume = {{Volume}} * {{v}}</p>
-            <p>Volume = {{volume}} milliliter</p>
+            <p>Mass = {{Mass}} * {{m}}</p>
+            <p>Mass = {{mass}} micrograms</p>
             <strong>After conversion put values into formulas</strong>
-            <p>Mass = {{concentration}} (millimolar) * {{weight}} (daltons) * {{volume}} (milliliter)</p>
-            <p><strong>Mass = {{mass}} micrograms</strong></p>
+            <p>Volume = {{mass}} (micrograms) / {{concentration}} (millimolar) * {{Weight}} (daltons) </p>
+            <p><strong>Volume = {{volume}} milliliter</strong></p>
         </div>
 
     </div>
@@ -296,7 +297,7 @@
 
                 document.getElementsByName("Concentration")[0].value = "";
                 document.getElementsByName("Weight")[0].value = "";
-                document.getElementsByName("Volume")[0].value = "";
+                document.getElementsByName("Mass")[0].value = "";
                 document.getElementById("clear").innerHTML = "";
             }
         </script>

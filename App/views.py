@@ -13055,73 +13055,77 @@ def massfromvolume(request):
 
 
 def volumemass(request):
-  if request.POST:
-    print(request.POST)
-    UConcentration = request.POST.get("Concentration")
-    UWeight = request.POST.get("Weight")
-    UMass = request.POST.get("Mass")
-    Concentration_op = request.POST.get("Concentration_op")
-    Mass_op = request.POST.get("Mass_op")
-    #for calculations
-    concentration = float(request.POST.get("Concentration"))
-    weight = float(request.POST.get("Weight"))
-    mass = float(request.POST.get("Mass"))
+  try:
+    if request.POST:
+      print(request.POST)
+      UConcentration = request.POST.get("Concentration")
+      UWeight = request.POST.get("Weight")
+      UMass = request.POST.get("Mass")
+      Concentration_op = request.POST.get("Concentration_op")
+      Mass_op = request.POST.get("Mass_op")
+      #for calculations
+      concentration = float(request.POST.get("Concentration"))
+      weight = float(request.POST.get("Weight"))
+      mass = float(request.POST.get("Mass"))
 
-    if Concentration_op == "milli":
-      concentration = concentration
-      c = 1
-    elif Concentration_op == "femt":
-      concentration = concentration * 0.000000000001
-      c = 0.000000000001
-    elif Concentration_op == "pico":
-      concentration = concentration * 0.000000001
-      c = 0.000000001
-    elif Concentration_op == "nano":
-      concentration = concentration * 0.000001
-      c = 0.000001
-    elif Concentration_op == "micro":
-      concentration = concentration * 0.001
-      c = 0.001
-    elif Concentration_op == "molar":
-      concentration = concentration * 1000
-      c = 1000
+      if Concentration_op == "milli":
+        concentration = concentration
+        c = 1
+      elif Concentration_op == "femt":
+        concentration = concentration * 0.000000000001
+        c = 0.000000000001
+      elif Concentration_op == "pico":
+        concentration = concentration * 0.000000001
+        c = 0.000000001
+      elif Concentration_op == "nano":
+        concentration = concentration * 0.000001
+        c = 0.000001
+      elif Concentration_op == "micro":
+        concentration = concentration * 0.001
+        c = 0.001
+      elif Concentration_op == "molar":
+        concentration = concentration * 1000
+        c = 1000
 
-    if Mass_op == "micro":
-      mass = mass
-      m = 1
-    elif Mass_op == "milli":
-      mass = mass * 0.001
-      m = 0.001
-    elif Mass_op == "gram":
-      mass = mass * 0.000001
-      m = 0.000001
-    elif Mass_op == "kilo":
-      mass = mass * 0.000000001
-      m = 0.000000001
-  
-    volume = mass / (concentration * weight)
-
-    context = {
-        "Concentration":UConcentration,
-        "Weight":UWeight,
-        "Mass":UMass,
-        "Concentration_op":Concentration_op,
-        "Mass_op":Mass_op,
-        "volume":volume,
-        #for frontend calculations
-        "concentration":concentration,
-        "mass":mass,
-        "weight":weight,
-        "f1":"f1",
-        "c":c,
-        "m":m,
-        "f1":"f1",
-    }
+      if Mass_op == "micro":
+        mass = mass
+        m = 1
+      elif Mass_op == "milli":
+        mass = mass * 1000
+        m = 1000
+      elif Mass_op == "gram":
+        mass = mass * 1000000
+        m = 1000000
+      elif Mass_op == "kilo":
+        mass = mass * 1000000000
+        m = 1000000000
     
-    return render(request, "volumemass.html", context)
-  else:
-    print("I am GET")
-    return render(request, "volumemass.html")
+      volume = mass / (concentration * weight)
+      print(volume)
+
+      context = {
+          "Concentration":UConcentration,
+          "Weight":UWeight,
+          "Mass":UMass,
+          "Concentration_op":Concentration_op,
+          "Mass_op":Mass_op,
+          "volume":volume,
+          #for frontend calculations
+          "concentration":concentration,
+          "mass":mass,
+          "weight":weight,
+          "f1":"f1",
+          "c":c,
+          "m":m,
+          "f1":"f1",
+      }
+      print(context)
+      return render(request, "volumemass.html", context)
+    else:
+      print("I am GET")
+      return render(request, "volumemass.html")
+  except:
+    return render(request, "volumemass.html",{"message":"Invalid Inputs"})
 
 
 
