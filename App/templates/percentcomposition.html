@@ -1,0 +1,419 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- Mathjax library script -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+<!-- End of Mathjax library script -->
+
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Percent Composition Calculator</title>
+<meta name="description" content="Percent Composition Calculator | Free Calculator to find Percent Composition" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Percent Composition Calculator" />
+<meta property="og:description" content="Percent Composition Calculator | Free Calculator to find Percent Composition" />
+<meta content="" property="og:site_name" />
+
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Percent Composition Calculator" />
+<meta name="twitter:description" content="Percent Composition Calculator | Free Calculator to find Percent Composition" />
+
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+
+<meta property='og:title' content="Percent Composition Calculator" />
+
+<meta property='og:description' content="Percent Composition Calculator | Free Calculator to find Percent Composition" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <p class="center"><strong>Percent Composition Calculator</strong></p>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+                    
+                    
+                    
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Enter First Element</strong></div>
+                        </div>
+                        <input type="number" min="0" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="First" id="First" {% if First or First == 0 %} value="{{First}}" {% else %} value="5" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="First_op" id="First_op">
+
+                            {% if First_op == 'H' %}
+                            <option value="H" selected="selected">H</option>
+                            {% else %}
+                            <option value="H">H</option>
+                            {% endif %}
+
+                            {% if First_op == 'He' %}
+                            <option value="He" selected="selected">He</option>
+                            {% else %}
+                            <option value="He">He</option>
+                            {% endif %}
+
+                            {% if First_op == 'Li' %}
+                            <option value="Li" selected="selected">Li</option>
+                            {% else %}
+                            <option value="Li">Li</option>
+                            {% endif %}
+
+                            {% if First_op == 'Be' %}
+                            <option value="Be" selected="selected">Be</option>
+                            {% else %}
+                            <option value="Be">Be</option>
+                            {% endif %}
+
+                            {% if First_op == 'B' %}
+                            <option value="B" selected="selected">B</option>
+                            {% else %}
+                            <option value="B">B</option>
+                            {% endif %}
+
+                           
+                        </select>
+                        
+                    </div>
+
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Enter Second Element</strong></div>
+                        </div>
+                        <input type="number" min="0" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Second" id="Second" {% if Second or Second == 0 %} value="{{Second}}" {% else %} value="6" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="Second_op" id="Second_op">
+
+                            {% if Second_op == 'He' %}
+                            <option value="He" selected="selected">He</option>
+                            {% else %}
+                            <option value="He">He</option>
+                            {% endif %}
+
+                            {% if Second_op == 'H' %}
+                            <option value="H" selected="selected">H</option>
+                            {% else %}
+                            <option value="H">H</option>
+                            {% endif %}
+
+                           
+
+                            {% if Second_op == 'Li' %}
+                            <option value="Li" selected="selected">Li</option>
+                            {% else %}
+                            <option value="Li">Li</option>
+                            {% endif %}
+
+                            {% if Second_op == 'Be' %}
+                            <option value="Be" selected="selected">Be</option>
+                            {% else %}
+                            <option value="Be">Be</option>
+                            {% endif %}
+
+                            {% if Second_op == 'B' %}
+                            <option value="B" selected="selected">B</option>
+                            {% else %}
+                            <option value="B">B</option>
+                            {% endif %}
+
+                           
+                        </select>
+                        
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Enter Third Element</strong></div>
+                        </div>
+                        <input type="number" min="0" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Third" id="Third" {% if Third or Third == 0 %} value="{{Third}}" {% else %} value="7" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="Third_op" id="Third_op">
+
+                            {% if Third_op == 'Li' %}
+                            <option value="Li" selected="selected">Li</option>
+                            {% else %}
+                            <option value="Li">Li</option>
+                            {% endif %}
+
+                            {% if Third_op == 'H' %}
+                            <option value="H" selected="selected">H</option>
+                            {% else %}
+                            <option value="H">H</option>
+                            {% endif %}
+
+                            {% if Third_op == 'He' %}
+                            <option value="He" selected="selected">He</option>
+                            {% else %}
+                            <option value="He">He</option>
+                            {% endif %}
+
+                            
+
+                            {% if Third_op == 'Be' %}
+                            <option value="Be" selected="selected">Be</option>
+                            {% else %}
+                            <option value="Be">Be</option>
+                            {% endif %}
+
+                            {% if Third_op == 'B' %}
+                            <option value="B" selected="selected">B</option>
+                            {% else %}
+                            <option value="B">B</option>
+                            {% endif %}
+
+                           
+                        </select>
+                        
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Enter Fourth Element</strong></div>
+                        </div>
+                        <input type="number" min="0" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Fourth" id="Fourth" {% if Fourth or Fourth == 0 %} value="{{Fourth}}" {% else %} value="8" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="Fourth_op" id="Fourth_op">
+
+                            {% if Fourth_op == 'Be' %}
+                            <option value="Be" selected="selected">Be</option>
+                            {% else %}
+                            <option value="Be">Be</option>
+                            {% endif %}
+
+                            {% if Fourth_op == 'H' %}
+                            <option value="H" selected="selected">H</option>
+                            {% else %}
+                            <option value="H">H</option>
+                            {% endif %}
+
+                            {% if Fourth_op == 'He' %}
+                            <option value="He" selected="selected">He</option>
+                            {% else %}
+                            <option value="He">He</option>
+                            {% endif %}
+
+                            {% if Fourth_op == 'Li' %}
+                            <option value="Li" selected="selected">Li</option>
+                            {% else %}
+                            <option value="Li">Li</option>
+                            {% endif %}
+
+                            
+
+                            {% if Fourth_op == 'B' %}
+                            <option value="B" selected="selected">B</option>
+                            {% else %}
+                            <option value="B">B</option>
+                            {% endif %}
+
+                           
+                        </select>
+                        
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Enter Fifth Element</strong></div>
+                        </div>
+                        <input type="number" min="0" step="1" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Fifth" id="Fifth" {% if Fifth or Fifth == 0 %} value="{{Fifth}}" {% else %} value="9" {% endif %}>
+
+                        <select class="select form-control" id="inlineFormInputGroup" name="Fifth_op" id="Fifth_op">
+
+                            {% if Fifth_op == 'B' %}
+                            <option value="B" selected="selected">B</option>
+                            {% else %}
+                            <option value="B">B</option>
+                            {% endif %}
+
+                            {% if Fifth_op == 'H' %}
+                            <option value="H" selected="selected">H</option>
+                            {% else %}
+                            <option value="H">H</option>
+                            {% endif %}
+
+                            {% if Fifth_op == 'He' %}
+                            <option value="He" selected="selected">He</option>
+                            {% else %}
+                            <option value="He">He</option>
+                            {% endif %}
+
+                            {% if Fifth_op == 'Li' %}
+                            <option value="Li" selected="selected">Li</option>
+                            {% else %}
+                            <option value="Li">Li</option>
+                            {% endif %}
+
+                            {% if Fifth_op == 'Be' %}
+                            <option value="Be" selected="selected">Be</option>
+                            {% else %}
+                            <option value="Be">Be</option>
+                            {% endif %}
+
+                            
+
+                           
+                        </select>
+                        
+                    </div>
+
+
+
+                    
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <p><strong>Results</strong> </p>
+        </div>
+        
+        
+        <div class="card-body"> <span> 
+            
+            <p><strong><span style="color: blue;">Moles:&nbsp;&nbsp;&nbsp;</span><span id="span1">{{moles}}</span></strong>
+                
+            </p>
+
+            <p><strong>Formulas Used:</strong></p>
+            <p class="btn btn-outline-secondary active">moles = atoms / (6.02214076 * (10<sup>23</sup> ))</p><br><br>
+            
+        </div>
+
+    </div>
+    {% endif %}
+</div>
+
+{% if f1 %}
+<script>
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+</script>
+{% endif %}
+
+<script>
+
+function lettersNumbersCheck(name)
+{
+   var regEx = /^[0-9a-zA-Z]+$/;
+   if(name.value.match(regEx))
+     {
+      return true;
+     }
+   else
+     {
+     alert("Please enter letters and numbers only.");
+     return;
+     }
+}
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        const result = document.getElementById("span1").innerHTML
+        function modifyres1(){
+            
+            var sus  = document.getElementById("myunt1")
+            document.getElementById("span1").innerHTML = +(Number(result) * sus.value)
+        }
+
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                document.getElementsByName("Chemical")[0].value = "";
+                document.getElementById("clear").innerHTML = "";
+            }
+        </script>
+    <br>
+    
+    
+    {% endblock %}

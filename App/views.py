@@ -13131,6 +13131,24 @@ def volumemass(request):
 
 
 
+
+def percentcomposition(request):
+  if request.POST:
+    print(request.POST)
+    
+    context = {
+      
+    }
+    print(context)
+    return render(request, "percentcomposition.html", context)
+  else:
+    print("I am get")
+    return render(request, "percentcomposition.html")
+
+
+
+
+
     
     
 
