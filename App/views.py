@@ -13150,14 +13150,14 @@ def percentcomposition(request):
       Fifth_op = request.POST.get("Fifth_op")
 
       elements = {
-          # "H":1.0078,
-          # "Li":6.9410,
+          "H":1.0078,
+          "Li":6.9410,
           "Na":22.990 ,
           "K":39.098 ,
           "Rb":85.468,
           "Cs":132.91 ,
           "Fr":223 ,
-          # "Be":9.0122 ,
+          "Be":9.0122 ,
           "Mg":24.305 ,
           "Ca":40.078 ,
           "Sr":87.620 ,
@@ -13203,7 +13203,7 @@ def percentcomposition(request):
           "Cd":112.41 ,
           "Hg":200.59,
           "Cn":285 ,
-          # "B":10.811 ,
+          "B":10.811 ,
           "Al":26.982 ,
           "Ga":69.723 ,
           "In":114.82 ,
@@ -13232,7 +13232,7 @@ def percentcomposition(request):
           "Br":79.904 ,
           "I":126.90 ,
           "At":210 ,
-          # "He":4.0026 ,
+          "He":4.0026 ,
           "Ne":20.180 ,
           "Ar":39.948 ,
           "Kr":83.798 ,
@@ -13268,6 +13268,7 @@ def percentcomposition(request):
           "No":259 ,
           "Lr":262,
       }
+      print(len(elements))
 
       a = elements[First_op]
       b = elements[Second_op]
