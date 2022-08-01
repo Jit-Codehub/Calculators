@@ -840,17 +840,19 @@
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Second_op" id="Second_op">
 
+                            {% if Second_op == 'He' %}
+                            <option value="He" selected="selected">He</option>
+                            {% else %}
+                            <option value="He">He</option>
+                            {% endif %}
+
                             {% if Second_op == 'H' %}
                             <option value="H" selected="selected">H</option>
                             {% else %}
                             <option value="H">H</option>
                             {% endif %}
 
-                            {% if Second_op == 'He' %}
-                            <option value="He" selected="selected">He</option>
-                            {% else %}
-                            <option value="He">He</option>
-                            {% endif %}
+                            
 
                             {% if Second_op == 'Li' %}
                             <option value="Li" selected="selected">Li</option>
@@ -1575,6 +1577,12 @@
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Third_op" id="Third_op">
 
+                            {% if Third_op == 'Li' %}
+                            <option value="Li" selected="selected">Li</option>
+                            {% else %}
+                            <option value="Li">Li</option>
+                            {% endif %}
+
                             {% if Third_op == 'H' %}
                             <option value="H" selected="selected">H</option>
                             {% else %}
@@ -1587,11 +1595,7 @@
                             <option value="He">He</option>
                             {% endif %}
 
-                            {% if Third_op == 'Li' %}
-                            <option value="Li" selected="selected">Li</option>
-                            {% else %}
-                            <option value="Li">Li</option>
-                            {% endif %}
+                            
 
                             {% if Third_op == 'Be' %}
                             <option value="Be" selected="selected">Be</option>
@@ -2309,6 +2313,12 @@
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Fourth_op" id="Fourth_op">
 
+                            {% if Fourth_op == 'Be' %}
+                            <option value="Be" selected="selected">Be</option>
+                            {% else %}
+                            <option value="Be">Be</option>
+                            {% endif %}
+
                             {% if Fourth_op == 'H' %}
                             <option value="H" selected="selected">H</option>
                             {% else %}
@@ -2327,11 +2337,7 @@
                             <option value="Li">Li</option>
                             {% endif %}
 
-                            {% if Fourth_op == 'Be' %}
-                            <option value="Be" selected="selected">Be</option>
-                            {% else %}
-                            <option value="Be">Be</option>
-                            {% endif %}
+                            
 
                             {% if Fourth_op == 'B' %}
                             <option value="B" selected="selected">B</option>
@@ -3043,6 +3049,12 @@
 
                         <select class="select form-control" id="inlineFormInputGroup" name="Fifth_op" id="Fifth_op">
 
+                            {% if Fifth_op == 'B' %}
+                            <option value="B" selected="selected">B</option>
+                            {% else %}
+                            <option value="B">B</option>
+                            {% endif %}
+
                             {% if Fifth_op == 'H' %}
                             <option value="H" selected="selected">H</option>
                             {% else %}
@@ -3067,11 +3079,7 @@
                             <option value="Be">Be</option>
                             {% endif %}
 
-                            {% if Fifth_op == 'B' %}
-                            <option value="B" selected="selected">B</option>
-                            {% else %}
-                            <option value="B">B</option>
-                            {% endif %}
+                            
 
                             {% if Fifth_op == 'Na' %}
                             <option value="Na" selected="selected">Na</option>
@@ -3805,6 +3813,17 @@
             <p><strong><span style="color: blue;">Molecular weight:&nbsp;&nbsp;&nbsp;</span><span style="color: red;">{{weight}} amu</span></strong>
             </p>
 
+            <p><strong>Formulas Used:</strong></p>
+            <p class="btn btn-outline-secondary active">element wgt% = (element mass/compound mass) × 100</p>
+            <p><strong>where:</strong></p>
+            <ul>
+                <li>element wgt% – Percentage of the element present in the compound by mass.</li>
+                <li>element mass – Mass of the element in one mole of the compound.
+                </li>
+                <li>compound mass – Mass of one mole of the compound or its molar mass.
+                </li>
+            </ul>
+
            
 
             <div class="table-responsive">
@@ -3859,6 +3878,34 @@
                   </tbody>
                 </table>
               </div>
+              <br>
+            <p><strong>Percent Composition</strong></p>
+            <p>The percent composition of a compound expresses the weight (or mass) of each element in the compound as a percentage of the total weight of the compound. </p>
+
+            <p><strong>How do I calculate the percent composition of a compound?</strong></p>
+            <p>To determine the percent composition of a substance, follow these simple steps:</p>
+            <ol>
+                <li>Determine the molar mass of the substance either from its molecular weight or from its mass and number of moles.
+                </li>
+                <li>Compute the mass of each element in one mole of the compound by multiplying their atomic mass with the number of atoms in one molecule of the compound.
+                </li>
+                <li>Calculate percent composition of each element as <strong> (mass of the element in 1 mol of compound/molar mass of compound) × 100.</strong></li>
+                <li>Verify your calculations with our percent composition calculator.
+                </li>
+            </ol>
+
+            <p><strong>How to find the molar mass from the percent composition of a compound?
+            </strong></p>
+            <p>To calculate the molar mass of a compound from its percent composition, follow these simple steps:</p>
+            <ol>
+                <li>Divide the percent composition of an element in the compound by 100 to get the value in decimals.
+                </li>
+                <li>Divide the mass of the element in one mole of the compound by this decimal value to obtain the molar mass of the compound.
+                </li>
+                <li>You can verify your result yourself by repeating these steps with the percent composition of other elements too!</li>
+            </ol>
+
+
             
         </div>
 

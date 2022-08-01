@@ -13338,6 +13338,9 @@ def percentcomposition(request):
         "message":"All inputs can not be zero",
     }
     return render(request, "percentcomposition.html",context)
+  except:
+    return render(request, "percentcomposition.html",{"message":"Invalid Inputs"})
+
 
 
 
