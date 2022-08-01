@@ -13133,17 +13133,210 @@ def volumemass(request):
 
 
 def percentcomposition(request):
-  if request.POST:
-    print(request.POST)
-    
-    context = {
+  try:
+    if request.POST:
+      print(request.POST)
+
+      First = request.POST.get("First")
+      Second = request.POST.get("Second")
+      Third = request.POST.get("Third")
+      Fourth = request.POST.get("Fourth")
+      Fifth = request.POST.get("Fifth")
+
+      First_op = request.POST.get("First_op")
+      Second_op = request.POST.get("Second_op")
+      Third_op = request.POST.get("Third_op")
+      Fourth_op = request.POST.get("Fourth_op")
+      Fifth_op = request.POST.get("Fifth_op")
+
+      elements = {
+          # "H":1.0078,
+          # "Li":6.9410,
+          "Na":22.990 ,
+          "K":39.098 ,
+          "Rb":85.468,
+          "Cs":132.91 ,
+          "Fr":223 ,
+          # "Be":9.0122 ,
+          "Mg":24.305 ,
+          "Ca":40.078 ,
+          "Sr":87.620 ,
+          "Ba":137.33 ,
+          "Ra":226 ,
+          "Sc":44.956 ,
+          "Y":88.906 ,
+          "La":138.91 ,
+          "Ac":227 ,
+          "Ti":47.867 ,
+          "Zr":91.224 ,
+          "Hf":178.49 ,
+          "Rf":261 ,
+          "V":50.942 ,
+          "Nb":92.906 ,
+          "Ta":180.95 ,
+          "Db":262 ,
+          "Cr":51.996 ,
+          "Mo":95.950 ,
+          "W":183.84 ,
+          "Sg":263,
+          "Mn":54.938 ,
+          "Tc":98 ,
+          "Re":186.21 ,
+          "Bh":264 ,
+          "Fe":55.845 ,
+          "Ru":101.07 ,
+          "Os":190.23 ,
+          "Hs":269 ,
+          "Co":58.933 ,
+          "Rh":102.91 ,
+          "Ir":192.22 ,
+          "Mt":278 ,
+          "Ni":58.693 ,
+          "Pd":106.42 ,
+          "Pt":195.08 ,
+          "Ds":281 ,
+          "Cu":63.546 ,
+          "Ag":107.87 ,
+          "Au":196.97 ,
+          "Rg":282 ,
+          "Zn":65.380 ,
+          "Cd":112.41 ,
+          "Hg":200.59,
+          "Cn":285 ,
+          # "B":10.811 ,
+          "Al":26.982 ,
+          "Ga":69.723 ,
+          "In":114.82 ,
+          "Ti":204.38 ,
+          "Nh":286 ,
+          "C":12.011 ,
+          "Si":28.086 ,
+          "Ge":72.640 ,
+          "Sn":118.71 ,
+          "Pb":207.20 ,
+          "Fl":289 ,
+          "N":14.007 ,
+          "P":30.974 ,
+          "As":74.922 ,
+          "Sb":121.76 ,
+          "Bi":208.98 ,
+          "Mc":289 ,
+          "O":15.999 ,
+          "S":32.065 ,
+          "Se":78.960 ,
+          "Te":127.60 ,
+          "Po":209 ,
+          "Lv":293,
+          "F":18.998 ,
+          "Cl":35.453 ,
+          "Br":79.904 ,
+          "I":126.90 ,
+          "At":210 ,
+          # "He":4.0026 ,
+          "Ne":20.180 ,
+          "Ar":39.948 ,
+          "Kr":83.798 ,
+          "Xe":131.29 ,
+          "Rn":222 ,
+          "Og":294 ,
+          "Ce":140.12 ,
+          "Pr":140.91 ,
+          "Nd":144.24 ,
+          "Pm":145 ,
+          "Sm":150.36 ,
+          "Eu":151.96 ,
+          "Gd":157.25 ,
+          "Tb":158.93 ,
+          "Dy":162.5 ,
+          "Ho":164.93 ,
+          "Er":167.26 ,
+          "Tm":168.93 ,
+          "Yb":173.04 ,
+          "Lu":174.97 ,
+          "Th":232.04 ,
+          "Pa":231.04 ,
+          "U":238.03 ,
+          "Np":237.05 ,
+          "Pu":244 ,
+          "Am":243 ,
+          "Cm":247 ,
+          "Bk":247,
+          "Cf":251 ,
+          "Es":252 ,
+          "Fm":257 ,
+          "Md":258 ,
+          "No":259 ,
+          "Lr":262,
+      }
+
+      a = elements[First_op]
+      b = elements[Second_op]
+      c = elements[Third_op]
+      d = elements[Fourth_op]
+      e = elements[Fifth_op]
+      print(a,b,c,d,e)
+
+      a *= float(First) 
+      b *= float(Second)
+      c *= float(Third)
+      d *= float(Fourth)
+      e *= float(Fifth)
+      print(a,b,c,d,e,"**********")
+      weight = sum([a,b,c,d,e])
+      print(weight)
+      pa = (a / weight) * 100
+      pb = (b / weight) * 100
+      pc = (c / weight) * 100
+      pd = (d / weight) * 100
+      pe = (e / weight) * 100
+      print(pa,pb,pc,pd,pe)
       
+      context = {
+        "First":First,
+        "Second":Second,
+        "Third":Third,
+        "Fourth":Fourth,
+        "Fifth":Fifth,
+        "First_op":First_op,
+        "Second_op":Second_op,
+        "Third_op":Third_op,
+        "Fourth_op":Fourth_op,
+        "Fifth_op":Fifth_op,
+        "f1":"f1",
+
+        "weight":weight,
+        "a":a,
+        "b":b,
+        "c":c,
+        "d":d,
+        "e":e,
+        "pa":pa,
+        "pb":pb,
+        "pc":pc,
+        "pd":pd,
+        "pe":pe,
+        
+      }
+      print(context)
+      return render(request, "percentcomposition.html", context)
+    else:
+      print("I am get")
+      return render(request, "percentcomposition.html")
+  except ZeroDivisionError:
+    context = {
+        "First":1,
+        "Second":Second,
+        "Third":Third,
+        "Fourth":Fourth,
+        "Fifth":Fifth,
+        "First_op":First_op,
+        "Second_op":Second_op,
+        "Third_op":Third_op,
+        "Fourth_op":Fourth_op,
+        "Fifth_op":Fifth_op,
+        "message":"All inputs can not be zero",
     }
-    print(context)
-    return render(request, "percentcomposition.html", context)
-  else:
-    print("I am get")
-    return render(request, "percentcomposition.html")
+    return render(request, "percentcomposition.html",context)
 
 
 
