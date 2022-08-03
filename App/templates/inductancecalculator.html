@@ -99,7 +99,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Wire Coil Number of Turns(N)</strong></div>
                         </div>
-                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Wire" id="Wire" {% if Wire or Wire == 0 %} value="{{Wire}}" {% else %} value="5" {% endif %}>
+                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Wire" id="Wire" {% if Wire or Wire == 0 %} value="{{Wire}}" {% else %} value="2" {% endif %}>
                         
                     </div>
 
@@ -107,7 +107,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Core Material Permeability(µ)</strong></div>
                         </div>
-                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Core" id="Core" {% if Core or Core == 0 %} value="{{Core}}" {% else %} value="8" {% endif %}>
+                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Core" id="Core" {% if Core or Core == 0 %} value="{{Core}}" {% else %} value="3" {% endif %}>
                         
                     </div>
 
@@ -115,7 +115,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Coil Area(A)</strong></div>
                         </div>
-                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Area" id="Area" {% if Area or Area == 0 %} value="{{Area}}" {% else %} value="9" {% endif %}>
+                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Area" id="Area" {% if Area or Area == 0 %} value="{{Area}}" {% else %} value="4" {% endif %}>
                         <div class="input-group-text"><strong>m<sup>2</sup></strong></div>
                     </div>
 
@@ -123,7 +123,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><strong>Average Coil Length(l)</strong></div>
                         </div>
-                        <input type="number" min="0.00001" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Length" id="Length" {% if Length or Length == 0 %} value="{{Length}}" {% else %} value="6" {% endif %}>
+                        <input type="number" min="0.00001" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Length" id="Length" {% if Length or Length == 0 %} value="{{Length}}" {% else %} value="5" {% endif %}>
                         <div class="input-group-text"><strong>m</strong></div>
                     </div>
 
@@ -161,6 +161,8 @@
             <p><strong><span style="color: blue;">Inductance(L):&nbsp;&nbsp;&nbsp;</span><span id="span1" style="color: red;">{{inductance}} <span style="color: blue;">H</span></span></strong></p>
 
         <p><strong>Formulas Used:</strong></p>
+        
+        <!-- code for the formula -->
         <p>   
             <var style="font-style: italic; font-weight: 400;">L</var>
             <span style="padding:0 0.2em;">=</span>
@@ -182,6 +184,7 @@
             </span>
             <span style="font-size: 2.23785em; vertical-align: bottom; position: relative;">)</span>
         </p><br>
+        <!-- End of theformula -->
 
 
             

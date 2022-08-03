@@ -13375,34 +13375,38 @@ def impulsewithtime(request):
 
 
 def inductancecalculator(request):
-  if request.POST:
-    print(request.POST)
-    Wire = request.POST.get("Wire")
-    Core = request.POST.get("Core")
-    Area = request.POST.get("Area")
-    Length = request.POST.get("Length")
-    #for calculation
-    wire = float(Wire)
-    core = float(Core)
-    area = float(Area)
-    length = float(Length)
+  try:
+    if request.POST:
+      print(request.POST)
+      Wire = request.POST.get("Wire")
+      Core = request.POST.get("Core")
+      Area = request.POST.get("Area")
+      Length = request.POST.get("Length")
+      #for calculation
+      wire = float(Wire)
+      core = float(Core)
+      area = float(Area)
+      length = float(Length)
 
-    inductance = ((wire * 2) * core * area) / length
-    a = ((wire * 2) * core * area) #for step calculation in frontend
+      inductance = ((wire * wire) * core * area) / length
+      a = ((wire * 2) * core * area) #for step calculation in frontend
 
-    context = {
-      "Wire":Wire,
-      "Core":Core,
-      "Area":Area,
-      "Length":Length,
-      "inductance":inductance,
-      "a":a, 
-      "f1":"f1",
+      context = {
+        "Wire":Wire,
+        "Core":Core,
+        "Area":Area,
+        "Length":Length,
+        "inductance":inductance,
+        "a":a, 
+        "f1":"f1",
 
-    }
-    return render(request, "inductancecalculator.html", context)
-  else:
-    return render(request, "inductancecalculator.html")
+      }
+      return render(request, "inductancecalculator.html", context)
+    else:
+      return render(request, "inductancecalculator.html")
+  except:
+    return render(request, "inductancecalculator.html",{"message":"Invalid Inputs"})
+
 
 
 
