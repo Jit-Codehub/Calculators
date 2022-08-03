@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- Mathjax library script -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+<!-- End of Mathjax library script -->
+
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Impulse With Time Calculator</title>
+<meta name="description" content="Impulse With Time | Free Calculator to find Impulse With Time" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Impulse With Time Calculator" />
+<meta property="og:description" content="Impulse With Time | Free Calculator to find Impulse With Time" />
+<meta content="" property="og:site_name" />
+
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Impulse With Time Calculator" />
+<meta name="twitter:description" content="Impulse With Time | Free Calculator to find Impulse With Time" />
+
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+
+<meta property='og:title' content="Impulse With Time Calculator" />
+
+<meta property='og:description' content="Impulse With Time | Free Calculator to find Impulse With Time" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+
+   
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <p class="center"><strong>Impulse With Time Calculator</strong></p>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Force (F)</strong></div>
+                        </div>
+                        <input type="number" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Force"  class="form-control" name="Force" id="Force" {% if Force or Force == 0 %} value="{{Force}}" {% else %} value="5" {% endif %}>
+                        <div class="input-group-text"><strong>N</strong></div>
+                    </div>
+
+                    
+                    
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Time Change  (Δ T)</strong></div>
+                        </div>
+                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder="Enter Time Change"  class="form-control" name="Time" id="Time" {% if Time or Time == 0 %} value="{{Time}}" {% else %} value="4.7" {% endif %}>
+                        <div class="input-group-text"><strong>s</strong></div>
+                    </div>
+
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <p><strong>Results</strong> </p>
+        </div>
+        
+        
+        <div class="card-body"> <span> 
+            
+            <p><strong><span style="color: blue;">Impulse (I):&nbsp;&nbsp;&nbsp;</span><span id="span1" style="color: red;">{{impulse}} <span style="color: blue;">kg·m/s</span></span></strong>
+                
+                
+            </p>
+
+            <p><strong>Formulas Used:</strong></p>
+            <p class="btn btn-outline-secondary active">Impulse (I) = Force (F)* Time Change (Δ T)</p><br><br>
+
+            <strong>Input values are:-</strong>
+            <p>Force (F) = {{Force}} N</p>
+            <p>Time Change (Δ T) = {{Time}} s</p>
+            
+            <strong>Put values into formula</strong>
+            <p>Impulse (I) = {{Force}} * {{Time}} </p>
+            <p><strong style="color: brown;">Impulse (I) = {{impulse}} kg·m/s</strong></p><br>
+
+            <p><strong>What is Impulse?</strong></p>
+            <p>Impulse is determined as integral of force with respect to change in time.</p>
+
+            <p><strong>Solved Example</strong></p>
+            <p><strong>Calculate the value of Impulse when time and force are given.</strong></p>
+            <p>Force = 20 N and Time change = 30 s</p>
+            <p>Solution: As we know,</p>
+            <p>Impulse = Force x Time Change</p>
+            <p>I = 20 x 30</p>
+            <p>I = 600 kg·m/s</p>
+        </div>
+
+       
+
+    </div>
+    {% endif %}
+</div>
+
+{% if f1 %}
+<script>
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+</script>
+{% endif %}
+
+<script>
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        const result = document.getElementById("span1").innerHTML
+        function modifyres1(){
+            
+            var sus  = document.getElementById("myunt1")
+            document.getElementById("span1").innerHTML = +(Number(result) * sus.value)
+        }
+
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                
+                document.getElementsByName("Force")[0].value = "";
+                document.getElementsByName("Time")[0].value = "";
+                document.getElementById("clear").innerHTML = "";
+            }
+        </script>
+    <br>
+    
+    
+    {% endblock %}

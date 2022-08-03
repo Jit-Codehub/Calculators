@@ -80,6 +80,7 @@ path("molar-ratio-calculator/",views.molarratiocalculator, name="molar"),
 path("mass-from-volume-and-concentration/",views.massfromvolume),
 path("volume-from-mass-and-concentration/", views.volumemass),
 path("percent-composition-calculator/", views.percentcomposition),
+path("impulse-with-time-calculator/", views.impulsewithtime),
 
 
 ]

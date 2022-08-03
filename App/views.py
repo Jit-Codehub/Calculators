@@ -13344,6 +13344,36 @@ def percentcomposition(request):
 
 
 
+def impulsewithtime(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      #for returning exact value as input to the user
+      Time = request.POST.get("Time")
+      Force = request.POST.get("Force")
+      #for calculation
+      time = float(request.POST.get("Time"))
+      force = float(request.POST.get("Force"))
+
+      impulse = time * force
+
+      context = {
+        "Time":Time,
+        "Force":Force,
+        "impulse":impulse,
+        "f1":"f1",
+      }
+      print(context)
+      return render(request, "impulsewithtime.html", context)
+    else:
+      return render(request, "impulsewithtime.html")
+  except:
+    return render(request, "impulsewithtime.html",{"message":"Invalid Inputs"})
+
+
+
+
+
 
 
     
