@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block meta%}
+<!-- HTML Defaults Broweser -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap Stylesheet and Jquery, Google APIS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<!-- Mathjax library script -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+<!-- End of Mathjax library script -->
+
+<!-- Online Calculator Guru Site Fevicon -->
+<link rel="shortcut icon" href="https://onlinecalculator.guru/static/images/logo/Online-Calculator-Guru-Fevicon.png"
+    type="icon">
+<!-- Online Calculator Guru Project Style Sheet -->
+{%block css%}
+<link rel="stylesheet" href="https://onlinecalculator.guru/static/style.css">
+{%endblock%}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+<!-- Meta Title, Description and Canonical URL Starts --->
+<title>Inductance Calculator</title>
+<meta name="description" content="Inductance | Free Calculator to find Inductance" />
+<link rel="canonical" href="{{request.build_absolute_uri}}">
+<!-- Meta Title, Description and Canonical URL ENDS --->
+
+<!-- OPEN GRAPH CONFIGURATIONS STARTS -->
+<!--  FACEBOOK CONFIGURATION STARTS  -->
+<meta content="https://www.facebook.com/OnlineCalculator-Guru-131572098650589/" property="og:url" />
+<meta property="og:title" content="Inductance Calculator" />
+<meta property="og:description" content="Inductance | Free Calculator to find Inductance" />
+<meta content="" property="og:site_name" />
+
+    <meta property="og:image:type" content="image/png" />
+<meta property="og:image:height" content="435" />
+<meta property="og:image:width" content="354" />
+<!--  FACEBOOK CONFIGURATION ENDS  -->
+<!-- TWITTER CARD CONFIGURATION STARTS  -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="https://twitter.com/onlinecalculator" />
+<meta name="twitter:title" content="Inductance Calculator" />
+<meta name="twitter:description" content="Inductance | Free Calculator to find Inductance" />
+
+<meta property="twitter:image:height" content="435" />
+<meta property="twitter:image:width" content="354" />
+<!-- TWITTER CARD CONFIGURATION ENDS  -->
+<!--  LINKEDIN CONFIGURATION STARTS-->
+
+<meta property='og:title' content="Inductance Calculator" />
+
+<meta property='og:description' content="Inductance | Free Calculator to find Inductance" />
+<meta property='og:url' content="https://www.linkedin.com/in/onlinecalculator/" />
+<!-- end of linkedin CONFIGURATIONS ENDS -->
+<!-- OPEN GRAPH CONFIGURATION ENDS -->
+<!-- FAQ SCHEMA STARTS -->
+
+{%endblock%}
+
+{%block content%}
+
+<style>
+
+   
+    input {
+        text-align: right;
+    }
+</style>
+
+
+<div class="container" style="height: auto !important;">
+    <div class="card c1">
+        <div class="card-header">
+            <p class="center"><strong>Inductance Calculator</strong></p>
+        </div>
+        <div class="card-body">
+            <ul class="messages">
+                {% if message %}
+                <p  id="message_container" class="alert alert-danger text-center" 
+                    style="color:red">{{ message }}</p>
+                {% endif %}   
+
+            </ul>
+
+            <form action="" method="POST" id="my_form" >
+                {% csrf_token %}
+                <div class="col-auto">
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Wire Coil Number of Turns(N)</strong></div>
+                        </div>
+                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Wire" id="Wire" {% if Wire or Wire == 0 %} value="{{Wire}}" {% else %} value="5" {% endif %}>
+                        
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Core Material Permeability(µ)</strong></div>
+                        </div>
+                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Core" id="Core" {% if Core or Core == 0 %} value="{{Core}}" {% else %} value="8" {% endif %}>
+                        
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Coil Area(A)</strong></div>
+                        </div>
+                        <input type="number" min="0" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Area" id="Area" {% if Area or Area == 0 %} value="{{Area}}" {% else %} value="9" {% endif %}>
+                        <div class="input-group-text"><strong>m<sup>2</sup></strong></div>
+                    </div>
+
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><strong>Average Coil Length(l)</strong></div>
+                        </div>
+                        <input type="number" min="0.00001" step="any" oninput="validateNumber(this);" id="inlineFormInputGroup" required="" placeholder=""  class="form-control" name="Length" id="Length" {% if Length or Length == 0 %} value="{{Length}}" {% else %} value="6" {% endif %}>
+                        <div class="input-group-text"><strong>m</strong></div>
+                    </div>
+
+
+
+                    <div class=" center col mt-2 ">
+                        <center><button type="submit" class="btn btn-primary" name="f1" value="f1">Calculate</button>
+                            <button type="button" onclick="myFunction()" style="margin-top:5px;"
+                                class="btn btn-danger">Reset</button>
+                        </center>
+                    </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="clear">
+
+    {% if f1 %}
+    
+    <div class="card" id="Results">
+        <div class="card-header">
+            <p><strong>Results</strong> </p>
+        </div>
+        
+        
+        <div class="card-body"> <span> 
+            
+            <p><strong><span style="color: blue;">Inductance(L):&nbsp;&nbsp;&nbsp;</span><span id="span1" style="color: red;">{{inductance}} <span style="color: blue;">H</span></span></strong></p>
+
+        <p><strong>Formulas Used:</strong></p>
+        <p>   
+            <var style="font-style: italic; font-weight: 400;">L</var>
+            <span style="padding:0 0.2em;">=</span>
+            <span  style="font-size: 2.23785em; vertical-align: bottom; position: relative;">(</span>
+            <span style="display: inline-block; margin: 0;">
+                <span style="font-size: 90%; text-align: center; vertical-align: -.5em; padding: 0 .1em; display: inline-block; margin: 0;">
+                    <span style="border-bottom: 1px solid; padding: 0 0.1em; display: block;">
+                        <var>N</var>
+                        <sup class="">2</sup>
+                        <var>μ</var>
+                        <var>A</var>
+                    </span>
+                    
+                    <span style="border-top: 1px solid; float: right; width: 100%; display: block;">
+                        <var>l</var>
+                    </span>
+                    <span style="width: 0; display: inline-block;">&nbsp;</span>
+                </span>
+            </span>
+            <span style="font-size: 2.23785em; vertical-align: bottom; position: relative;">)</span>
+        </p><br>
+
+
+            
+
+            
+          
+
+            <strong>Input values are:-</strong>
+            <p>Wire Coil Number of Turns(N) = {{Wire}}</p>
+            <p>Core Material Permeability(µ) = {{Core}}</p>
+            <p>Coil Area(A) = {{Area}} m<sup>2</sup></p>
+            <p>Average Coil Length(l) = {{Length}} m</p>
+            
+            <strong>Put values into formula</strong>
+            <p>   
+                <var style="font-style: italic; font-weight: 400;">L</var>
+                <span style="padding:0 0.2em;">=</span>
+                <span  style="font-size: 2.23785em; vertical-align: bottom; position: relative;">(</span>
+                <span style="display: inline-block; margin: 0;">
+                    <span style="font-size: 90%; text-align: center; vertical-align: -.5em; padding: 0 .1em; display: inline-block; margin: 0;">
+                        <span style="border-bottom: 1px solid; padding: 0 0.1em; display: block;">
+                            <var>{{Wire}}</var>
+                            <sup class="">2</sup>
+                            <var>.{{Core}}.</var>
+                            <var>{{Area}}</var>
+                        </span>
+                        
+                        <span style="border-top: 1px solid; float: right; width: 100%; display: block;">
+                            <var>{{Length}}</var>
+                        </span>
+                        <span style="width: 0; display: inline-block;">&nbsp;</span>
+                    </span>
+                </span>
+                <span style="font-size: 2.23785em; vertical-align: bottom; position: relative;">)</span>
+            </p>
+
+            <p>   
+                <var style="font-style: italic; font-weight: 400;">L</var>
+                <span style="padding:0 0.2em;">=</span>
+                <span  style="font-size: 2.23785em; vertical-align: bottom; position: relative;">(</span>
+                <span style="display: inline-block; margin: 0;">
+                    <span style="font-size: 90%; text-align: center; vertical-align: -.5em; padding: 0 .1em; display: inline-block; margin: 0;">
+                        <span style="border-bottom: 1px solid; padding: 0 0.1em; display: block;">
+                            <var>{{a}}</var>
+                            
+                        </span>
+                        
+                        <span style="border-top: 1px solid; float: right; width: 100%; display: block;">
+                            <var>{{Length}}</var>
+                        </span>
+                        <span style="width: 0; display: inline-block;">&nbsp;</span>
+                    </span>
+                </span>
+                <span style="font-size: 2.23785em; vertical-align: bottom; position: relative;">)</span>
+            </p>
+
+            <p><strong style="color: brown;">Inductance(L) = {{inductance}} H</strong></p>
+
+            <p><strong>What is Meant by Inductance?</strong></p>
+            <p>In Physics, the inductance is one of the properties of the current-carrying conductor which produces the magnetic field around the conductor. The electrical component used to measure the inductance is called the inductors. It is measured using the unit Henry (H). The inductance is represented by the symbol “L”. The current produced in the conductor due to changing magnetic field is proportional to the rate of change of the magnetic field.</p>
+        </div>
+
+       
+
+    </div>
+    {% endif %}
+</div>
+
+{% if f1 %}
+<script>
+    var scrollDiv = document.getElementById("clear").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+</script>
+{% endif %}
+
+<script>
+    
+        var validNumber = new RegExp(/^\d*\.?-?\d*$/);
+        var fist_input = document.getElementById("inlineFormInputGroup").value;
+        function validateNumber(elem) {
+            console.log(elem)
+            if (validNumber.test(elem.value)) {
+                fist_input = elem.value;
+            } else {
+                elem.value = fist_input;
+            }
+        }
+
+        const result = document.getElementById("span1").innerHTML
+        function modifyres1(){
+            
+            var sus  = document.getElementById("myunt1")
+            document.getElementById("span1").innerHTML = +(Number(result) * sus.value)
+        }
+
+    </script>
+    
+    <script>
+        function myFunction() {
+
+                
+                document.getElementsByName("Wire")[0].value = "";
+                document.getElementsByName("Core")[0].value = "";
+                document.getElementsByName("Area")[0].value = "";
+                document.getElementsByName("Length")[0].value = "";
+                document.getElementById("clear").innerHTML = "";
+            }
+        </script>
+    <br>
+    
+    
+    {% endblock %}
