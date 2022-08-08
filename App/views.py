@@ -13411,6 +13411,50 @@ def inductancecalculator(request):
 
 
 
+def solidwastemoisturecontent(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      Wet = request.POST["Wet"]
+      Dry = request.POST["Dry"]
+      #for calculations
+      wet = float(Wet)
+      dry = float(Dry) 
+
+      M = 100 * ((wet - dry) / wet)
+
+      context = {
+        "Wet":Wet,
+        "Dry":Dry,
+        "M":M,
+        "f1":"f1",
+        "a":wet - dry,
+        "b":(wet - dry) / wet,
+
+      }
+      print(context)
+      return render(request,"solidwastemoisturecontent.html", context)
+    else:
+      print("I am GET")
+      return render(request,"solidwastemoisturecontent.html")
+  except ZeroDivisionError:
+    context = {
+        "Wet":0,
+        "Dry":Dry,
+        "M":"Infinity",
+        "f1":"f1",
+        "a":wet - dry,
+        "b":"Infinity",
+      }
+    return render(request, "solidwastemoisturecontent.html",context)
+  except:
+    return render(request, "solidwastemoisturecontent.html",{"message":"Invalid Inputs"})
+
+
+
+
+
+
 
 
 
