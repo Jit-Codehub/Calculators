@@ -83,6 +83,7 @@ path("percent-composition-calculator/", views.percentcomposition),
 path("impulse-with-time-calculator/", views.impulsewithtime),
 path("inductance-calculator/", views.inductancecalculator),
 path("solid-waste-moisture-content-calculator/", views.solidwastemoisturecontent),
+path("geotextile-permittivity-calculator/", views.geotextilepermittivity),
 
 
 ]

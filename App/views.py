@@ -13451,6 +13451,42 @@ def solidwastemoisturecontent(request):
     return render(request, "solidwastemoisturecontent.html",{"message":"Invalid Inputs"})
 
 
+def geotextilepermittivity(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      Normal = request.POST["Normal"]
+      Fabric = request.POST["Fabric"]
+
+      normal = float(Normal)
+      fabric = float(Fabric)
+
+      Geo = normal/fabric
+
+      context = {
+        "Normal":Normal,
+        "Fabric":Fabric,
+        "Geo":Geo,
+        "f1":"f1",
+
+      }
+      print(context)
+      return render(request, "geotextilepermittivity.html", context)
+    else:
+      print("i am get")
+      return render(request, "geotextilepermittivity.html")
+  except ZeroDivisionError:
+    context = {
+        "Normal":Normal,
+        "Fabric":0,
+        "Geo":"Infinity",
+        "f1":"f1",
+      }
+    return render(request, "geotextilepermittivity.html",context)
+  except:
+    return render(request, "geotextilepermittivity.html",{"message":"Invalid Inputs"})
+
+
 
 
 
