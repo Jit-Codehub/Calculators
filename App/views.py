@@ -13490,6 +13490,45 @@ def geotextilepermittivity(request):
 
 
 
+def thrustblock(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      Force = request.POST["Force"]
+      Pressure = request.POST["Pressure"]
+
+      force = float(Force)
+      pressure = float(Pressure)
+
+      Block = force/pressure
+
+      context = {
+        "Force":Force,
+        "Pressure":Pressure,
+        "Block":Block,
+        "f1":"f1",
+
+      }
+      print(context)
+      return render(request, "thrustblock.html", context)
+    else:
+      print("i am get")
+      return render(request, "thrustblock.html")
+  except ZeroDivisionError:
+    context = {
+        "Force":Force,
+        "Pressure":0,
+        "Block":"Infinity",
+        "f1":"f1",
+      }
+    return render(request, "thrustblock.html",context)
+  except:
+    return render(request, "thrustblock.html",{"message":"Invalid Inputs"})
+
+
+
+
+
 
 
 
