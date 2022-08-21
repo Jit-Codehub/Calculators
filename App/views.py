@@ -13540,86 +13540,93 @@ def goldweightcalculator(request):
       num = num * 1000
     return num
     
+  try:
+    if request.POST.get("f1"):
+      given_data = request.POST.get("given_data")
+      Type = request.POST.get("Type")
+      Density = request.POST.get("Density")
+      Depth = request.POST.get("Depth")
+      Depth_op = request.POST.get("Depth_op")
 
-  if request.POST.get("f1"):
-    given_data = request.POST.get("given_data")
-    Type = request.POST.get("Type")
-    Density = request.POST.get("Density")
-    Depth = request.POST.get("Depth")
-    Depth_op = request.POST.get("Depth_op")
+      depth = cu(float(Depth), Depth_op)
+      if Type == "Gold":
+        density = 19.32
+      if Type == "Fools":
+        density = 5.02
+      if Type == "Liquid":
+        density = 17.31
+      
 
-    depth = cu(float(Depth), Depth_op)
-    if Type == "Gold":
-      density = 19.32
-    if Type == "Fools":
-      density = 5.02
-    if Type == "Liquid":
-      density = 17.31
-    
+      
+      
+      
 
-    
-    
-    
+      if request.POST.get("Length"):
+        Length = request.POST.get("Length")
+        Width = request.POST.get("Width")
+        Length_op = request.POST.get("Length_op")
+        Width_op = request.POST.get("Width_op")
 
-    if request.POST.get("Length"):
-      Length = request.POST.get("Length")
-      Width = request.POST.get("Width")
-      Length_op = request.POST.get("Length_op")
-      Width_op = request.POST.get("Width_op")
+        length = cu(float(Length), Length_op)
+        width = cu(float(Width), Width_op)
 
-      length = cu(float(Length), Length_op)
-      width = cu(float(Width), Width_op)
+        Weight = length * width * depth * density
 
-      Weight = length * width * depth * density
+        context = {
+          'given_data':given_data,
+          'Type':Type,
+          'Density':density,
+          'Depth':Depth,
+          'Depth_op':Depth_op,
+          'Length':Length,
+          'Width':Width,
+          'Length_op':Length_op,
+          'Width_op':Width_op,
+          'Weight':Weight,
+          "f1":"f1",
+          'length':length,
+          'width':width,
+          'depth':depth,
+        }
+        print(context)
+        print("111111111111111111111111111111111111")
+        return render(request,"goldweightcalculator.html", context)
 
-      context = {
-        'given_data':given_data,
-        'Type':Type,
-        'Density':density,
-        'Depth':Depth,
-        'Depth_op':Depth_op,
-        'Length':Length,
-        'Width':Width,
-        'Length_op':Length_op,
-        'Width_op':Width_op,
-        'Weight':Weight,
-        "f1":"f1",
-      }
-      print(context)
-      print("111111111111111111111111111111111111")
-      return render(request,"goldweightcalculator.html", context)
+      if request.POST.get("Diameter"):
+        Diameter = request.POST.get("Diameter")
+        Diameter_op = request.POST.get("Diameter_op")
 
-    if request.POST.get("Diameter"):
-      Diameter = request.POST.get("Diameter")
-      Diameter_op = request.POST.get("Diameter_op")
+        diameter = cu(float(Diameter), Diameter_op)
 
-      diameter = cu(float(Diameter), Diameter_op)
+        import math
+        Weight = math.pi * ((diameter / 2)**2) * depth * density
 
-      import math
-      Weight = math.pi * ((diameter / 2)**2) * depth * density
+        context = {
+          'given_data':given_data,
+          'Type':Type,
+          'Density':density,
+          'Depth':Depth,
+          'Depth_op':Depth_op,
+          'Diameter':Diameter,
+          'Diameter_op':Diameter_op,
+          'Weight':Weight,
+          "f1":"f1",
+          'diameter':diameter,
+          'depth':depth,
+          
+        }
+        print(context)
+        print("22222222222222222222222222222222222")
+        return render(request,"goldweightcalculator.html", context)
 
-      context = {
-        'given_data':given_data,
-        'Type':Type,
-        'Density':density,
-        'Depth':Depth,
-        'Depth_op':Depth_op,
-        'Diameter':Diameter,
-        'Diameter_op':Diameter_op,
-        'Weight':Weight,
-        "f1":"f1",
-        
-      }
-      print(context)
-      print("22222222222222222222222222222222222")
-      return render(request,"goldweightcalculator.html", context)
-
-    # print("I am POST")
-    # return render(request,"goldweightcalculator.html", {'given_data':request.POST.get("given_data")})
-  else:
-    print("I am get")
-    return render(request,"goldweightcalculator.html",{'given_data':request.POST.get("given_data") if request.POST.get("given_data") else 'form1'})
-    # return render(request,"goldweightcalculator.html",{'given_data':'form1'})
+      # print("I am POST")
+      # return render(request,"goldweightcalculator.html", {'given_data':request.POST.get("given_data")})
+    else:
+      print("I am get")
+      return render(request,"goldweightcalculator.html",{'given_data':request.POST.get("given_data") if request.POST.get("given_data") else 'form1'})
+      # return render(request,"goldweightcalculator.html",{'given_data':'form1'})
+  except:
+    return render(request,"goldweightcalculator.html", {'given_data':'form1','message':'Invalid Inputs'})
 
 
 

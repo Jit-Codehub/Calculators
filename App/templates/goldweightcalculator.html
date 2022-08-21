@@ -369,19 +369,55 @@
                 </select>
         </p>
 
-        <p><strong>Formulas Used:</strong></p>
+        <p><strong>Formulas Used For Gold Bar:</strong></p>
         
-        <p class="btn btn-outline-secondary active">Thrust Block = Thrust Force / Pressure</p><br>
+        <p class="btn btn-outline-secondary active">W = L × V × D × T</p><br>
+
+        <p><strong>Formulas Used For Gold Coin:</strong></p>
+        <p class="btn btn-outline-secondary active">W = π × (C / 2)² × d
+        </p><br>
+
+        <strong>where:</strong>
+        <ul>
+            <li>W = Weight</li>
+            <li>L = Length</li>
+            <li>V = Width</li>
+            <li>D = Depth</li>
+            <li>T = Density</li>
+            <li>C = Diameter</li>
+        </ul>
     
         
-        <strong>Input values are:-</strong>
-            <p>Thrust Force = {{Force}}</p>
-            <p>Pressure = {{Pressure}}</p>
+        <strong style="color: brown;">Input values are:-</strong>
+            <p>Density = {{Density}} gram/cm³</p>
+            <p>Depth = {{Depth}} {{Depth_op}}</p>
+            {% if given_data == 'form1' %}
+            <p>Length = {{Length}} {{Length_op}}</p>
+            <p>Width = {{Depth}} {{Width_op}}</p>
+            {% endif %}
+
+            {% if given_data == 'form2' %}
+            <p>Diameter = {{Diameter}} {{Diameter_op}}</p>
+            {% endif %}
             
             
-        <strong>Put values into formula</strong>
-           <p>Thrust Block = {{Force}} / {{Pressure}}</p>
-           <p><strong style="color: brown;">Thrust Block = {{Block}} newton</strong></p>
+        <strong style="color: brown;">Put values into formula</strong>
+        {% if given_data == 'form1' %}
+           <p>W = {{Length}} {{Length_op}} × {{Width}} {{Width_op}} × {{Depth}} {{Depth_op}}× {{Density}} gram/cm³</p>
+           <p>W = {{length}} mm × {{width}} mm × {{depth}} mm × {{Density}} gram/cm³</p>
+
+           <p><strong style="color: brown;">Weight = {{Weight}} mg</strong></p>
+           {% endif %}
+
+           {% if given_data == 'form2' %}
+           <p>W = π × ({{Diameter}} {{Diameter_op}} / 2)² × {{Depth}} {{Depth_op}} × {{Density}} gram/cm³
+           </p>
+
+           <p>W = π × ({{diameter}} mm / 2)² × {{depth}} mm × {{Density}} gram/cm³
+          </p>
+          <p><strong style="color: brown;">Weight = {{Weight}} mg</strong></p>
+
+           {% endif %}
 
            
         </div>
@@ -449,10 +485,14 @@
 
                 document.getElementById("clear").innerHTML = "";
                 document.getElementsByName("Depth")[0].value = "";
+                {% if given_data == 'form1' %}
                 document.getElementsByName("Length")[0].value = "";
                 document.getElementsByName("Width")[0].value = "";
+                {% endif %}
+
+                {% if given_data == 'form2' %}
                 document.getElementsByName("Diameter")[0].value = "";
-               
+                {% endif %}
             }
         </script>
     <br>
