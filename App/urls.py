@@ -86,6 +86,7 @@ path("solid-waste-moisture-content-calculator/", views.solidwastemoisturecontent
 path("geotextile-permittivity-calculator/", views.geotextilepermittivity),
 path("thrust-block-calculator/", views.thrustblock),
 path("gold-weight-calculator/", views.goldweightcalculator),
+path("earth-orbit-calculator/", views.earthorbitcalculator),
 
 
 ]

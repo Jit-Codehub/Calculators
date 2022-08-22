@@ -13632,6 +13632,64 @@ def goldweightcalculator(request):
 
 
 
+def earthorbitcalculator(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      Altitude = request.POST.get('Altitude')
+      altitude = float(Altitude)
+
+      import math
+      velocity = math.sqrt(398600.5/(6378.14 + altitude))
+      
+      period = ((6378.14 + altitude)/velocity) * 2 * math.pi
+      a = period
+      period /= 3600
+      
+      
+      if type(period) == float:
+        min = str(period).split('.') 
+        m = float('.'+min[1]) * 60
+        print(m)
+        mi = str(m).split('.')[0]
+        period = f'{min[0]}:{mi}'
+      else:
+        period = f'{period}:00'
+
+      if type(m) == float:
+        sec = str(m).split('.')
+        s = float('.'+sec[1]) * 60
+        se = str(s).split('.')[0]
+        
+        period = f'{period}:{se}'
+      else:
+        period = f'{period}:00'
+
+      
+      radius = 6378.14 + altitude
+
+      context = {
+        'Altitude':Altitude,
+        'velocity':velocity,
+        'period':period,
+        'radius':radius,
+        'f1':'f1',
+        'a':a, #for frontend calculation
+
+      }
+      return render(request,"earthorbitcalculator.html", context)
+    else:
+      print("I am GET")
+      return render(request,"earthorbitcalculator.html")
+  except:
+    return render(request,"earthorbitcalculator.html",{'message':'Invalid Inputs'})
+
+
+
+
+
+
+
 
 
 
