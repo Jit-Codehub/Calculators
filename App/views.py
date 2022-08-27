@@ -13688,6 +13688,72 @@ def earthorbitcalculator(request):
 
 
 
+def sunrisesunsetcalculator(request):
+  try:
+    if request.POST:
+      print(request.POST)
+      Place = request.POST.get('Place')
+      Date = request.POST.get('Date')
+    
+      date = Date.split('-')
+      print(date)
+      year = date[0]
+      month = date[1]
+      if month[0] == '0':
+        month = month[1]
+      dat = date[2]
+      if dat[0] == '0':
+        dat = dat[1]
+      print(year, month, dat)
+    
+
+      # import required modules
+      import datetime
+      from suntime import Sun
+      from geopy.geocoders import Nominatim
+
+      # Nominatim API to get latitude and longitude
+      geolocator = Nominatim(user_agent="geoapiExercises")
+
+      # input place
+      place = Place
+      location = geolocator.geocode(place)
+
+      # latitude and longitude fetch
+      latitude = location.latitude
+      longitude = location.longitude
+      sun = Sun(latitude, longitude)
+
+      # date in your machine's local time zone
+      time_zone = datetime.date(int(year), int(month), int(dat))
+      sun_rise = sun.get_local_sunrise_time(time_zone)
+      sun_dusk = sun.get_local_sunset_time(time_zone)
+
+      # display
+      print("Sun rise at : ", sun_rise.strftime('%H:%M'))
+      print("Dusk at : ",sun_dusk.strftime('%H:%M'))
+
+      
+      context = {
+        'Place':Place,
+        'Date':Date,
+        'sunrise':sun_rise.strftime('%H:%M'),
+        'sunset':sun_dusk.strftime('%H:%M'),
+        "f1":"f1",
+        "longitude":longitude,
+        "latitude":latitude
+      }
+      return render(request,"sunrisesunsetcalculator.html",context)
+    else:
+      print("GET GET GET")
+      return render(request,"sunrisesunsetcalculator.html")
+  except:
+    return render(request,"sunrisesunsetcalculator.html",{'message':'Invalid Inputs'})
+
+
+
+
+
 
 
 
