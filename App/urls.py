@@ -87,7 +87,8 @@ path("geotextile-permittivity-calculator/", views.geotextilepermittivity),
 path("thrust-block-calculator/", views.thrustblock),
 path("gold-weight-calculator/", views.goldweightcalculator),
 path("earth-orbit-calculator/", views.earthorbitcalculator),
-path("sunrise-sunset-calculator/", views.sunrisesunsetcalculator),
+# path("sunrise-sunset-calculator/", views.sunrisesunsetcalculator),
+path("f-l-a-m-e-s-calculator/",views.flames),
 
 
 ]

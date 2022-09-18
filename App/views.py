@@ -13688,67 +13688,134 @@ def earthorbitcalculator(request):
 
 
 
-def sunrisesunsetcalculator(request):
-  try:
-    if request.POST:
-      print(request.POST)
-      Place = request.POST.get('Place')
-      Date = request.POST.get('Date')
+# def sunrisesunsetcalculator(request):
+#   try:
+#     if request.POST:
+#       print(request.POST)
+#       Place = request.POST.get('Place')
+#       Date = request.POST.get('Date')
     
-      date = Date.split('-')
-      print(date)
-      year = date[0]
-      month = date[1]
-      if month[0] == '0':
-        month = month[1]
-      dat = date[2]
-      if dat[0] == '0':
-        dat = dat[1]
-      print(year, month, dat)
+#       date = Date.split('-')
+#       print(date)
+#       year = date[0]
+#       month = date[1]
+#       if month[0] == '0':
+#         month = month[1]
+#       dat = date[2]
+#       if dat[0] == '0':
+#         dat = dat[1]
+#       print(year, month, dat)
     
 
-      # import required modules
-      import datetime
-      from suntime import Sun
-      from geopy.geocoders import Nominatim
+#       # import required modules
+#       import datetime
+#       from suntime import Sun
+#       from geopy.geocoders import Nominatim
 
-      # Nominatim API to get latitude and longitude
-      geolocator = Nominatim(user_agent="geoapiExercises")
+#       # Nominatim API to get latitude and longitude
+#       geolocator = Nominatim(user_agent="geoapiExercises")
 
-      # input place
-      place = Place
-      location = geolocator.geocode(place)
+#       # input place
+#       place = Place
+#       location = geolocator.geocode(place)
 
-      # latitude and longitude fetch
-      latitude = location.latitude
-      longitude = location.longitude
-      sun = Sun(latitude, longitude)
+#       # latitude and longitude fetch
+#       latitude = location.latitude
+#       longitude = location.longitude
+#       sun = Sun(latitude, longitude)
 
-      # date in your machine's local time zone
-      time_zone = datetime.date(int(year), int(month), int(dat))
-      sun_rise = sun.get_local_sunrise_time(time_zone)
-      sun_dusk = sun.get_local_sunset_time(time_zone)
+#       # date in your machine's local time zone
+#       time_zone = datetime.date(int(year), int(month), int(dat))
+#       sun_rise = sun.get_local_sunrise_time(time_zone)
+#       sun_dusk = sun.get_local_sunset_time(time_zone)
 
-      # display
-      print("Sun rise at : ", sun_rise.strftime('%H:%M'))
-      print("Dusk at : ",sun_dusk.strftime('%H:%M'))
+#       # display
+#       print("Sun rise at : ", sun_rise.strftime('%H:%M'))
+#       print("Dusk at : ",sun_dusk.strftime('%H:%M'))
 
       
-      context = {
-        'Place':Place,
-        'Date':Date,
-        'sunrise':sun_rise.strftime('%H:%M'),
-        'sunset':sun_dusk.strftime('%H:%M'),
-        "f1":"f1",
-        "longitude":longitude,
-        "latitude":latitude
+#       context = {
+#         'Place':Place,
+#         'Date':Date,
+#         'sunrise':sun_rise.strftime('%H:%M'),
+#         'sunset':sun_dusk.strftime('%H:%M'),
+#         "f1":"f1",
+#         "longitude":longitude,
+#         "latitude":latitude
+#       }
+#       return render(request,"sunrisesunsetcalculator.html",context)
+#     else:
+#       print("GET GET GET")
+#       return render(request,"sunrisesunsetcalculator.html")
+#   except:
+#     return render(request,"sunrisesunsetcalculator.html",{'message':'Invalid Inputs'})
+
+
+def flames(request):
+  try:
+    if request.POST:
+      name1 = request.POST["Name"]
+      your = request.POST["Your"]
+      Name = request.POST["Name"]
+      Your = request.POST["Your"]
+
+      print(name1,your,sep='\n')
+
+      name = Name.lower().replace(" ","")
+      name2 = Your.lower().replace(" ","")
+      union_chars = set(name) & set(name2)
+      name = list(name) #amit Jitender LEMFS A # 8 #aman jitender 10
+      name2 = list(name2) #rajashekhar Jitender FMESL A 13
+      lenght_of_inputs = len(name) + len(name2)
+      print(union_chars) #amit Jitender LEMFS A # 8
+      a = 0
+      for i in union_chars:
+          c = name.count(i)
+          d = name2.count(i)
+          if c > d: a += d
+          elif d > c: a += c
+          else:a += name.count(i)
+      distinct_chars = lenght_of_inputs - (a*2)
+      print(distinct_chars)
+      data = ["F","L","A","M","E","S"] * distinct_chars
+      data = data * distinct_chars
+      j = ''
+      ind = distinct_chars - 1
+      for i in range(5):
+          if i == 0:
+              b = data[ind]
+              j = data[ind+1]
+              for i in range(distinct_chars):
+                  data.remove(b)
+          else:
+              b = data[data.index(j)+ind]
+              j = data[data.index(j)+ind + 1]
+              for i in range(distinct_chars):
+                  data.remove(b)
+      print(j)
+      relations = {
+        "F":"Friendship",
+        "L":"Love",
+        "A":"Affection",
+        "M":"Marriage",
+        "E":"Enemy",
+        "S":"Sister (Sibling)",
       }
-      return render(request,"sunrisesunsetcalculator.html",context)
+
+
+      context ={
+        'Name':name1,
+        'Your':your,
+        "Relations":relations[j],
+        "f1":"f1",
+      }
+      print(context)
+      return render(request,"flames.html",context)
     else:
-      print("GET GET GET")
-      return render(request,"sunrisesunsetcalculator.html")
+      return render(request,"flames.html")
   except:
-    return render(request,"sunrisesunsetcalculator.html",{'message':'Invalid Inputs'})
+      return render(request,"flames.html",{'message':'Something Went Wrong'})
+
 
 
 
