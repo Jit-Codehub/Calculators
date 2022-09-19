@@ -13777,6 +13777,17 @@ def flames(request):
           else:a += name.count(i)
       distinct_chars = lenght_of_inputs - (a*2)
       print(distinct_chars)
+
+      #code will run if both the inputs are same
+      if distinct_chars == 0:
+        context ={
+        'Name':name1,
+        'Your':your,
+        "Relations":"Friendship",
+        "f1":"f1",
+        }
+        return render(request,"flames.html",context)
+      ##############################################
       data = ["F","L","A","M","E","S"] * distinct_chars
       data = data * distinct_chars
       j = ''
